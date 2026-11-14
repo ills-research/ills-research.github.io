@@ -98,3 +98,13 @@ html[lang=fr] .hero h1{font-size:clamp(43px,4.58vw,72px)}html[lang=fr] .hero h1 
   .hero-base { flex-wrap: wrap; gap: .4rem 1.25rem; padding-block: .6rem; }
   .overview-jumps { padding: 0; gap: .4rem 1rem; }
 }
+
+
+.mobility-programme-list { list-style: none; margin: 1rem 0 0; padding: 0; }
+.mobility-programme-list > li { padding-block: 1.15rem; border-top: 1px solid var(--line); }
+.mobility-programme-list > li:last-child { border-bottom: 1px solid var(--line); }
+.mobility-programme-list h3 { margin: 0; font-size: clamp(18px, 1.35vw, 21px); font-weight: 560; letter-spacing: -.025em; }
+.mobility-programme-list h3 a { text-decoration: underline; text-decoration-color: #b9c8d5; text-underline-offset: .18em; }
+.mobility-programme-list h3 a:hover { text-decoration-color: currentColor; }
+.mobility-programme-list p { margin: .55rem 0 .65rem; color: var(--muted); }
+.mobility-programme-list .link-arrow { font-size: 13px; }
