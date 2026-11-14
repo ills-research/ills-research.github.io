@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+preview/
+ILLS-website-template.zip
+outputs/
+
+# Private lab renewal document
+Scientific_project_ILLS.pdf
+scientific-project-cover.webp
