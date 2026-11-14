@@ -4,20 +4,23 @@
 def render(fr: bool, prefix: str) -> str:
     if fr:
         title = 'Un laboratoire commun à Montréal'
-        mission = ('Créé en 2022, l’ILLS réunit des équipes de France et du Québec à l’ÉTS. '
-                   'Leurs recherches portent sur la prise de décision en temps réel et sur la façon dont les systèmes '
-                   'autonomes réagissent lorsque les conditions changent. Elles associent le traitement du signal '
-                   'et l’apprentissage automatique pour étudier la parole, le langage et la vision par ordinateur.')
+        mission = ('Créé en 2022, l’ILLS réunit à l’ÉTS Montréal des chercheurs et chercheuses de France et du Québec '
+                   'pour faire progresser les systèmes d’apprentissage. Ses recherches couvrent les fondements de '
+                   'l’apprentissage automatique, l’IA générative sûre et digne de confiance, l’IA multiagent et les '
+                   'modèles du monde, ainsi que l’IA pour la santé et les systèmes d’ingénierie critiques. '
+                   'Dans ces domaines, les équipes étudient comment les systèmes d’IA apprennent, communiquent et '
+                   'prennent des décisions, et comment renforcer leur fiabilité, leur équité et la protection de la vie privée.')
         cnrs_url = 'https://ottawa.office.cnrs.fr/recherche/international-laboratory-on-learning-systems-2/'
         cnrs_link = 'Le laboratoire sur le site du CNRS'
         leadership = ('<a href="people/pablo-piantanida.html">Pablo Piantanida</a> est directeur de l’ILLS '
                       'et <a href="people/mark-coates.html">Mark Coates</a> en est le codirecteur.')
     else:
         title = 'A shared lab in Montréal'
-        mission = ('Founded in 2022, ILLS brings researchers from France and Québec together at ÉTS. '
-                   'They study how machines make decisions in real time and how autonomous systems respond '
-                   'when conditions change. Their work brings signal processing and machine learning '
-                   'to questions in speech, language and computer vision.')
+        mission = ('Founded in 2022, ILLS brings researchers from France and Québec together at ÉTS Montréal to advance '
+                   'learning systems. Its research spans the foundations of machine learning, safe and trustworthy '
+                   'generative AI, multi-agent AI and world models, and AI for healthcare and critical engineering '
+                   'systems. Across these areas, researchers study how AI systems learn, communicate and make decisions, '
+                   'and how to make them reliable, fair and privacy-preserving.')
         cnrs_url = 'https://ottawa.office.cnrs.fr/en/research/international-laboratory-on-learning-systems-2/'
         cnrs_link = 'Laboratory profile at CNRS'
         leadership = ('<a href="people/pablo-piantanida.html">Pablo Piantanida</a> is the Director of ILLS '
@@ -51,5 +54,5 @@ def render_contact(fr: bool, prefix: str) -> str:
           <div><h3>{email_heading}</h3><p>{email_copy}</p>
             <a class="text-link" href="mailto:secretariat-ills@etsmtl.ca">secretariat-ills@etsmtl.ca</a></div>
         </div></div><div class="lab-photo"><img src="{prefix}assets/images/ills-entrance.jpg" width="1600" height="1200"
-          loading="lazy" alt="{alt}"></div>
-      </div></section>"""
+          loading="lazy" alt="{alt}">
+      </div></div></section>"""
