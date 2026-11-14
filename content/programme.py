@@ -15,7 +15,7 @@ def render(fr: bool, prefix: str) -> str:
         'abordent cette question sous quatre angles, des garanties mathématiques à l’évaluation en milieu clinique.'
         if fr else
         'How do we know when to trust a learning system? ILLS researchers approach this question '
-        'through four research axes, from mathematical guarantees to evaluation in clinical settings.'
+        'through four research axes, from mathematical guarantees to evaluation in clinical settings and critical engineering systems.'
     )
     axis_word = 'Axe' if fr else 'Axis'
     roman_numerals = ('I', 'II', 'III', 'IV')
