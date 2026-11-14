@@ -346,6 +346,15 @@ def render_applications(fr, prefix):
         mobility_steps = ("Recueillez les avis écrits des directions de votre unité d’origine et de l’ILLS, puis transmettez votre projet scientifique "
                           "et votre demande à la direction scientifique du ou des instituts concernés. La décision revient aux directions de ces instituts.")
         mobility_label = "Lignes directrices du CNRS sur la mobilité, section II.A (PDF)"
+        exchange_heading = "Programmes d’échanges France–Québec"
+        exchange_intro = "Des programmes récurrents peuvent aider à financer des séjours de recherche, des stages et de nouveaux projets conjoints. Les appels, les critères et les montants évoluent : vérifiez les modalités en vigueur auprès de chaque organisme et du bureau de la recherche de votre université."
+        exchange_programmes = [
+            ("Fonds France-Canada pour la Recherche (FFCR)", "Appel annuel de l’Ambassade de France au Canada et d’universités canadiennes pour amorcer de nouvelles collaborations franco-canadiennes. Les projets soutiennent notamment la mobilité des équipes et des étudiants. Le chercheur principal canadien doit être rattaché à une université membre du consortium, dont McGill. Le programme est réservé aux nouvelles collaborations : des travaux antérieurs entre les deux responsables peuvent rendre l’équipe inadmissible.", "https://www.institutfrancais.ca/fr/ffcr"),
+            ("Programme Samuel-De Champlain", "Appels récurrents pour des projets interuniversitaires franco-québécois en recherche ou en formation, qui peuvent structurer une collaboration et soutenir la mobilité des équipes. L’intelligence artificielle figure parmi les thèmes prioritaires des derniers appels.", "https://cfqcu.org/fr/conseil-franco-quebecois-cooperation-universitaire/appels-a-projets"),
+            ("Bourse de mobilité Québec–France Sophie Germain", "Le FRQ et le Consulat général de France à Québec soutiennent les doctorantes, doctorants et stagiaires postdoctoraux du Québec qui effectuent un séjour de recherche en France d’au moins un mois. Consultez le concours en cours pour connaître les conditions et le financement disponibles.", "https://frq.gouv.qc.ca/programme/bourses-de-mobilite-quebec-france-sophie-germain/"),
+            ("Bourse de recherche Globalink de Mitacs (BRG)", "Finance des stages de recherche de 12 à 24 semaines, sous codirection, pour les étudiantes et étudiants de premier cycle avancé, des cycles supérieurs et les stagiaires postdoctoraux. L’appel Adoption de l’IA du G7 inclut la France; les places dépendent de l’allocation de l’université canadienne.", "https://www.mitacs.ca/fr-ca/nos-programmes/bourse-de-recherche-globalink/"),
+        ]
+        exchange_link_label = "Consulter le programme et les modalités"
         contact = "Discuter de votre projet avec l’ILLS"
         contact_copy = ("Que vous envisagiez une délégation ou un changement d’affectation, contactez <strong>Pablo Piantanida, directeur de l’ILLS</strong>. "
                         "Dans votre message, présentez brièvement votre projet, les personnes avec qui vous aimeriez collaborer et vos dates de séjour souhaitées à Montréal.")
@@ -382,6 +391,15 @@ def render_applications(fr, prefix):
         mobility_steps = ("Obtain the written opinions of your current and prospective unit directors, then send your research project and reassignment request "
                           "to the scientific leadership of the CNRS institute or institutes concerned. The institute directors make the decision.")
         mobility_label = "CNRS researcher mobility guidelines, section II.A (PDF)"
+        exchange_heading = "France–Québec exchange programmes"
+        exchange_intro = "Recurring programmes can help fund research visits, internships and new joint projects. Calls, eligibility and award amounts change, so check each programme’s current rules and your university research office before applying."
+        exchange_programmes = [
+            ("France–Canada Research Fund (FCRF)", "An annual programme supported by the Embassy of France in Canada and a consortium of Canadian universities to launch new France–Canada research collaborations. Grants support project development and mobility for research teams and students. The Canadian lead must be at a consortium member university, including McGill. It is intended for new collaborations; prior joint work may affect eligibility.", "https://www.institutfrancais.ca/en/fcrf"),
+            ("Samuel-De Champlain Programme", "Recurring calls support France–Québec university partnerships in research and training, helping teams structure collaborations and mobility. Artificial intelligence has been among the priority themes in recent calls.", "https://cfqcu.org/fr/conseil-franco-quebecois-cooperation-universitaire/appels-a-projets"),
+            ("Sophie Germain Québec–France Mobility Grant", "The Fonds de recherche du Québec and the Consulate General of France in Québec support Québec-based doctoral students and postdoctoral fellows undertaking research stays of at least one month in France. Check the current competition for eligibility and funding details.", "https://frq.gouv.qc.ca/programme/bourses-de-mobilite-quebec-france-sophie-germain/"),
+            ("Mitacs Globalink Research Award (GRA)", "Funds 12–24-week jointly supervised research internships for senior undergraduates, graduate students and postdoctoral fellows. The G7 AI Adoption call includes France; available awards depend on the Canadian university’s allocation.", "https://www.mitacs.ca/our-programs/globalink-research-award/"),
+        ]
+        exchange_link_label = "Programme details and current call"
         contact = "Discuss your project with ILLS"
         contact_copy = ("Whether you are considering a CNRS delegation or a reassignment, please contact <strong>Pablo Piantanida, Director of ILLS</strong>, "
                         "to discuss your project. In your message, briefly describe your research idea, whom you would like to work with, and your preferred dates in Montréal.")
@@ -390,6 +408,12 @@ def render_applications(fr, prefix):
         letter_copy = ("This letter sets out the shared expectations for France-based researchers hosted at ILLS during 2027–2031, "
                        "including collaboration, scientific engagement, and training.")
         letter_label = "Download the admission letter of understanding (PDF)"
+
+    exchange_items = ''.join(
+        f'<li><h3><a href="{url}">{name}</a></h3><p>{description}</p>'
+        f'<a class="link-arrow" href="{url}">{exchange_link_label} <span aria-hidden="true">↗</span></a></li>'
+        for name, description, url in exchange_programmes
+    )
 
     return f"""
       <header class="inner-hero"><div class="wrap">
@@ -413,6 +437,10 @@ def render_applications(fr, prefix):
           <div class="notice-copy"><p>{mobility}</p><p><strong>{procedure}.</strong> {mobility_steps}</p>
             <a class="link-arrow" href="https://www.cnrs.fr/sites/default/files/pdf/DRH2020-11_LDG-mobilite.pdf">{mobility_label}</a>
           </div>
+        </section>
+        <section class="notice-row" id="exchange-programmes" aria-labelledby="exchange-programmes-heading">
+          <div><p class="notice-kind">{'Mobilité internationale' if fr else 'International mobility'}</p><h2 id="exchange-programmes-heading">{exchange_heading}</h2></div>
+          <div class="notice-copy"><p>{exchange_intro}</p><ul class="mobility-programme-list">{exchange_items}</ul></div>
         </section>
         <section class="notice-row" id="letter-of-understanding" aria-labelledby="letter-of-understanding-heading">
           <div><p class="notice-kind">{'Période 2027–2031' if fr else '2027–2031 period'}</p><h2 id="letter-of-understanding-heading">{letter_heading}</h2></div>
