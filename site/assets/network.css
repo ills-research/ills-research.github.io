@@ -1,0 +1,125 @@
+.network-intro .lead {
+  max-width: 49rem;
+}
+.network-intro .lead + p {
+  margin-top: 1rem;
+}
+
+.network-directory .wrap > section + section {
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+}
+
+.network-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 5vw, 5.5rem);
+  margin-top: 2.25rem;
+}
+
+.network-group h3 {
+  margin: 0 0 1.2rem;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 550;
+}
+
+.network-group ul,
+.network-reading {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.network-group li {
+  border-top: 1px solid #d5dce7;
+}
+
+.network-group li:last-child {
+  border-bottom: 1px solid #d5dce7;
+}
+
+.network-partner {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr) 1rem;
+  align-items: center;
+  gap: clamp(.75rem, 1.4vw, 1.6rem);
+  min-height: 6.75rem;
+  padding: 1.2rem .3rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.network-mark {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.network-mark img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 3rem;
+}
+
+.network-name {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.network-arrow,
+.network-reading span {
+  color: #2456b2;
+}
+
+.network-partner:hover .network-name,
+.network-partner:focus-visible .network-name {
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.network-exchange {
+  background: #f2f5fa;
+}
+
+.network-exchange-inner {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.network-exchange h2,
+.network-exchange p {
+  margin-top: 0;
+}
+
+.network-exchange p {
+  max-width: 39rem;
+  line-height: 1.65;
+}
+
+.network-reading li + li {
+  margin-top: .65rem;
+}
+
+.network-reading a {
+  color: #183f89;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+@media (max-width: 740px) {
+  .network-groups,
+  .network-exchange-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .network-partner {
+    min-height: 5.75rem;
+    grid-template-columns: minmax(4.25rem, 25%) minmax(0, 1fr) 1rem;
+  }
+
+  .network-exchange-inner {
+    gap: .5rem;
+  }
+}

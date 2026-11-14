@@ -1,0 +1,54 @@
+.featured-workshop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(13rem, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 4rem);
+  border-top: 3px solid var(--teal);
+  color: white;
+  background: var(--navy);
+}
+.featured-workshop .eyebrow { color: #90ece1; }
+.workshop-title { margin-top: 1rem; font-size: clamp(1.65rem, 2.7vw, 2.75rem); text-wrap: balance; }
+.workshop-meta { margin-top: 1rem; color: #90ece1; font-weight: 600; }
+.workshop-summary { margin-block: 1rem 1.5rem; max-width: 64ch; color: #e1eaf2; }
+.workshop-programme { align-self: center; padding-left: clamp(1.5rem, 3vw, 3rem); border-left: 1px solid #456077; }
+.workshop-programme h4 { font-size: 1.25rem; letter-spacing: -.02em; }
+.workshop-programme dl { margin-block: 1.25rem; }
+.workshop-programme dt { color: #90ece1; font: 600 .8rem/1.5 var(--mono); }
+.workshop-programme dd { margin: .2rem 0 .85rem; }
+.workshop-programme > p { padding-top: 1rem; border-top: 1px solid #456077; color: #d1dde8; font-size: .9rem; }
+@media (max-width: 740px) {
+  .featured-workshop { grid-template-columns: 1fr; }
+  .workshop-programme { border-left: 0; border-top: 1px solid #456077; padding: 1.25rem 0 0; }
+}
+
+.seminar-zone { color: var(--muted); }
+.event-photos { display: flex; align-items: flex-start; gap: .75rem; margin-top: 1rem; }
+.event-photos figure { flex: var(--photo-ratio) 1 0; min-width: 0; margin: 0; }
+.event-photos img { width: 100%; height: auto; border-radius: 4px; }
+.event-photos figcaption { margin-top: .35rem; font-size: .8rem; color: var(--muted); }
+.event-photos:has(> figure:nth-child(3)) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 520px) {
+  .event-photos { flex-direction: column; }
+  .event-photos figure { flex: none; width: 100%; }
+}
+.seminar-group { margin-top: clamp(1.75rem, 3vw, 3rem); }
+.seminar-group > h3 { margin-bottom: 1rem; }
+.seminar-speakers { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; margin: 0 0 .7rem; }
+.seminar-speaker-person { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; color: #185b66; font-weight: 600; text-decoration: none; }
+.seminar-speaker-person:hover .seminar-speaker-name { text-decoration: underline; text-underline-offset: .2em; }
+.seminar-speaker-avatar-wrap { position: relative; display: block; width: 52px; height: 52px; flex: 0 0 52px; }
+.seminar-speaker-avatar { display: block; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 50%; object-fit: cover; background: #e5eef0; }
+.seminar-speaker-avatar-wrap > .seminar-speaker-avatar { position: absolute; inset: 0; }
+.seminar-speaker-initials { display: grid; place-items: center; color: #185b66; border: 1px solid #b7d4ce; background: #e5f2ef; font-size: .85rem; font-weight: 700; }
+.seminar-speaker-name { max-width: 18ch; }
+.seminar-talk h4 { font-size: clamp(1.15rem, 1.6vw, 1.55rem); font-weight: 540; line-height: 1.22; }
+.seminar-talk details { margin-top: .8rem; }
+.seminar-talk summary { width: fit-content; color: var(--blue); cursor: pointer; font-size: .94rem; }
+.seminar-talk summary:hover, .seminar-references a { text-decoration: underline; text-underline-offset: .2em; }
+.seminar-talk h5 { margin: 1.25rem 0 .2rem; font-size: 1rem; }
+.seminar-talk details p { margin: .45rem 0 .85rem; color: var(--ink); }
+.seminar-references { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .92rem; }
