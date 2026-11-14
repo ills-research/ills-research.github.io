@@ -8,7 +8,7 @@ on:
       - "build.py"
       - "content/**"
       - "tools/check_site.py"
-      - "site-assets.zip"
+      - "ills-site-assets.zip"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -38,7 +38,7 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Restore website image and document assets
-        run: unzip -qo site-assets.zip -d .
+        run: unzip -qo ills-site-assets.zip -d .
       - name: Generate both language editions and check internal links
         run: |
           python3 -B build.py
