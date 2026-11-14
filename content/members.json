@@ -214,7 +214,10 @@
     },
     "image": "ismail-ben-ayed.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P20180419-Ben-Ayed-Ismail-002.jpg",
-    "portrait_credit": "École de technologie supérieure"
+    "portrait_credit": "École de technologie supérieure",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "Jackie Chi Kit Cheung",
@@ -290,11 +293,13 @@
       "appointments": [
         [
           "Professor, McGill University",
-          "Professeur à l’Université McGill", "ca"
+          "Professeur à l’Université McGill",
+          "ca"
         ],
         [
           "Mila",
-          "Mila", "ca"
+          "Mila",
+          "ca"
         ]
       ]
     },
@@ -339,7 +344,10 @@
     },
     "image": "jeremy-r-cooperstock.webp",
     "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/jer24.jpg?itok=c6R0NQla",
-    "portrait_credit": "McGill University"
+    "portrait_credit": "McGill University",
+    "lab_logos": [
+      "cim"
+    ]
   },
   {
     "name": "Stéphane Coulombe",
@@ -421,7 +429,10 @@
     },
     "image": "christian-desrosiers.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P220524-christian-desrosiers-1.jpg",
-    "portrait_credit": "École de technologie supérieure"
+    "portrait_credit": "École de technologie supérieure",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "José Dolz",
@@ -459,7 +470,10 @@
     },
     "image": "jose-dolz.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P20191210-Jose-Dolz-572-002.jpg",
-    "portrait_credit": "École de technologie supérieure"
+    "portrait_credit": "École de technologie supérieure",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "Sébastien Gambs",
@@ -541,7 +555,10 @@
     },
     "image": "eric-granger.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P20200924-Granger-Eric-001.jpg",
-    "portrait_credit": "École de technologie supérieure"
+    "portrait_credit": "École de technologie supérieure",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "Fanny Jourdan",
@@ -551,7 +568,9 @@
       "Chercheuse accueillie"
     ],
     "affiliation": "IRT Saint Exupéry · Mila",
-    "hide_country_flags": ["ca"],
+    "hide_country_flags": [
+      "ca"
+    ],
     "profile": "https://mila.quebec/fr/annuaire/fanny-jourdan",
     "biography": {
       "slug": "fanny-jourdan",
@@ -720,7 +739,9 @@
       "Professeur, CNRS"
     ],
     "affiliation": "Université de Toulon · Mila",
-    "hide_country_flags": ["ca"],
+    "hide_country_flags": [
+      "ca"
+    ],
     "profile": "https://dyni.pages.lis-lab.fr/team/",
     "biography": {
       "slug": "ricard-marxer",
@@ -878,7 +899,10 @@
     },
     "image": "marco-pedersoli.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P20230830-pedersoli-marco-01.jpg",
-    "portrait_credit": "École de technologie supérieure"
+    "portrait_credit": "École de technologie supérieure",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "Pablo Piantanida",
@@ -887,23 +911,42 @@
       "Director",
       "Directeur"
     ],
-    "hide_country_flags": ["ca"],
+    "hide_country_flags": [
+      "ca"
+    ],
     "affiliation": "CNRS · CentraleSupélec · Université Paris-Saclay · Mila",
     "profile": "https://pablo-piantanida.org/",
     "biography": {
       "slug": "pablo-piantanida",
       "appointments": [
-        ["Professor, CentraleSupélec, Université Paris-Saclay", "Professeur à CentraleSupélec, Université Paris-Saclay", "fr"],
-        ["Associate Academic Member, Mila", "Membre académique associé, Mila", "ca"]
+        [
+          "Professor, CentraleSupélec, Université Paris-Saclay",
+          "Professeur à CentraleSupélec, Université Paris-Saclay",
+          "fr"
+        ],
+        [
+          "Associate Academic Member, Mila",
+          "Membre académique associé, Mila",
+          "ca"
+        ]
       ],
       "text": [
         "Pablo Piantanida studies when more information, computation or communication leads to a better decision. Drawing on information theory and statistical decision theory, he develops methods to compare learned representations before their eventual use is known. His research on reliability examines when a model should defer a prediction and how to audit generative AI with a limited testing budget. He also studies how agents with different observations can reason together and decide which messages are worth exchanging.",
         "Pablo Piantanida étudie les conditions dans lesquelles un renseignement, un calcul ou un échange supplémentaire améliore une décision. À partir de la théorie de l’information et de la théorie statistique de la décision, il développe des méthodes pour comparer les représentations apprises avant même de connaître leur usage futur. Ses travaux sur la fiabilité portent sur les situations où un modèle devrait s’abstenir de prédire et sur la manière d’évaluer une IA générative avec un budget de test limité. Il étudie aussi comment des agents disposant d’observations différentes peuvent raisonner ensemble et choisir les informations à échanger."
       ],
       "topics": [
-        ["Learning, representation and reasoning", "Apprentissage, représentation et raisonnement"],
-        ["Uncertainty and model evaluation", "Incertitude et évaluation des modèles"],
-        ["Multi-agent reasoning and communication", "Raisonnement et communication entre agents"]
+        [
+          "Learning, representation and reasoning",
+          "Apprentissage, représentation et raisonnement"
+        ],
+        [
+          "Uncertainty and model evaluation",
+          "Incertitude et évaluation des modèles"
+        ],
+        [
+          "Multi-agent reasoning and communication",
+          "Raisonnement et communication entre agents"
+        ]
       ],
       "scholar": "https://scholar.google.com/citations?user=QyBEFv0AAAAJ",
       "linkedin": "https://www.linkedin.com/in/pablo-piantanida-60a51bb5/",
@@ -1075,7 +1118,10 @@
     },
     "image": "shateri.webp",
     "portrait_source": "https://www.etsmtl.ca/uploads/P20220926-shateri-mohammadhadi-001.jpg",
-    "portrait_credit": "ÉTS Montréal"
+    "portrait_credit": "ÉTS Montréal",
+    "lab_logos": [
+      "livia"
+    ]
   },
   {
     "name": "Nicolas Thome",

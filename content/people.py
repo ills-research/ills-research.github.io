@@ -25,6 +25,33 @@ def mila_logo(assets):
     return f'<img class="mila-wordmark" src="{assets}partners/mila.png" width="404" height="164" alt="Mila">'
 
 
+LAB_LOGOS = {
+    'livia': {
+        'label': 'LIVIA',
+        'image': 'partners/livia.png',
+    },
+    'cim': {
+        'label': 'CIM — Centre for Intelligent Machines',
+        'image': 'partners/cim.png',
+    },
+}
+
+
+def lab_logo_links(member, assets=''):
+    logos = []
+    for key in member.get('lab_logos', ()):
+        if key == 'livia' and 'ÉTS' in member['affiliation']:
+            continue
+        logo = LAB_LOGOS[key]
+        logo_class = 'member-lab-logo member-lab-logo--' + key
+        label = escape(logo['label'])
+        logos.append(
+            f'<span class="{logo_class}" title="{label}">'
+            f'<img src="{assets}{escape(logo["image"])}" alt="{label}" loading="lazy" decoding="async"></span>'
+        )
+    return f'<div class="member-lab-logos">{"".join(logos)}</div>' if logos else ''
+
+
 def flagged_affiliation(text, country, fr, assets, member=None):
     member = member or {}
     flag = ''
@@ -36,6 +63,24 @@ def flagged_affiliation(text, country, fr, assets, member=None):
     label = escape(text)
     if 'Mila' in text:
         label = label.replace('Mila', mila_logo(assets))
+    neuro_name = 'Le Neuro' if fr else 'The Neuro'
+    if neuro_name in text:
+        neuro_alt = escape(neuro_name + ' — Montreal Neurological Institute-Hospital')
+        neuro_mark = (
+            f'<img class="neuro-wordmark" '
+            f'src="{assets}partners/neuro.png" '
+            f'alt="{neuro_alt}" title="{neuro_alt}" loading="lazy" decoding="async">'
+        )
+        label = label.replace(escape(neuro_name), neuro_mark)
+    if country == 'ca' and 'livia' in member.get('lab_logos', ()) and 'ÉTS' in text:
+        logo = LAB_LOGOS['livia']
+        alt = escape(logo['label'])
+        inline_logo = (
+            f'<span class="member-lab-logo member-lab-logo--inline" title="{alt}">'
+            f'<img src="{assets}{escape(logo["image"])}" alt="{alt}" '
+            f'loading="lazy" decoding="async"></span>'
+        )
+        label = label.replace('ÉTS', 'ÉTS' + inline_logo, 1)
     return f'<span class="institution-group">{flag}{label}</span>'
 
 
@@ -77,7 +122,7 @@ def profile_card(member, fr, assets):
         <div class="member-info">
           <h3><a href="{profile}">{given_names} <span class="name-tail">{surname}<span class="profile-arrow" aria-hidden="true">{arrow}</span></span></a></h3>
           <p class="member-role">{role}</p>
-          <p class="member-affiliation">{affiliation}</p>{paper_link}
+          <p class="member-affiliation">{affiliation}</p>{lab_logo_links(member, assets)}{paper_link}
         </div>
       </li>'''
 
@@ -117,6 +162,7 @@ def render_profile(member, fr, prefix):
               <h1>{escape(member['name'])}</h1>
               <p class="researcher-role">{escape(role)}</p>
               <ul class="researcher-appointments">{appointments}</ul>
+              {lab_logo_links(member, assets)}
             </div>
           </div>
         </div></header>

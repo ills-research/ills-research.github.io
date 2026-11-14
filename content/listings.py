@@ -147,8 +147,8 @@ CNRS_VISIT_2026 = {
     "details": ("ÉTS · Montréal",) * 2,
     "title": ("CNRS Computer Sciences leadership visits ILLS", "La direction de CNRS Sciences informatiques en visite à l’ILLS"),
     "summary": (
-        "Adeline Nazarenko and Jérôme Durand-Lose met ILLS researchers and students to discuss how the lab makes machine learning algorithms more reliable and safer to use. The delegation also met partners at IVADO, Mila, McGill and ÉTS.",
-        "Adeline Nazarenko et Jérôme Durand-Lose ont échangé avec les membres de l’ILLS sur la fiabilité et la sûreté des algorithmes d’apprentissage. La délégation a aussi rencontré des partenaires à IVADO, à Mila, à McGill et à l’ÉTS.",
+        "Adeline Nazarenko, Director of CNRS Computer Sciences, and Jérôme Durand-Lose, Deputy Scientific Director for Europe and International Affairs, met ILLS researchers and students to discuss how the lab makes machine learning algorithms more reliable and safer to use. The delegation also met partners at IVADO, Mila, McGill and ÉTS.",
+        "Adeline Nazarenko, directrice de CNRS Sciences informatiques, et Jérôme Durand-Lose, directeur adjoint scientifique chargé de l’Europe et de l’international, ont échangé avec les membres de l’ILLS sur la fiabilité et la sûreté des algorithmes d’apprentissage. La délégation a aussi rencontré des partenaires à IVADO, à Mila, à McGill et à l’ÉTS.",
     ),
     "link": ("Read the CNRS account of the visit", "Lire le compte rendu du CNRS"),
     "url": CNRS_VISIT_ARTICLES,
@@ -188,7 +188,186 @@ PAVILION_OPENING_2025 = {
     ],
 }
 
-NEWS = [CNRS_VISIT_2026, PAVILION_OPENING_2025]
+NEWS = [
+    CNRS_VISIT_2026,
+    {
+        "id": "diag-nos-chair-2026",
+        "kind": ("Research chair", "Chaire de recherche"),
+        "start": "2026-06-15",
+        "date": ("15 June 2026", "15 juin 2026"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": (
+            "ÉTS and DIAGNOS launch a new industrial chair in AI for medical imaging",
+            "L’ÉTS et DIAGNOS lancent une nouvelle chaire industrielle en intelligence artificielle pour l’imagerie médicale",
+        ),
+        "summary": (
+            "Led by ILLS member Ismail Ben Ayed, the new chair will develop reliable AI methods to analyse retinal images and support earlier detection of disease.",
+            "Dirigée par Ismail Ben Ayed, membre de l’ILLS, la nouvelle chaire développera des méthodes d’IA fiables pour analyser les images rétiniennes et favoriser le dépistage précoce de maladies.",
+        ),
+        "link": ("Discover the DIAGNOS Research Chair", "Découvrir la chaire de recherche DIAGNOS"),
+        "url": (
+            "https://www.etsmtl.ca/actualites/analyse-retine-pourrait-permettre-depister-centaine-maladies",
+            "https://www.etsmtl.ca/actualites/analyse-retine-pourrait-permettre-depister-centaine-maladies",
+        ),
+    },
+    {
+        "id": "cvpr-compute-transparency-2026",
+        "kind": ("Award", "Prix"),
+        "start": "2026-06",
+        "date": ("June 2026", "Juin 2026"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": (
+            "Mohammadhadi Shateri and Éric Granger share a CVPR 2026 transparency award",
+            "Mohammadhadi Shateri et Éric Granger reçoivent un prix de transparence à CVPR 2026",
+        ),
+        "summary": (
+            "The paper Uni-DAD, co-authored with LIVIA researchers Yara Bahram and Mélodie Desbos, received CVPR’s Compute Transparency Champion award for its reporting of computational resources and experiments.",
+            "L’article Uni-DAD, cosigné avec les chercheuses de LIVIA Yara Bahram et Mélodie Desbos, a reçu le prix Compute Transparency Champion de CVPR pour la transparence de sa documentation des ressources de calcul et des expériences.",
+        ),
+        "links": [
+            {"label": ("CVPR compute reporting initiative", "Initiative de transparence de CVPR"),
+             "url": ("https://cvpr.thecvf.com/Conferences/2026/ComputeReporting",) * 2},
+            {"label": ("Uni-DAD paper", "Article Uni-DAD"),
+             "url": ("https://arxiv.org/abs/2511.18281",) * 2},
+        ],
+    },
+    {
+        "id": "georges-kaddoum-awards-2022-2025",
+        "kind": ("Awards and distinctions", "Prix et distinctions"),
+        "start": "2025-11-06",
+        "date": ("2022–2025", "2022–2025"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": (
+            "Georges Kaddoum receives major research and engineering honours",
+            "Georges Kaddoum reçoit plusieurs distinctions en recherche et en génie",
+        ),
+        "summary": (
+            "Since 2022, ILLS member Georges Kaddoum has received the IEEE TCSC Award for Excellence in Scalable Computing (2022), the Mitacs Award for Exceptional Leadership (2023), election to the Royal Society of Canada (2024), and four 2025 honours: the ÉTS Board of Directors Research Excellence Award, the Université du Québec Partnership Excellence Award, the NSERC Synergy Award for Innovation and Engineers Canada’s Gold Medal.",
+            "Depuis 2022, Georges Kaddoum, membre de l’ILLS, a reçu le prix d’excellence en informatique évolutive du comité TCSC de l’IEEE (2022), le prix Mitacs pour leadership exceptionnel (2023), son élection à la Société royale du Canada (2024), puis quatre distinctions en 2025 : le Prix d’excellence du C.A. en recherche de l’ÉTS, le Prix d’excellence du partenariat de l’Université du Québec, le prix Synergie du CRSNG pour l’innovation et la Médaille d’or d’Ingénieurs Canada.",
+        ),
+        "links": [
+            {"label": ("ÉTS profile and honours", "Profil et distinctions à l’ÉTS"),
+             "url": ("https://www.etsmtl.ca/etudier-a-lets/corps-professoral/gkaddoum?lang=en-CA",) * 2},
+            {"label": ("NSERC Synergy Award", "Prix Synergie du CRSNG"),
+             "url": ("https://www.etsmtl.ca/actualites/georges-kaddoum-remporte-prix-innovation-synergie-crsng",) * 2},
+            {"label": ("Engineers Canada Gold Medal", "Médaille d’or d’Ingénieurs Canada"),
+             "url": ("https://engineerscanada.ca/news-and-events/news/engineers-canada-honours-six-exceptional-members-of-the-engineering-community",) * 2},
+            {"label": ("UQ Partnership Excellence Award", "Prix d’excellence du partenariat de l’UQ"),
+             "url": ("https://reseau.uquebec.ca/fr/a-propos/salle-de-presse/communiques-de-presse/universite-du-quebec-souligne-excellence-des-membres-de-sa-communaute-universitaire",) * 2},
+        ],
+    },
+    {
+        "id": "dasc-best-session-jeremy-2025",
+        "kind": ("Award", "Prix"),
+        "start": "2025",
+        "date": ("2025", "2025"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Jeremy R. Cooperstock’s WILCO paper earns a DASC Best of Session award", "L’article WILCO de Jeremy R. Cooperstock reçoit un prix Best of Session au DASC"),
+        "summary": (
+            "The WILCO paper by ILLS member Jeremy R. Cooperstock and collaborators received a Best of Session award at the 2025 Digital Avionics Systems Conference.",
+            "L’article WILCO de Jeremy R. Cooperstock, membre de l’ILLS, et de ses collaborateurs a reçu un prix Best of Session à la conférence Digital Avionics Systems Conference 2025.",
+        ),
+        "link": ("DASC 2025 paper awards", "Prix des articles du DASC 2025"),
+        "url": ("https://2025.dasconline.org/awards/best-paper-awards/",) * 2,
+    },
+    {
+        "id": "impact-health-ets-2024",
+        "kind": ("Award", "Prix"),
+        "start": "2024-04-11",
+        "date": ("11 April 2024", "11 avril 2024"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": ("Éric Granger and Marco Pedersoli receive the ÉTS Impact Award for Health and Well-being", "Éric Granger et Marco Pedersoli reçoivent le prix Impact de l’ÉTS – Santé et mieux-être"),
+        "summary": (
+            "The award recognized a collaborative project exploring how AI can support lasting behaviour change. The ÉTS team included ILLS members Éric Granger and Marco Pedersoli.",
+            "Le prix récompense un projet collaboratif qui étudie comment l’IA peut soutenir des changements durables de comportement. L’équipe de l’ÉTS comprenait Éric Granger et Marco Pedersoli, membres de l’ILLS.",
+        ),
+        "link": ("ÉTS 2024 awards announcement", "Annonce des prix 2024 de l’ÉTS"),
+        "url": ("https://www.etsmtl.ca/actualites/gala-dexcellence-recherche-et-enseignement-2024",) * 2,
+    },
+    {
+        "id": "aditya-mahajan-fellowships-2023-2024",
+        "kind": ("Fellowships", "Bourses"),
+        "start": "2024",
+        "date": ("2023–2024", "2023–2024"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Aditya Mahajan receives DATAIA and Jean d’Alembert fellowships", "Aditya Mahajan reçoit les bourses DATAIA et Jean d’Alembert"),
+        "summary": (
+            "Current ILLS member Aditya Mahajan received a DATAIA Fellowship in 2023 and a Jean d’Alembert Fellowship from Université Paris-Saclay in 2024.",
+            "Aditya Mahajan, membre actuel de l’ILLS, a reçu une bourse DATAIA en 2023, puis une bourse Jean d’Alembert de l’Université Paris-Saclay en 2024.",
+        ),
+        "link": ("GERAD profile and awards", "Profil et distinctions sur le site du GERAD"),
+        "url": ("https://www.gerad.ca/en/people/aditya-mahajan",) * 2,
+    },
+    {
+        "id": "ajung-moon-adler-scholar-award-2025",
+        "kind": ("Distinction", "Distinction"),
+        "start": "2025",
+        "date": ("2025–2028", "2025–2028"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("AJung Moon named an Eric L. Adler Faculty Scholar", "AJung Moon nommée Eric L. Adler Faculty Scholar"),
+        "summary": (
+            "ILLS member AJung Moon received the Eric L. Adler Faculty Scholar Award for a three-year term running from 2025 to 2028.",
+            "AJung Moon, membre de l’ILLS, a reçu l’Eric L. Adler Faculty Scholar Award pour un mandat de trois ans, de 2025 à 2028.",
+        ),
+    },
+    {
+        "id": "stephane-coulombe-ieee-election-2024",
+        "kind": ("Distinction", "Distinction"),
+        "start": "2024",
+        "date": ("2024–2028", "2024–2028"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": ("Stéphane Coulombe elected to IEEE CASS technical committee", "Stéphane Coulombe élu au comité technique IEEE CASS"),
+        "summary": (
+            "ILLS member Stéphane Coulombe was elected to the IEEE Circuits and Systems Society Multimedia Systems and Applications Technical Committee for the 2024–2028 term.",
+            "Stéphane Coulombe, membre de l’ILLS, a été élu au comité technique Multimedia Systems and Applications de l’IEEE Circuits and Systems Society pour le mandat 2024–2028.",
+        ),
+        "link": ("IEEE committee profile", "Profil du comité IEEE"),
+        "url": ("https://ieee-cas.org/contact/stephane-coulombe",) * 2,
+    },
+    {
+        "id": "ulrich-aivodji-frqnt-2024",
+        "kind": ("Award", "Prix"),
+        "start": "2024-04-30",
+        "date": ("30 April 2024", "30 avril 2024"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": ("Ulrich Aïvodji receives an FRQNT award for new academics", "Ulrich Aïvodji reçoit un prix du FRQNT pour la relève professorale"),
+        "summary": (
+            "ILLS member Ulrich Aïvodji received the FRQNT Research Support for New Academics Award.",
+            "Ulrich Aïvodji, membre de l’ILLS, a reçu le prix Soutien à la recherche pour la relève professorale du FRQNT.",
+        ),
+        "link": ("TISL Lab announcement", "Annonce du laboratoire TISL"),
+        "url": ("https://tisl-lab.github.io/",) * 2,
+    },
+    {
+        "id": "amazon-research-award-pablo-2023",
+        "kind": ("Award", "Prix"),
+        "start": "2023",
+        "date": ("2023", "2023"),
+        "details": ("CentraleSupélec · France", "CentraleSupélec · France"),
+        "title": ("Pablo Piantanida receives an Amazon Research Award", "Pablo Piantanida reçoit un Amazon Research Award"),
+        "summary": (
+            "The award supported research into efficient adaptation of generative language models through unsupervised calibration, a project involving ILLS co-director Pablo Piantanida.",
+            "Le prix a soutenu des travaux sur l’adaptation efficace des modèles génératifs de langue par calibration non supervisée, un projet auquel participe Pablo Piantanida, codirecteur de l’ILLS.",
+        ),
+        "link": ("Award recipient profile", "Profil du lauréat"),
+        "url": ("https://www.amazon.science/research-awards/recipients/pablo-piantanida",) * 2,
+    },
+    {
+        "id": "jeremy-cooperstock-chi-2022",
+        "kind": ("Distinction", "Distinction"),
+        "start": "2022",
+        "date": ("2022", "2022"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Jeremy R. Cooperstock co-authors a CHI 2022 Honorable Mention paper", "Jeremy R. Cooperstock cosigne un article récompensé d’une mention honorable à CHI 2022"),
+        "summary": (
+            "“The Sound of Hallucinations: Toward a More Convincing Emulation of Internalized Voices” received an Honorable Mention at the ACM CHI Conference on Human Factors in Computing Systems.",
+            "« The Sound of Hallucinations: Toward a More Convincing Emulation of Internalized Voices » a reçu une mention honorable à la conférence ACM CHI sur les facteurs humains en informatique.",
+        ),
+        "link": ("Sound Recording and Interaction Lab publications", "Publications du Sound Recording and Interaction Lab"),
+        "url": ("https://srl.mcgill.ca/publications/",) * 2,
+    },
+    PAVILION_OPENING_2025,
+]
 
 INSTITUTIONAL_EVENTS = [
     CNRS_VISIT_2026,
@@ -236,6 +415,20 @@ INSTITUTIONAL_EVENTS = [
 
 OPENINGS = [
     {
+        "date": ("2027", "2027"),
+        "details": ("ILLS · Montréal", "ILLS · Montréal"),
+        "title": (
+            "Research internships in Montréal (4–6 months, 2027)",
+            "Stages de recherche à Montréal (4 à 6 mois, 2027)",
+        ),
+        "summary": (
+            "ILLS invites students to apply for a 4–6-month research internship in Montréal during 2027. Projects span trustworthy generative AI, multi-agent AI and world models, AI for healthcare and critical engineering systems, and foundations of machine learning. To discuss project fit and application details, email the ILLS secretariat with a CV, academic transcript, a short statement of research interests, and your preferred dates.",
+            "L’ILLS invite les étudiantes et étudiants à présenter leur candidature pour un stage de recherche de 4 à 6 mois à Montréal en 2027. Les projets portent sur l’IA générative de confiance, l’IA multi-agent et les modèles du monde, l’IA pour la santé et les systèmes d’ingénierie critiques, ainsi que les fondements de l’apprentissage automatique. Pour discuter d’un projet et des modalités de candidature, écrivez au secrétariat de l’ILLS en joignant un CV, un relevé de notes, une courte présentation de vos intérêts de recherche et vos dates de disponibilité.",
+        ),
+        "link": ("Contact the ILLS secretariat", "Écrire au secrétariat de l’ILLS"),
+        "url": ("mailto:secretariat-ills@etsmtl.ca",) * 2,
+    },
+    {
         "date": ("Expected start in January 2027", "Début prévu en janvier 2027"),
         "details": ("ILLS and Mila · Montréal", "ILLS et Mila · Montréal"),
         "title": (
@@ -262,10 +455,25 @@ def render_entry(entry, fr, prefix):
         attributes = f' id="{entry["id"]}" data-start="{start}" data-end="{end}"'
         if not fr and 'featured_en' in entry:
             return render_featured_workshop(entry, attributes)
-        kind = f'<span class="notice-kind">{escape(entry["kind"][fr])}</span>'
+        kind_label = escape(entry['kind'][fr])
+        english_kind = entry['kind'][0].lower()
+        award_icon = ''
+        if any(term in english_kind for term in ('award', 'distinction', 'prize')):
+            award_icon = (
+                '<svg class="notice-award-icon" viewBox="0 0 24 24" fill="none" '
+                'aria-hidden="true"><path d="M8 4h8v3.5a4 4 0 0 1-8 0V4ZM8 6H4.5v1.5a3 3 0 0 0 3 3M16 6h3.5v1.5a3 3 0 0 1-3 3M12 11.5V16m-3 0h6m-7 4h8m-7-4-1 4m7-4 1 4" '
+                'stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+            )
+        kind = f'<span class="notice-kind">{award_icon}{kind_label}</span>'
         date_text = f'<time datetime="{start}">{date_text}</time>'
     link = ''
-    if 'url' in entry:
+    if 'links' in entry:
+        link = ''.join(
+            f'<a class="link-arrow" href="{escape(item["url"][fr])}">'
+            f'{escape(item["label"][fr])} <span aria-hidden="true">↗</span></a> '
+            for item in entry['links']
+        )
+    elif 'url' in entry:
         link = f'<a class="link-arrow" href="{escape(entry["url"][fr])}">{escape(entry["link"][fr])} <span aria-hidden="true">↗</span></a>'
     figures = []
     for photo in entry.get('photos', ()):

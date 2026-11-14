@@ -4,7 +4,7 @@ Open `site/index.html` in a browser for the English homepage; use **FR** for Fre
 
 ## Make a change
 
-Edit the source below, run `python3 -B build.py` from this folder, and open the result in `site/`. Both languages are generated together. Avoid editing generated HTML directly: the next build replaces it.
+Edit the source below, restore static assets in a fresh checkout with `unzip -qo ills-site-assets.zip -d .`, then run `python3 -B build.py` from this folder and open the result in `site/`. Both languages are generated together. Avoid editing generated HTML directly: the next build replaces it.
 
 | To update | Edit |
 | --- | --- |
@@ -37,7 +37,7 @@ To preview over HTTP: `python3 -m http.server 8000 --bind 127.0.0.1 --directory 
 
 ## Publish and maintain
 
-See [LAUNCH.md](LAUNCH.md) to publish from the ILLS GitHub organization and connect the domain after purchase. Only `site/` is deployed. For offline copies, check in both the source and the generated HTML. When you edit a source file directly on GitHub, the workflow regenerates and checks the published pages automatically. URLs are relative, so the same files work at a domain root or in a repository subdirectory.
+See [LAUNCH.md](LAUNCH.md) to publish from the ILLS GitHub organization and connect the domain after purchase. Only `site/` is deployed. GitHub Actions restores `ills-site-assets.zip`, generates both language editions, checks local links, and publishes the result. For offline copies, check in both the source and the generated HTML. URLs are relative, so the same files work at a domain root or in a repository subdirectory.
 
 ## Asset and content notes
 

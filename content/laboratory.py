@@ -54,5 +54,5 @@ def render_contact(fr: bool, prefix: str) -> str:
           <div><h3>{email_heading}</h3><p>{email_copy}</p>
             <a class="text-link" href="mailto:secretariat-ills@etsmtl.ca">secretariat-ills@etsmtl.ca</a></div>
         </div></div><div class="lab-photo"><img src="{prefix}assets/images/ills-entrance.jpg" width="1600" height="1200"
-          loading="lazy" alt="{alt}">
-      </div></div></section>"""
+          loading="lazy" alt="{alt}"></div>
+      </div></section>"""

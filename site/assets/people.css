@@ -74,7 +74,13 @@
   text-underline-offset: .17em;
 }
 .member-role { margin-top: .4rem; font-size: .89rem; color: #35465a; }
-.member-affiliation { color: var(--muted); font-size: .88rem; line-height: 1.45; }
+.member-affiliation {
+  position: relative;
+  z-index: 1;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.45;
+}
 .institution-group { display: inline-block; max-width: 100%; }
 .institution-group + .institution-group { margin-inline-start: .15em; }
 .institution-flag {
@@ -90,6 +96,50 @@
   width: auto;
   height: 1.5em;
   vertical-align: -.35em;
+}
+.member-lab-logos {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .4rem .65rem;
+  margin-top: .35rem;
+}
+.member-lab-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: .75rem;
+  max-width: 7rem;
+}
+.member-lab-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 7rem;
+  max-height: .75rem;
+  object-fit: contain;
+}
+.member-lab-logo--inline {
+  display: inline-flex;
+  height: .83em;
+  max-width: 6em;
+  margin-inline-start: .35em;
+  vertical-align: -.02em;
+}
+.member-lab-logo--inline img {
+  max-width: 6em;
+  max-height: .83em;
+}
+.neuro-wordmark {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: auto;
+  height: 1.15rem;
+  max-width: 7rem;
+  vertical-align: middle;
 }
 .student-group-heading {
   margin: 2rem 0 1.2rem;

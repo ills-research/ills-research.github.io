@@ -11,11 +11,15 @@ def render(fr: bool, prefix: str) -> str:
     assets = escape(f'{prefix}assets/', quote=True)
     title = 'Programme scientifique' if fr else 'Research programme'
     intro = (
-        'Comment savoir si l’on peut se fier à un système d’apprentissage ? Les équipes de l’ILLS '
-        'abordent cette question sous quatre angles, des garanties mathématiques à l’évaluation en milieu clinique.'
+        'Comment concevoir des systèmes d’apprentissage fiables malgré l’incertitude ? Dans quatre axes '
+        'complémentaires, l’ILLS étudie les fondements de l’apprentissage automatique, l’IA générative digne '
+        'de confiance, les systèmes multi-agents et les applications en santé et dans les systèmes d’ingénierie '
+        'critiques. L’évaluation, la protection de la vie privée et le déploiement responsable traversent ces travaux.'
         if fr else
-        'How do we know when to trust a learning system? ILLS researchers approach this question '
-        'through four research axes, from mathematical guarantees to evaluation in clinical settings and critical engineering systems.'
+        'How can we build learning systems that remain reliable under uncertainty? Across four connected research '
+        'areas, ILLS studies machine learning foundations, trustworthy generative AI, multi-agent systems, and '
+        'applications in healthcare and critical engineering. Evaluation, privacy and responsible deployment run '
+        'through this work.'
     )
     axis_word = 'Axe' if fr else 'Axis'
     roman_numerals = ('I', 'II', 'III', 'IV')
