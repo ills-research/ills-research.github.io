@@ -1,0 +1,546 @@
+[
+  {
+    "name": "Tamara Paris",
+    "type": "cotutelle",
+    "topic": [
+      "Verifiable AI",
+      "IA vérifiable"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "McGill University"
+      ],
+      [
+        "fr",
+        "Université Paris Cité"
+      ]
+    ],
+    "advisors": [
+      "AJung Moon",
+      "Jin Guo",
+      "Michele Orrù",
+      "Geoffroy Couteau"
+    ],
+    "website": "https://tamaraaprs.github.io/",
+    "mila_profile": "https://mila.quebec/en/directory/tamara-paris-paris",
+    "image": "tamara-paris.webp",
+    "portrait_source": "https://tamaraaprs.github.io/",
+    "portrait_url": "https://tamaraaprs.github.io/Moi.jpg"
+  },
+  {
+    "name": "Erik Mamet",
+    "type": "cotutelle",
+    "topic": [
+      "Deep compression of static and dynamic 3D point clouds",
+      "Compression de nuages de points 3D statiques et dynamiques par apprentissage profond"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Stéphane Coulombe",
+      "Giuseppe Valenzise",
+      "Pierre Duhamel"
+    ],
+    "website": "https://l2s.centralesupelec.fr/u/mamet-erik/",
+    "linkedin": "https://www.linkedin.com/in/erik-mamet/",
+    "image": "erik-mamet.webp",
+    "portrait_source": "https://fr.linkedin.com/in/erik-mamet"
+  },
+  {
+    "name": "Guillermo Martin de Paula",
+    "type": "cotutelle",
+    "topic": [
+      "Evolutionary games in multi-agent reinforcement learning",
+      "Jeux évolutionnaires en apprentissage par renforcement multiagent"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Benedikt Bollig",
+      "Christian Desrosiers"
+    ],
+    "website": "https://mila.quebec/en/directory/guillermo-martin-de-paula",
+    "mila_profile": "https://mila.quebec/en/directory/guillermo-martin-de-paula",
+    "image": "guillermo-martin-de-paula.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/13442/portrait-of-guillermo-martin-de-paula.jpeg.webp?itok=hu_dlAiB"
+  },
+  {
+    "name": "Cléa Chataigner",
+    "type": "cotutelle",
+    "topic": [
+      "Human-in-the-loop auditing of generative AI",
+      "Audit de l’IA générative avec intervention humaine"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "McGill University"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Golnoosh Farnadi",
+      "Pablo Piantanida"
+    ],
+    "website": "https://cleachataig.github.io/",
+    "mila_profile": "https://mila.quebec/en/directory/chataigner-clea",
+    "image": "clea-chataigner.webp",
+    "portrait_source": "https://cleachataig.github.io/",
+    "portrait_url": "https://cleachataig.github.io/images/Clea_Chataigner.jpeg"
+  },
+  {
+    "name": "Lorenzo Sia",
+    "type": "cotutelle",
+    "topic": [
+      "Multimodal expression recognition for digital health",
+      "Reconnaissance multimodale des expressions en santé numérique"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Marco Pedersoli",
+      "Lina Ye"
+    ],
+    "linkedin": "https://www.linkedin.com/in/lorenzo-sia/",
+    "image": "lorenzo-sia.webp",
+    "portrait_source": "https://www.linkedin.com/pub/dir/Lorenzo/Sia"
+  },
+  {
+    "name": "Nicolas Richet",
+    "type": "cotutelle",
+    "topic": [
+      "Vision–language adaptation and multimodal emotion recognition",
+      "Adaptation vision-langage et reconnaissance multimodale des émotions"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "ENS Paris-Saclay · Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Éric Granger",
+      "Alain Finkel"
+    ],
+    "website": "https://nicolas-richet.github.io/",
+    "linkedin": "https://www.linkedin.com/in/richet-nicolas/",
+    "image": "nicolas-richet.webp",
+    "portrait_source": "https://ca.linkedin.com/in/richet-nicolas"
+  },
+  {
+    "name": "Philippe Formont",
+    "type": "cotutelle",
+    "topic": [
+      "Deep learning for drug discovery",
+      "Apprentissage profond pour la découverte de médicaments"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Ismail Ben Ayed",
+      "Pablo Piantanida"
+    ],
+    "website": "https://mila.quebec/en/directory/philippe-formont",
+    "mila_profile": "https://mila.quebec/en/directory/philippe-formont",
+    "image": "philippe-formont.webp",
+    "portrait_source": "https://mila.quebec/en/directory/philippe-formont",
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10571/portrait-of-philippe-formont.png.webp?itok=fNPMr8ux"
+  },
+  {
+    "name": "Julien Nicolas",
+    "type": "cotutelle",
+    "topic": [
+      "Privacy-preserving distributed computation and recommendation",
+      "Calcul distribué et recommandation préservant la confidentialité"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "McGill University"
+      ],
+      [
+        "fr",
+        "Université de Lyon · LIRIS"
+      ]
+    ],
+    "advisors": [
+      "Mark Coates",
+      "Sonia Ben Mokhtar"
+    ],
+    "website": "https://liris.cnrs.fr/page-membre/julien-nicolas",
+    "mila_profile": "https://mila.quebec/en/directory/julien-nicolas",
+    "image": "julien-nicolas.webp",
+    "portrait_source": "https://mila.quebec/en/directory/julien-nicolas",
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10681/portrait-of-julien-nicolas.jpeg.webp?itok=krixuBmN"
+  },
+  {
+    "name": "Matteo Sammut",
+    "type": "cotutelle",
+    "topic": [
+      "Theoretical foundations for auditing generative AI",
+      "Fondements théoriques de l’audit des modèles d’IA générative"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris Dauphine–PSL"
+      ]
+    ],
+    "advisors": [
+      "Pablo Piantanida",
+      "Yann Chevaleyre",
+      "Rafael Pinot"
+    ],
+    "website": "https://dauphine.psl.eu/recherche/cvtheque/profil/sammut-matteo",
+    "mila_profile": "https://mila.quebec/en/directory/matteo-sammut",
+    "image": "matteo-sammut.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://pablo-piantanida.org/img/students/matteo-sammut.jpg"
+  },
+  {
+    "name": "Natacha Gillet",
+    "type": "cotutelle",
+    "topic": [
+      "Personalized expression recognition through multimodal domain adaptation",
+      "Reconnaissance personnalisée des expressions par adaptation de domaine multimodale"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "CentraleSupélec · Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Éric Granger",
+      "Stergios Christodoulidis"
+    ],
+    "linkedin": "https://www.linkedin.com/in/natacha-gillet-86ab452a6/",
+    "image": "natacha-gillet.webp",
+    "portrait_source": "https://ca.linkedin.com/in/natacha-gillet-86ab452a6"
+  },
+  {
+    "name": "Maxime Darrin",
+    "type": "cotutelle",
+    "topic": [
+      "Metrics and methods for evaluating generative AI",
+      "Mesures et méthodes d’évaluation de l’IA générative"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "McGill University"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Jackie Chi Kit Cheung",
+      "Pablo Piantanida"
+    ],
+    "website": "https://icannos.github.io/",
+    "mila_profile": "https://mila.quebec/en/directory/maxime-darrin",
+    "image": "maxime-darrin.webp",
+    "portrait_source": "https://mila.quebec/en/directory/maxime-darrin",
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/9756/portrait-of-maxime-darrin.webp?itok=osRsUp_5"
+  },
+  {
+    "name": "Zouhair Ziani",
+    "type": "co-advised",
+    "topic": [
+      "Reliable low-latency streaming for immersive video",
+      "Diffusion vidéo immersive fiable à faible latence"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Polytechnique Hauts-de-France"
+      ]
+    ],
+    "advisors": [
+      "Stéphane Coulombe",
+      "François-Xavier Coudoux",
+      "Patrick Corlay"
+    ],
+    "linkedin": "https://www.linkedin.com/in/zouhair-ziani-7a280016a/"
+  },
+  {
+    "name": "Yujing Zhang",
+    "type": "co-advised",
+    "topic": [
+      "Visual quality assessment of damaged videos using deep learning",
+      "Évaluation de la qualité visuelle de vidéos endommagées par apprentissage profond"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Polytechnique Hauts-de-France"
+      ]
+    ],
+    "advisors": [
+      "Stéphane Coulombe",
+      "François-Xavier Coudoux",
+      "Patrick Corlay"
+    ],
+    "website": "https://espace.etsmtl.ca/id/eprint/3571/",
+    "image": "yujing-zhang.webp",
+    "portrait_source": "https://espace2.etsmtl.ca/id/eprint/30394/1/Coulombe-S-2024-30394.pdf#page=16"
+  },
+  {
+    "name": "Imrane Zaakour",
+    "type": "co-advised",
+    "topic": [
+      "Stochastic methods for learning-augmented algorithms",
+      "Méthodes stochastiques pour les algorithmes guidés par apprentissage"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "CentraleSupélec · Université Paris-Saclay"
+      ],
+      [
+        "fr",
+        "ENSAE Paris · CREST"
+      ]
+    ],
+    "advisors": [
+      "Spyros Angelopoulos",
+      "Vianney Perchet"
+    ],
+    "website": "https://crest.science/user/imrane-zaakour/",
+    "image": "imrane-zaakour.webp",
+    "portrait_source": "https://ai4idf.fr/news/view/j2cfe4b3d8407ed1791f",
+    "portrait_url": "https://ai4idf.fr/content/posts/1769551756_201263a2dd7440f6eb8f.jpg"
+  },
+  {
+    "name": "Chiara Roverato",
+    "type": "co-advised",
+    "topic": [
+      "Generative models for tabular data",
+      "Modèles génératifs pour les données tabulaires"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "McGill University"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Mark Coates",
+      "Pablo Piantanida"
+    ],
+    "website": "https://mila.quebec/en/directory/chiara-roverato",
+    "mila_profile": "https://mila.quebec/en/directory/chiara-roverato",
+    "image": "chiara-roverato.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://pablo-piantanida.org/img/students/chiara-roverato.jpg",
+    "supervising_partner": "Université Paris-Saclay"
+  },
+  {
+    "name": "Eric Aubinais",
+    "type": "co-advised",
+    "topic": [
+      "Privacy in machine learning models",
+      "Confidentialité des modèles d’apprentissage automatique"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Elisabeth Gassiat",
+      "Pablo Piantanida"
+    ],
+    "website": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/",
+    "image": "eric-aubinais.webp",
+    "portrait_source": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/",
+    "portrait_url": "https://www.imo.universite-paris-saclay.fr/media/filer_public_thumbnails/filer_public/a0/1e/a01e229d-2514-4a94-9216-e60d43309acd/image.jpeg__1462x2048_q85_subsampling-2.jpg"
+  },
+  {
+    "name": "Antoine Andurao",
+    "type": "co-advised",
+    "topic": [
+      "Foundation models for 3D medical imaging",
+      "Modèles de fondation pour l’imagerie médicale 3D"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "CentraleSupélec · Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Maria Vakalopoulou",
+      "Pablo Piantanida"
+    ],
+    "image": "antoine-andurao.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://pablo-piantanida.org/img/students/antoine-andurao.jpg"
+  },
+  {
+    "name": "Matthieu Dubois",
+    "type": "co-advised",
+    "topic": [
+      "Statistical detection of AI-generated content",
+      "Détection statistique de contenus générés par l’IA"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "Sorbonne Université"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "François Yvon",
+      "Pablo Piantanida"
+    ],
+    "website": "https://baggerofwords.github.io/",
+    "image": "matthieu-dubois.webp",
+    "portrait_source": "https://baggerofwords.github.io/",
+    "portrait_url": "https://baggerofwords.github.io/images/profile.png",
+    "supervising_partner": "Université Paris-Saclay"
+  },
+  {
+    "name": "Arthur Satouf",
+    "type": "co-advised",
+    "topic": [
+      "Information retrieval and pragmatic reasoning",
+      "Recherche d’information et raisonnement pragmatique"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "Sorbonne Université"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Benjamin Piwowarski",
+      "Pablo Piantanida"
+    ],
+    "website": "https://fr.linkedin.com/in/arthur-satouf",
+    "image": "arthur-satouf.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://pablo-piantanida.org/img/students/arthur-satouf.jpg"
+  },
+  {
+    "name": "Lautaro Estienne",
+    "type": "co-advised",
+    "topic": [
+      "Dialogue systems for human–machine interaction",
+      "Systèmes de dialogue pour l’interaction humain-machine"
+    ],
+    "institutions": [
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Pablo Piantanida",
+      "Nona Naderi"
+    ],
+    "website": "https://www.lisn.upsaclay.fr/membres/estienne-lautaro/",
+    "image": "lautaro-estienne.webp",
+    "portrait_source": "https://pablo-piantanida.org/#people",
+    "portrait_url": "https://pablo-piantanida.org/img/students/lautaro-estienne.jpg"
+  },
+  {
+    "name": "Zahra Dehghani Tafti",
+    "type": "co-advised",
+    "topic": [
+      "Machine unlearning",
+      "Désapprentissage automatique"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ],
+      [
+        "fr",
+        "Université Paris-Saclay"
+      ]
+    ],
+    "advisors": [
+      "Pablo Piantanida",
+      "Mohammadhadi Shateri"
+    ],
+    "website": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
+    "mila_profile": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
+    "image": "zahra-dehghani-tafti.webp",
+    "portrait_source": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10570/portrait-of-zahra-dehghani-tafti.jpeg.webp?itok=F5tcpqvl"
+  }
+]

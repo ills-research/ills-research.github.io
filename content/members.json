@@ -1,0 +1,1118 @@
+[
+  {
+    "name": "Ulrich Aïvodji",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS · Mila",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/uaivodji",
+    "biography": {
+      "slug": "ulrich-aivodji",
+      "text": [
+        "Ulrich Aïvodji studies what an automated decision reveals about the people behind its training data, and whether the reasons a system gives for that decision can be trusted. His work on fairwashing shows how an explanation can make a discriminatory model appear fair. He develops ways to audit these claims and test privacy protections in machine learning.",
+        "Ulrich Aïvodji étudie ce qu’une décision automatisée révèle sur les personnes dont les données ont servi à entraîner le modèle. Il s’intéresse aussi à la confiance que l’on peut accorder aux explications fournies : ses travaux montrent comment une explication peut donner une apparence d’équité à un modèle discriminatoire. Il développe des méthodes pour déceler ces pratiques et tester les protections de la vie privée."
+      ],
+      "topics": [
+        [
+          "Algorithmic fairness",
+          "Équité algorithmique"
+        ],
+        [
+          "Model explanations",
+          "Explication des modèles"
+        ],
+        [
+          "Privacy auditing",
+          "Audit de confidentialité"
+        ]
+      ],
+      "website": "https://aivodji.github.io/",
+      "scholar": "https://scholar.google.com/citations?user=47kuuqIAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/umaivodji/",
+      "source": "https://aivodji.github.io/"
+    },
+    "image": "ulrich-aivodji.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20211020-Aivodji-Ulrich-001.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Spyros Angelopoulos",
+    "status": "current",
+    "role": [
+      "Researcher",
+      "Chercheur"
+    ],
+    "affiliation": "CNRS · Sorbonne Université",
+    "profile": "https://perso.lip6.fr/Spyros.Angelopoulos/",
+    "biography": {
+      "slug": "spyros-angelopoulos",
+      "text": [
+        "Spyros Angelopoulos studies how algorithms should act when decisions cannot wait for all the facts. A prediction about future requests can help a system allocate resources or choose where to search, but a poor forecast can make it perform worse. He designs online algorithms and proves how much they can gain from good advice while limiting the cost of bad advice.",
+        "Spyros Angelopoulos étudie les algorithmes qui doivent décider avant de disposer de toutes les informations. Une prévision peut aider à répartir des ressources ou à déterminer où chercher, mais une mauvaise prévision peut aussi dégrader les résultats. Il conçoit des algorithmes en ligne et établit ce qu’ils peuvent gagner avec une prévision juste et ce qu’ils risquent de perdre si elle est erronée."
+      ],
+      "topics": [
+        [
+          "Online algorithms",
+          "Algorithmes en ligne"
+        ],
+        [
+          "Algorithms with predictions",
+          "Algorithmes avec prédictions"
+        ],
+        [
+          "Competitive analysis",
+          "Analyse compétitive"
+        ]
+      ],
+      "scholar": "https://scholar.google.com/citations?user=uH4c-KcAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/spyros-angelopoulos-136a09a/",
+      "source": "https://perso.lip6.fr/Spyros.Angelopoulos/"
+    },
+    "image": "spyros-angelopoulos.webp",
+    "portrait_source": "https://perso.lip6.fr/Spyros.Angelopoulos/images/spyros.jpeg",
+    "portrait_credit": "Spyros Angelopoulos · LIP6"
+  },
+  {
+    "name": "Tal Arbel",
+    "status": "past",
+    "role": [
+      "Professor",
+      "Professeure"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/ece/tal-arbel",
+    "image": "tal-arbel.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/wysiwyg_large/public/arbel.jpg?itok=7zDCzThP",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Héber H. Arcolezi",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://hharcolezi.github.io/",
+    "biography": {
+      "slug": "heber-h-arcolezi",
+      "text": [
+        "Héber H. Arcolezi studies how to collect useful statistics without exposing individual answers. In local differential privacy, people randomize their responses before sharing them. He designs protocols for repeated surveys and data with many attributes, and develops audits that test whether an implementation offers the privacy protection its designers claim.",
+        "Héber H. Arcolezi étudie comment produire des statistiques utiles sans divulguer les réponses individuelles. En confidentialité différentielle locale, chaque personne introduit une part de hasard dans ses réponses avant de les transmettre. Il conçoit des protocoles adaptés aux enquêtes répétées et aux données comportant de nombreux attributs, puis vérifie expérimentalement si les protections annoncées tiennent en pratique."
+      ],
+      "topics": [
+        [
+          "Local differential privacy",
+          "Confidentialité différentielle locale"
+        ],
+        [
+          "Statistical data collection",
+          "Collecte de données statistiques"
+        ],
+        [
+          "Privacy auditing",
+          "Audit de confidentialité"
+        ]
+      ],
+      "scholar": "https://scholar.google.com/citations?user=VJgSocwAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/heber-hwang-arcolezi/",
+      "source": "https://hharcolezi.github.io/"
+    },
+    "image": "arcolezi.webp",
+    "portrait_source": "https://hharcolezi.github.io/images/HHA_profile.png",
+    "portrait_credit": "Héber H. Arcolezi"
+  },
+  {
+    "name": "Oana Balmau",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeure"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://mila.quebec/en/directory/oana-balmau",
+    "biography": {
+      "slug": "oana-balmau",
+      "text": [
+        "Oana Balmau studies the storage systems that feed data to machine learning models. Faster processors offer little benefit when training stalls while waiting for examples to arrive. She builds storage benchmarks that reproduce these workloads and studies how to organize data so that training systems and devices at the edge can retrieve it efficiently.",
+        "Oana Balmau étudie les systèmes de stockage qui alimentent les modèles d’apprentissage. Même un processeur rapide reste inutilisé si l’entraînement doit attendre le prochain lot de données. Elle conçoit des bancs d’essai qui reproduisent ces charges de travail et étudie comment organiser les données pour que les systèmes d’entraînement et les appareils en périphérie de réseau y accèdent efficacement."
+      ],
+      "topics": [
+        [
+          "Storage systems",
+          "Systèmes de stockage"
+        ],
+        [
+          "Machine learning infrastructure",
+          "Infrastructure d’apprentissage automatique"
+        ],
+        [
+          "Performance measurement",
+          "Mesure des performances"
+        ]
+      ],
+      "website": "https://sites.google.com/view/oanabalmau",
+      "scholar": "https://scholar.google.com/citations?user=RmDWGhAAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/oanabalmau/",
+      "source": "https://mila.quebec/en/directory/oana-balmau"
+    },
+    "image": "balmau.webp",
+    "portrait_source": "https://mila.quebec/sites/default/files/styles/member_full/public/member/11623/portrait-of-oana-balmau.jpeg.webp?itok=B-Ds3tcJ",
+    "portrait_credit": "Mila"
+  },
+  {
+    "name": "Frédéric Béchet",
+    "status": "past",
+    "role": [
+      "Professor, CNRS",
+      "Professeur, CNRS"
+    ],
+    "affiliation": "Aix-Marseille Université · LIS",
+    "profile": "https://pageperso.lis-lab.fr/frederic.bechet/",
+    "image": "frederic-bechet.webp",
+    "portrait_source": "https://pageperso.lis-lab.fr/frederic.bechet/image/portrait_fredbechet.jpg",
+    "portrait_credit": "Frédéric Béchet · LIS"
+  },
+  {
+    "name": "Ismail Ben Ayed",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/ibenayed",
+    "biography": {
+      "slug": "ismail-ben-ayed",
+      "text": [
+        "Ismail Ben Ayed uses mathematical optimization to tackle problems in computer vision and medical imaging. His work on image segmentation asks how an algorithm can outline an organ or lesion when few images have been annotated. He studies how to incorporate prior knowledge into the learning objective and how to adapt a trained model to new data.",
+        "Ismail Ben Ayed s’appuie sur l’optimisation mathématique pour résoudre des problèmes de vision par ordinateur et d’imagerie médicale. En segmentation, il cherche à délimiter un organe ou une lésion à partir de peu d’images annotées. Il étudie comment intégrer des connaissances préalables au critère d’apprentissage et comment adapter un modèle déjà entraîné à de nouvelles données."
+      ],
+      "topics": [
+        [
+          "Optimization",
+          "Optimisation"
+        ],
+        [
+          "Medical image segmentation",
+          "Segmentation d’images médicales"
+        ],
+        [
+          "Model adaptation",
+          "Adaptation de modèles"
+        ]
+      ],
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=29vyUccAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/ismail-ben-ayed-82413053/",
+      "source": "https://www.etsmtl.ca/en/study-at-ets/professors/ibenayed"
+    },
+    "image": "ismail-ben-ayed.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20180419-Ben-Ayed-Ismail-002.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Jackie Chi Kit Cheung",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/cim/cheung",
+    "biography": {
+      "slug": "jackie-chi-kit-cheung",
+      "text": [
+        "Jackie Chi Kit Cheung studies how computers can interpret a text and generate language that serves a reader’s needs. His group investigates what a reader must infer beyond the literal words, how to select the salient facts for a summary, and how to evaluate whether generated text conveys those facts accurately.",
+        "Jackie Chi Kit Cheung étudie comment un système informatique peut interpréter un texte et en produire un autre qui réponde aux besoins du lectorat. Son équipe examine ce qu’il faut inférer au-delà du sens littéral, comment sélectionner les faits essentiels à un résumé et comment vérifier que le texte généré les restitue fidèlement."
+      ],
+      "topics": [
+        [
+          "Computational semantics",
+          "Sémantique computationnelle"
+        ],
+        [
+          "Text generation",
+          "Génération de texte"
+        ],
+        [
+          "Automatic summarization",
+          "Résumé automatique"
+        ]
+      ],
+      "website": "https://www.cs.mcgill.ca/~jcheung/",
+      "scholar": "https://scholar.google.com/citations?user=Um-wmYQAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/jackie-chi-kit-cheung-08340090/",
+      "source": "https://www.cs.mcgill.ca/~jcheung/"
+    },
+    "image": "cheung.webp",
+    "portrait_source": "https://www.mcgill.ca/cim/files/cim/styles/medium_focal__220_x_220_/public/cheung.jpg?itok=PbTIU_d7",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Mark Coates",
+    "status": "current",
+    "role": [
+      "Co-Director",
+      "Codirecteur"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/ece/mark-coates",
+    "biography": {
+      "slug": "mark-coates",
+      "text": [
+        "Mark Coates studies how to infer what is happening in a network from noisy or incomplete measurements. His group combines graph machine learning with Bayesian methods that update an estimate as observations arrive. Applications include tracking moving objects from sensor readings and learning about relationships in a network when even the connections are uncertain.",
+        "Mark Coates étudie comment décrire l’état d’un réseau à partir de mesures bruitées ou incomplètes. Son équipe associe l’apprentissage sur graphes à des méthodes bayésiennes qui actualisent une estimation au fil des observations. Ses travaux portent notamment sur le suivi d’objets en mouvement à partir de capteurs et sur l’étude de réseaux dont les connexions elles-mêmes sont incertaines."
+      ],
+      "topics": [
+        [
+          "Graph machine learning",
+          "Apprentissage sur graphes"
+        ],
+        [
+          "Bayesian inference",
+          "Inférence bayésienne"
+        ],
+        [
+          "Statistical signal processing",
+          "Traitement statistique du signal"
+        ]
+      ],
+      "website": "https://www.ece.mcgill.ca/~mcoate/",
+      "scholar": "https://scholar.google.com/citations?user=qxWORNoAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/mark-coates-194359197/",
+      "source": "https://www.ece.mcgill.ca/~mcoate/",
+      "appointments": [
+        [
+          "Professor, McGill University",
+          "Professeur à l’Université McGill", "ca"
+        ],
+        [
+          "Mila",
+          "Mila", "ca"
+        ]
+      ]
+    },
+    "image": "mark-coates.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/mark.jpg?itok=CzyroyKa",
+    "portrait_credit": "McGill University",
+    "leadership_order": 2
+  },
+  {
+    "name": "Jeremy R. Cooperstock",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "McGill University",
+    "profile": "https://www.mcgill.ca/ece/jeremy-cooperstock",
+    "biography": {
+      "slug": "jeremy-r-cooperstock",
+      "text": [
+        "Jeremy R. Cooperstock studies how sound, touch and images can convey aspects of a physical environment that a screen alone cannot. In McGill’s Shared Reality Lab, his group builds and evaluates interfaces such as floors that reproduce the sensation of footsteps and tools that give blind users auditory or tactile cues about their surroundings.",
+        "Jeremy R. Cooperstock étudie comment le son, le toucher et l’image peuvent restituer des aspects d’un environnement physique qu’un écran seul ne transmet pas. Au Shared Reality Lab de McGill, son équipe conçoit et évalue notamment des sols qui reproduisent la sensation des pas et des dispositifs qui renseignent les personnes aveugles sur leur environnement par des signaux sonores ou tactiles."
+      ],
+      "topics": [
+        [
+          "Human–computer interaction",
+          "Interaction humain-machine"
+        ],
+        [
+          "Haptics and sound",
+          "Haptique et son"
+        ],
+        [
+          "Accessible interfaces",
+          "Interfaces accessibles"
+        ]
+      ],
+      "website": "https://srl.mcgill.ca/~jer/",
+      "scholar": "https://scholar.google.com/citations?user=QnLo6bAAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/jeremy-cooperstock-46561a24/",
+      "source": "https://srl.mcgill.ca/~jer/"
+    },
+    "image": "jeremy-r-cooperstock.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/jer24.jpg?itok=c6R0NQla",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Stéphane Coulombe",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/scoulombe",
+    "biography": {
+      "slug": "stephane-coulombe",
+      "text": [
+        "Stéphane Coulombe studies how to compress and deliver video under limits on bandwidth, processing power and delay. In immersive video, a viewer may turn to look in a new direction before the next segment arrives. His work examines how encoding and streaming systems can use the available resources to preserve the quality the viewer actually sees.",
+        "Stéphane Coulombe étudie la compression et la diffusion vidéo lorsque le débit, la puissance de calcul et le délai sont limités. En vidéo immersive, une personne peut tourner la tête avant même l’arrivée du prochain segment. Ses travaux portent sur les choix d’encodage et de transmission qui préservent la qualité de l’image dans la partie de la scène effectivement regardée."
+      ],
+      "topics": [
+        [
+          "Video compression",
+          "Compression vidéo"
+        ],
+        [
+          "Immersive video",
+          "Vidéo immersive"
+        ],
+        [
+          "Adaptive streaming",
+          "Diffusion adaptative"
+        ]
+      ],
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=yDAEaxcAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/st%C3%A9phane-coulombe-38b4b51/",
+      "source": "https://www.etsmtl.ca/en/study-at-ets/professors/scoulombe"
+    },
+    "image": "stephane-coulombe.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20200213-Coulombe-St%C3%A9phane-001.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Christian Desrosiers",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/cdesrosiers",
+    "biography": {
+      "slug": "christian-desrosiers",
+      "text": [
+        "Christian Desrosiers develops machine learning methods for biomedical images. His research asks how a model can learn useful features when only a small fraction of scans have expert annotations, and how well those features transfer between datasets. He studies these questions through tasks such as identifying anatomical structures and detecting abnormalities in medical images.",
+        "Christian Desrosiers développe des méthodes d’apprentissage automatique pour l’imagerie biomédicale. Il cherche à extraire des caractéristiques utiles lorsqu’une petite partie seulement des examens a été annotée par des spécialistes, puis à déterminer si ces caractéristiques restent pertinentes sur d’autres jeux de données. Il étudie notamment le repérage de structures anatomiques et la détection d’anomalies."
+      ],
+      "topics": [
+        [
+          "Biomedical image analysis",
+          "Analyse d’images biomédicales"
+        ],
+        [
+          "Representation learning",
+          "Apprentissage de représentations"
+        ],
+        [
+          "Learning with limited labels",
+          "Apprentissage avec peu d’annotations"
+        ]
+      ],
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=XJ0jF3gAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/christian-desrosiers-67a5a48/",
+      "source": "https://www.etsmtl.ca/en/study-at-ets/professors/cdesrosiers"
+    },
+    "image": "christian-desrosiers.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P220524-christian-desrosiers-1.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "José Dolz",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/jdolz",
+    "biography": {
+      "slug": "jose-dolz",
+      "text": [
+        "José Dolz studies how to train medical image segmentation models without asking a specialist to trace every structure in every scan. His work explores what models can learn from incomplete annotations or unlabelled images, and how to adapt them when a new scanner, imaging protocol or hospital changes the appearance of the data.",
+        "José Dolz étudie comment entraîner un modèle de segmentation d’images médicales sans demander à un spécialiste de tracer chaque structure sur chaque examen. Il explore ce que les modèles peuvent apprendre d’annotations partielles ou d’images non annotées et comment les adapter lorsque les images proviennent d’un autre appareil, d’un autre protocole ou d’un autre hôpital."
+      ],
+      "topics": [
+        [
+          "Medical image segmentation",
+          "Segmentation d’images médicales"
+        ],
+        [
+          "Weak supervision",
+          "Supervision faible"
+        ],
+        [
+          "Domain adaptation",
+          "Adaptation de domaine"
+        ]
+      ],
+      "website": "https://josedolz.github.io/",
+      "scholar": "https://scholar.google.com/citations?user=yHQIFFMAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/josedolz/",
+      "source": "https://josedolz.github.io/"
+    },
+    "image": "jose-dolz.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20191210-Jose-Dolz-572-002.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Sébastien Gambs",
+    "status": "associate",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "Université du Québec à Montréal",
+    "profile": "https://scholar.google.com/citations?user=2q1NjMgAAAAJ&hl=fr",
+    "biography": {
+      "slug": "sebastien-gambs",
+      "text": [
+        "Sébastien Gambs studies what can be inferred about a person from the digital traces they leave. Location records, for example, can reveal someone’s habits or identity even after names are removed. His work examines these inference attacks, develops ways to protect sensitive data and explores how privacy and fairness interact in machine learning.",
+        "Sébastien Gambs étudie ce que l’on peut déduire des traces numériques d’une personne. Des données de localisation peuvent par exemple révéler ses habitudes ou son identité, même après le retrait de son nom. Il analyse ces attaques par inférence, développe des moyens de protéger les données sensibles et étudie les liens entre confidentialité et équité en apprentissage automatique."
+      ],
+      "topics": [
+        [
+          "Location privacy",
+          "Confidentialité des données de localisation"
+        ],
+        [
+          "Inference attacks",
+          "Attaques par inférence"
+        ],
+        [
+          "Privacy and fairness",
+          "Vie privée et équité"
+        ]
+      ],
+      "website": "https://sec.uqam.ca/en/member/prof/gambs/",
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=2q1NjMgAAAAJ",
+      "source": "https://sec.uqam.ca/en/member/prof/gambs/"
+    },
+    "image": "sebastien-gambs.webp",
+    "portrait_source": "https://photos-professeurs.uqam.ca/images/fiche_professeur/m2/Cs%252bwEyQAgtQ_.jpg",
+    "portrait_credit": "Université du Québec à Montréal"
+  },
+  {
+    "name": "Éric Granger",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/egranger",
+    "biography": {
+      "slug": "eric-granger",
+      "text": [
+        "Éric Granger develops visual recognition systems that must keep working as people and their surroundings change. In video, for instance, a face may appear from a new angle or under different lighting than in the training images. His group studies how models can adapt to these changes and learn from new observations without forgetting earlier ones.",
+        "Éric Granger développe des systèmes de reconnaissance visuelle qui doivent rester fiables lorsque les personnes et leur environnement changent. En vidéo, un visage peut par exemple apparaître sous un angle ou un éclairage absent des images d’entraînement. Son équipe étudie comment adapter les modèles à ces variations et leur faire acquérir de nouvelles connaissances sans perdre les précédentes."
+      ],
+      "topics": [
+        [
+          "Visual recognition",
+          "Reconnaissance visuelle"
+        ],
+        [
+          "Video biometrics",
+          "Biométrie vidéo"
+        ],
+        [
+          "Continual learning",
+          "Apprentissage continu"
+        ]
+      ],
+      "website_label": [
+        "Research profile",
+        "Profil de recherche"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=TmfbdagAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/eric-granger-4062324/",
+      "source": "https://www.etsmtl.ca/en/study-at-ets/professors/egranger"
+    },
+    "image": "eric-granger.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20200924-Granger-Eric-001.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Fanny Jourdan",
+    "status": "associate",
+    "role": [
+      "Hosted researcher",
+      "Chercheuse accueillie"
+    ],
+    "affiliation": "IRT Saint Exupéry · Mila",
+    "hide_country_flags": ["ca"],
+    "profile": "https://mila.quebec/fr/annuaire/fanny-jourdan",
+    "biography": {
+      "slug": "fanny-jourdan",
+      "text": [
+        "Fanny Jourdan studies how to tell which concepts shape a language model’s answer. She develops methods that connect a prediction to ideas a reader can recognize, then tests whether changing those concepts changes the prediction. Her work also examines how to measure bias and hallucinations, and whether targeted interventions can reduce them.",
+        "Fanny Jourdan cherche à déterminer quels concepts orientent la réponse d’un modèle de langue. Elle développe des méthodes qui relient une prédiction à des idées reconnaissables et vérifie si la prédiction change lorsqu’on agit sur ces concepts. Elle étudie aussi comment mesurer les biais et les hallucinations et si des interventions ciblées permettent de les réduire."
+      ],
+      "topics": [
+        [
+          "Language model interpretability",
+          "Interprétabilité des modèles de langue"
+        ],
+        [
+          "Concept-based explanations",
+          "Explications par concepts"
+        ],
+        [
+          "Bias evaluation",
+          "Évaluation des biais"
+        ]
+      ],
+      "website": "https://fanny-jourdan.github.io/",
+      "scholar": "https://scholar.google.com/citations?user=ntU8A30AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/fanny-jourdan/",
+      "source": "https://fanny-jourdan.github.io/"
+    },
+    "image": "fanny-jourdan.webp",
+    "portrait_source": "https://mila.quebec/sites/default/files/styles/member_full/public/member/11616/portrait-of-fanny-jourdan.jpeg.webp?itok=GbLKN9ce",
+    "portrait_credit": "Mila"
+  },
+  {
+    "name": "Georges Kaddoum",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/gkaddoum",
+    "biography": {
+      "slug": "georges-kaddoum",
+      "text": [
+        "Georges Kaddoum studies how wireless networks can keep carrying critical messages when links are unreliable or under attack. His research brings together radio communications, security and resource allocation. One application is tactical and public safety networks, where a system must decide how to use scarce spectrum and power to deliver messages on time.",
+        "Georges Kaddoum étudie comment un réseau sans fil peut continuer à transmettre des messages critiques lorsque ses liaisons sont instables ou visées par une attaque. Ses recherches associent radiocommunications, sécurité et allocation de ressources. Dans les réseaux tactiques et de sécurité publique, il s’agit notamment de répartir le spectre et la puissance disponibles pour acheminer les messages à temps."
+      ],
+      "topics": [
+        [
+          "Wireless communications",
+          "Communications sans fil"
+        ],
+        [
+          "Network security",
+          "Sécurité des réseaux"
+        ],
+        [
+          "Resource allocation",
+          "Allocation de ressources"
+        ]
+      ],
+      "website": "https://lcsec-lab.ca/author/georges-kaddoum/",
+      "website_label": [
+        "Research profile",
+        "Profil de recherche"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=-6bzf54AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/georges-kaddoum-b0582526/",
+      "source": "https://lcsec-lab.ca/author/georges-kaddoum/"
+    },
+    "image": "georges-kaddoum.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20180424-Kaddoum-Georges-002.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Marc-Olivier Killijian",
+    "status": "associate",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "Université du Québec à Montréal",
+    "profile": "https://kirija.github.io/",
+    "biography": {
+      "slug": "marc-olivier-killijian",
+      "text": [
+        "Marc-Olivier Killijian develops cryptographic methods that let people use a service without revealing what they ask it to do. His work on private information retrieval lets a client look up a record without telling the server which record it wanted. He also develops software for homomorphic encryption, which makes it possible to compute directly on encrypted data.",
+        "Marc-Olivier Killijian développe des méthodes cryptographiques qui permettent d’utiliser un service sans lui dévoiler sa requête. Ses travaux sur la recherche privée d’information permettent par exemple de consulter une entrée sans indiquer au serveur laquelle a été choisie. Il développe aussi des outils de chiffrement homomorphe pour effectuer des calculs directement sur les données chiffrées."
+      ],
+      "topics": [
+        [
+          "Applied cryptography",
+          "Cryptographie appliquée"
+        ],
+        [
+          "Private information retrieval",
+          "Recherche privée d’information"
+        ],
+        [
+          "Homomorphic encryption",
+          "Chiffrement homomorphe"
+        ]
+      ],
+      "scholar": "https://scholar.google.com/citations?user=SGPYrpA69BsJ",
+      "linkedin": "https://www.linkedin.com/in/marcokillijian/",
+      "source": "https://kirija.github.io/"
+    },
+    "image": "marc-olivier-killijian.webp",
+    "portrait_source": "https://kirija.github.io/images/MOK.jpg",
+    "portrait_credit": "Marc-Olivier Killijian"
+  },
+  {
+    "name": "Aditya Mahajan",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/ece/aditya-mahajan",
+    "biography": {
+      "slug": "aditya-mahajan",
+      "text": [
+        "Aditya Mahajan studies how several decision makers can pursue a shared goal when each sees only part of a changing system. He uses stochastic control and game theory to distinguish what each participant knows privately from what everyone knows in common. His group uses this distinction to design decision rules and reinforcement learning methods for teams.",
+        "Aditya Mahajan étudie comment plusieurs agents peuvent poursuivre un objectif commun lorsque chacun n’observe qu’une partie d’un système en évolution. Il s’appuie sur la commande stochastique et la théorie des jeux pour distinguer l’information propre à chaque agent de celle que tous partagent. Son équipe en tire des règles de décision et des méthodes d’apprentissage par renforcement pour les équipes d’agents."
+      ],
+      "topics": [
+        [
+          "Decentralized control",
+          "Commande décentralisée"
+        ],
+        [
+          "Information structures",
+          "Structures d’information"
+        ],
+        [
+          "Multi-agent reinforcement learning",
+          "Apprentissage par renforcement multiagent"
+        ]
+      ],
+      "website": "https://adityam.github.io/",
+      "scholar": "https://scholar.google.com/citations?user=Qr6-idkAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/aditya-mahajan-89363820/",
+      "source": "https://adityam.github.io/"
+    },
+    "image": "aditya-mahajan.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/mahajan-v3_0.jpg?itok=Bz8YnILV",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Loris Marchal",
+    "status": "past",
+    "role": [
+      "Researcher",
+      "Chercheur"
+    ],
+    "affiliation": "CNRS · ENS de Lyon · LIP",
+    "profile": "https://perso.ens-lyon.fr/loris.marchal/",
+    "image": "loris-marchal.webp",
+    "portrait_source": "https://perso.ens-lyon.fr/loris.marchal/loris-2015.jpg",
+    "portrait_credit": "Loris Marchal · ENS de Lyon"
+  },
+  {
+    "name": "Ricard Marxer",
+    "status": "current",
+    "role": [
+      "Professor, CNRS",
+      "Professeur, CNRS"
+    ],
+    "affiliation": "Université de Toulon · Mila",
+    "hide_country_flags": ["ca"],
+    "profile": "https://dyni.pages.lis-lab.fr/team/",
+    "biography": {
+      "slug": "ricard-marxer",
+      "text": [
+        "Ricard Marxer studies what machines can learn by listening. His research spans speech and music as well as bioacoustics, where recordings of animal calls can reveal patterns of vocal activity. He develops and evaluates methods that separate sound sources, estimate pitch and learn representations from recordings without requiring people to label every sound.",
+        "Ricard Marxer étudie ce que les machines peuvent apprendre par l’écoute. Il travaille sur la parole et la musique, mais aussi sur les vocalisations animales en bioacoustique. Il développe et évalue des méthodes pour séparer des sources sonores, estimer la hauteur d’un son et apprendre à partir d’enregistrements sans qu’il soit nécessaire d’annoter chaque événement sonore."
+      ],
+      "topics": [
+        [
+          "Machine listening",
+          "Écoute artificielle"
+        ],
+        [
+          "Speech and music processing",
+          "Traitement de la parole et de la musique"
+        ],
+        [
+          "Bioacoustics",
+          "Bioacoustique"
+        ]
+      ],
+      "website": "https://www.ricardmarxer.com/",
+      "scholar": "https://scholar.google.com/citations?user=EloO3uwAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/ricard-marxer-72786320/",
+      "source": "https://www.ricardmarxer.com/"
+    },
+    "image": "ricard-marxer.webp",
+    "portrait_source": "https://dyni.pages.lis-lab.fr/images/teampic/marxer.jpg",
+    "portrait_credit": "DYNI · LIS"
+  },
+  {
+    "name": "AJung Moon",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeure"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/ece/ajung-moon",
+    "biography": {
+      "slug": "ajung-moon",
+      "text": [
+        "AJung Moon studies how people and robots coordinate everyday actions. When a robot hands someone an object, for example, where it looks or whether it hesitates can change how the person interprets its intentions. She uses experiments in human–robot interaction to study these cues and examines the ethical choices involved in designing robots that work alongside people.",
+        "AJung Moon étudie la coordination entre humains et robots dans des situations du quotidien. Lorsqu’un robot tend un objet, la direction de son regard ou un mouvement d’hésitation peuvent influer sur la façon dont la personne interprète son intention. Elle analyse ces signaux par l’expérimentation et s’intéresse aux choix éthiques que soulève la conception de robots collaboratifs."
+      ],
+      "topics": [
+        [
+          "Human–robot interaction",
+          "Interaction humain-robot"
+        ],
+        [
+          "Nonverbal communication",
+          "Communication non verbale"
+        ],
+        [
+          "Robot ethics",
+          "Éthique de la robotique"
+        ]
+      ],
+      "website": "https://www.ajungmoon.com/",
+      "scholar": "https://scholar.google.com/citations?user=NNnTnK8AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/ajungmoon/",
+      "source": "https://www.ajungmoon.com/"
+    },
+    "image": "ajung-moon.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/moon_profile_photo_0.jpeg?itok=zj5vjUWe",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Alexandre Muzy",
+    "status": "current",
+    "role": [
+      "Researcher",
+      "Chercheur"
+    ],
+    "affiliation": "CNRS · Université de Nice",
+    "profile": "https://alexandremuzy.com/2024/07/19/short-bio/",
+    "biography": {
+      "slug": "alexandre-muzy",
+      "text": [
+        "Alexandre Muzy develops models and simulations to study how networks of interacting components produce complex behaviour. In neuroscience, he uses this approach to investigate how networks of neurons compute and learn over time. He also draws on these models to design artificial networks that use fewer resources and whose behaviour can be explained.",
+        "Alexandre Muzy développe des modèles et des simulations pour comprendre comment les interactions entre les éléments d’un réseau produisent un comportement complexe. En neurosciences, cette démarche lui permet d’étudier comment des réseaux de neurones calculent et apprennent au fil du temps. Il s’en inspire aussi pour concevoir des réseaux artificiels plus économes en ressources et dont le comportement est explicable."
+      ],
+      "topics": [
+        [
+          "Modeling and simulation",
+          "Modélisation et simulation"
+        ],
+        [
+          "Computational neuroscience",
+          "Neurosciences computationnelles"
+        ],
+        [
+          "Brain-inspired AI",
+          "IA neuro-inspirée"
+        ]
+      ],
+      "website": "https://alexandremuzy.com/",
+      "scholar": "https://scholar.google.com/citations?user=qYLhAUsAAAAJ",
+      "source": "https://alexandremuzy.com/2024/07/19/short-bio/"
+    },
+    "image": "alexandre-muzy.webp",
+    "portrait_source": "https://alexandremuzy.com/wp-content/uploads/2024/07/sans-titre-1.jpeg",
+    "portrait_credit": "Alexandre Muzy"
+  },
+  {
+    "name": "Derek Nowrouzezahrai",
+    "status": "past",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/ece/derek-nowrouzezahrai",
+    "image": "derek-nowrouzezahrai.webp",
+    "portrait_source": "https://www.mcgill.ca/ece/files/ece/styles/medium_focal__220_x_220_/public/derek_0.jpg?itok=IdWLRcv_",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Marco Pedersoli",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS · Mila",
+    "profile": "https://www.etsmtl.ca/en/study-at-ets/professors/mpedersoli",
+    "biography": {
+      "slug": "marco-pedersoli",
+      "text": [
+        "Marco Pedersoli studies how visual recognition systems can learn from fewer human annotations and run with less computation. He develops methods for learning representations from images and from images paired with text. His group also studies embedded neural networks for building control, where an algorithm must balance occupants’ comfort with energy use.",
+        "Marco Pedersoli étudie comment les systèmes de reconnaissance visuelle peuvent apprendre avec moins d’annotations humaines et fonctionner avec moins de calculs. Il développe des méthodes qui apprennent des représentations à partir d’images ou de couples image-texte. Son équipe étudie aussi les réseaux de neurones embarqués pour la commande des bâtiments, où il faut concilier confort des occupants et consommation d’énergie."
+      ],
+      "topics": [
+        [
+          "Efficient computer vision",
+          "Vision par ordinateur économe en calcul"
+        ],
+        [
+          "Weak supervision",
+          "Supervision faible"
+        ],
+        [
+          "Embedded neural networks",
+          "Réseaux de neurones embarqués"
+        ]
+      ],
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=aVfyPAoAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/marco-pedersoli-50677321b/",
+      "source": "https://mila.quebec/en/directory/marco-pedersoli"
+    },
+    "image": "marco-pedersoli.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20230830-pedersoli-marco-01.jpg",
+    "portrait_credit": "École de technologie supérieure"
+  },
+  {
+    "name": "Pablo Piantanida",
+    "status": "current",
+    "role": [
+      "Director",
+      "Directeur"
+    ],
+    "hide_country_flags": ["ca"],
+    "affiliation": "CNRS · CentraleSupélec · Université Paris-Saclay · Mila",
+    "profile": "https://pablo-piantanida.org/",
+    "biography": {
+      "slug": "pablo-piantanida",
+      "appointments": [
+        ["Professor, CentraleSupélec, Université Paris-Saclay", "Professeur à CentraleSupélec, Université Paris-Saclay", "fr"],
+        ["Associate Academic Member, Mila", "Membre académique associé, Mila", "ca"]
+      ],
+      "text": [
+        "Pablo Piantanida studies when more information, computation or communication leads to a better decision. Drawing on information theory and statistical decision theory, he develops methods to compare learned representations before their eventual use is known. His research on reliability examines when a model should defer a prediction and how to audit generative AI with a limited testing budget. He also studies how agents with different observations can reason together and decide which messages are worth exchanging.",
+        "Pablo Piantanida étudie les conditions dans lesquelles un renseignement, un calcul ou un échange supplémentaire améliore une décision. À partir de la théorie de l’information et de la théorie statistique de la décision, il développe des méthodes pour comparer les représentations apprises avant même de connaître leur usage futur. Ses travaux sur la fiabilité portent sur les situations où un modèle devrait s’abstenir de prédire et sur la manière d’évaluer une IA générative avec un budget de test limité. Il étudie aussi comment des agents disposant d’observations différentes peuvent raisonner ensemble et choisir les informations à échanger."
+      ],
+      "topics": [
+        ["Learning, representation and reasoning", "Apprentissage, représentation et raisonnement"],
+        ["Uncertainty and model evaluation", "Incertitude et évaluation des modèles"],
+        ["Multi-agent reasoning and communication", "Raisonnement et communication entre agents"]
+      ],
+      "scholar": "https://scholar.google.com/citations?user=QyBEFv0AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/pablo-piantanida-60a51bb5/",
+      "source": "https://pablo-piantanida.org/"
+    },
+    "image": "pablo-piantanida.webp",
+    "portrait_source": "https://mila.quebec/sites/default/files/styles/member_full/public/member/5214/portrait-of-pablo-piantanida.jpeg.webp?itok=KXQY-y1U",
+    "portrait_credit": "Mila",
+    "leadership_order": 1
+  },
+  {
+    "name": "Jean-Baptiste Poline",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "McGill University · The Neuro",
+    "profile": "https://www.mcgill.ca/qls/researchers/jb-poline",
+    "biography": {
+      "slug": "jean-baptiste-poline",
+      "text": [
+        "Jean-Baptiste Poline studies how researchers can test a finding about the brain across independently collected datasets. His work combines statistical methods for neuroimaging with open tools that document how images were collected and processed. Projects such as Neurobagel help researchers discover comparable data across studies, while Nipoppy helps them run and track reproducible analyses.",
+        "Jean-Baptiste Poline étudie comment vérifier une observation sur le cerveau à partir de données recueillies indépendamment. Il associe les statistiques appliquées à la neuroimagerie à des outils ouverts qui documentent l’acquisition et le traitement des images. Neurobagel aide ainsi à repérer des données comparables entre études, tandis que Nipoppy permet d’exécuter des analyses reproductibles et d’en suivre les étapes."
+      ],
+      "topics": [
+        [
+          "Neuroinformatics",
+          "Neuro-informatique"
+        ],
+        [
+          "Statistical neuroimaging",
+          "Neuroimagerie statistique"
+        ],
+        [
+          "Reproducible research",
+          "Recherche reproductible"
+        ]
+      ],
+      "website": "https://www.mcgill.ca/neuro/jean-baptiste-poline-phd",
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=BU7Zdi4AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/jean-baptiste-poline-5923a04b/",
+      "source": "https://www.mcgill.ca/neuro/jean-baptiste-poline-phd"
+    },
+    "image": "poline.webp",
+    "portrait_source": "https://www.mcgill.ca/qls/files/qls/styles/wysiwyg_medium/public/jb_poline.png?itok=WiJM2FJP",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Magali Richard",
+    "status": "current",
+    "role": [
+      "Researcher",
+      "Chercheuse"
+    ],
+    "affiliation": "CNRS · Université Grenoble Alpes",
+    "profile": "https://magrichard.github.io/",
+    "biography": {
+      "slug": "magali-richard",
+      "text": [
+        "Magali Richard studies how different cell populations coexist within a tumour. She combines computational models with experimental data to estimate which cells contribute to a mixed molecular signal and how these populations vary across a tissue. She also organizes open data challenges so that teams can compare their methods on the same biological question.",
+        "Magali Richard étudie comment différentes populations de cellules coexistent au sein d’une tumeur. Elle associe modèles informatiques et données expérimentales pour estimer quelles cellules contribuent à un signal moléculaire composite et comment leurs proportions varient dans un tissu. Elle organise aussi des défis ouverts qui permettent à plusieurs équipes de comparer leurs méthodes sur une même question biologique."
+      ],
+      "topics": [
+        [
+          "Tumour heterogeneity",
+          "Hétérogénéité tumorale"
+        ],
+        [
+          "Computational biology",
+          "Biologie computationnelle"
+        ],
+        [
+          "Cellular deconvolution",
+          "Déconvolution cellulaire"
+        ]
+      ],
+      "scholar": "https://scholar.google.com/citations?user=qy3usEoAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/magali-richard-3b864b26/",
+      "source": "https://magrichard.github.io/"
+    },
+    "image": "richard.webp",
+    "portrait_source": "https://magrichard.github.io/images/mrichard_highres.jpg",
+    "portrait_credit": "Magali Richard"
+  },
+  {
+    "name": "Audrey A. Sedal",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeure"
+    ],
+    "affiliation": "McGill University · Mila",
+    "profile": "https://www.mcgill.ca/cim/sedal",
+    "biography": {
+      "slug": "audrey-a-sedal",
+      "text": [
+        "Audrey A. Sedal studies robots whose bodies bend, stretch or twist as they move. Their behaviour depends as much on the material they are made from as on the commands they receive. Her group uses simulation and experiments to design soft robots and their controllers together, and investigates biodegradable materials for building them.",
+        "Audrey A. Sedal étudie des robots dont le corps se courbe, s’étire ou se tord en mouvement. Leur comportement dépend autant des matériaux qui les composent que des commandes qu’ils reçoivent. Son équipe conjugue simulation et expérimentation pour concevoir ensemble le corps du robot et sa commande. Elle étudie également l’emploi de matériaux biodégradables."
+      ],
+      "topics": [
+        [
+          "Soft robotics",
+          "Robotique souple"
+        ],
+        [
+          "Robot design and control",
+          "Conception et commande de robots"
+        ],
+        [
+          "Robotic materials",
+          "Matériaux pour la robotique"
+        ]
+      ],
+      "website": "https://macro.lab.mcgill.ca/",
+      "website_label": [
+        "Research group",
+        "Groupe de recherche"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=FPtpy7gAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/audrey-sedal-11319057/",
+      "source": "https://mila.quebec/en/directory/audrey-sedal"
+    },
+    "image": "sedal.webp",
+    "portrait_source": "https://www.mcgill.ca/cim/files/cim/styles/medium_focal__220_x_220_/public/sedal_160.png?itok=gTm0l3bJ",
+    "portrait_credit": "McGill University"
+  },
+  {
+    "name": "Mohammadhadi Shateri",
+    "status": "current",
+    "role": [
+      "Professor",
+      "Professeur"
+    ],
+    "affiliation": "ÉTS",
+    "profile": "https://www.etsmtl.ca/etudier-a-lets/corps-professoral/mshateri",
+    "biography": {
+      "slug": "mohammadhadi-shateri",
+      "text": [
+        "Mohammadhadi Shateri studies how to share useful data without disclosing sensitive information about the people who generated it. His work on smart meters examines what electricity readings reveal about household activity. He also evaluates generative models against membership inference attacks, which test whether a particular person’s data was used to train a model.",
+        "Mohammadhadi Shateri étudie comment partager des données utiles sans dévoiler d’informations sensibles sur les personnes concernées. Ses travaux sur les compteurs intelligents examinent ce que la consommation d’électricité révèle des activités d’un foyer. Il évalue aussi les modèles génératifs face aux attaques par inférence d’appartenance, qui cherchent à déterminer si les données d’une personne ont servi à entraîner un modèle."
+      ],
+      "topics": [
+        [
+          "Privacy-preserving learning",
+          "Apprentissage préservant la vie privée"
+        ],
+        [
+          "Generative models",
+          "Modèles génératifs"
+        ],
+        [
+          "Inference attacks",
+          "Attaques par inférence"
+        ]
+      ],
+      "website": "https://www.etsmtl.ca/en/study-at-ets/professors/mshateri",
+      "website_label": [
+        "University profile",
+        "Profil universitaire"
+      ],
+      "scholar": "https://scholar.google.com/citations?user=TwJO3P5d1S8C",
+      "linkedin": "https://www.linkedin.com/in/mohammadhadi-shateri-87mh87/",
+      "source": "https://www.etsmtl.ca/en/study-at-ets/professors/mshateri"
+    },
+    "image": "shateri.webp",
+    "portrait_source": "https://www.etsmtl.ca/uploads/P20220926-shateri-mohammadhadi-001.jpg",
+    "portrait_credit": "ÉTS Montréal"
+  },
+  {
+    "name": "Nicolas Thome",
+    "status": "current",
+    "role": [
+      "Professor, CNRS",
+      "Professeur, CNRS"
+    ],
+    "affiliation": "Sorbonne Université",
+    "profile": "https://mila.quebec/fr/annuaire/nicolas-thome",
+    "biography": {
+      "slug": "nicolas-thome",
+      "text": [
+        "Nicolas Thome studies how models can recognize actions and anticipate what happens next in a video. A single frame may identify an object, yet say little about what someone is doing with it. His research combines visual, temporal and language information to learn representations of actions and applies these ideas to perception and decision making in robotics.",
+        "Nicolas Thome étudie comment reconnaître une action et anticiper sa suite dans une vidéo. Une image isolée peut suffire à identifier un objet, mais renseigne peu sur ce qu’une personne en fait. Il associe informations visuelles, temporelles et langagières pour apprendre des représentations des actions et en étudie les applications à la perception et à la décision en robotique."
+      ],
+      "topics": [
+        [
+          "Video understanding",
+          "Compréhension de vidéos"
+        ],
+        [
+          "Multimodal learning",
+          "Apprentissage multimodal"
+        ],
+        [
+          "Robot perception",
+          "Perception robotique"
+        ]
+      ],
+      "website": "https://thome.isir.upmc.fr/",
+      "scholar": "https://scholar.google.com/citations?user=3f3Zq-8AAAAJ",
+      "linkedin": "https://www.linkedin.com/in/nicolas-thome-37b57661/",
+      "source": "https://thome.isir.upmc.fr/"
+    },
+    "image": "nicolas-thome.webp",
+    "portrait_source": "https://mila.quebec/sites/default/files/styles/member_full/public/member/11584/portrait-of-nicolas-thome.png.webp?itok=dSIOKwpS",
+    "portrait_credit": "Mila"
+  }
+]
