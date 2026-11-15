@@ -27,6 +27,45 @@
     value ^= value >>> 15;
     return (value >>> 0) / 4294967296;
   };
+  const neuronRows = 18;
+  const neuronColumns = 4;
+  const neurons = [];
+  for (let row = 0; row < neuronRows; row++) {
+    for (let column = 0; column < neuronColumns; column++) {
+      const id = row * neuronColumns + column;
+      neurons.push({
+        id,
+        u: TAU * (row + (random01(id, 1) - .5) * .1) / neuronRows,
+        v: TAU * column / neuronColumns + (random01(id, 2) - .5) * .12,
+        phase: random01(id, 3),
+        pulsePeriod: .72 + 1.05 * random01(id, 4)
+      });
+    }
+  }
+  const axons = [];
+  function addAxon(from, to, kind) {
+    const id = axons.length;
+    const delta = value => ((value + Math.PI) % TAU + TAU) % TAU - Math.PI;
+    axons.push({
+      id, from, to, kind,
+      deltaU: delta(to.u - from.u),
+      deltaV: delta(to.v - from.v),
+      bendU: (random01(id, 10) - .5) * .075,
+      bendV: (random01(id, 11) - .5) * .24,
+      phase: random01(id, 12),
+      pulsePeriod: .9 + 1.25 * random01(id, 13),
+      firingThreshold: .91 + .055 * random01(id, 14)
+    });
+  }
+  const neuronAt = (row, column) => neurons[((row + neuronRows) % neuronRows) * neuronColumns + ((column + neuronColumns) % neuronColumns)];
+  for (let row = 0; row < neuronRows; row++) {
+    for (let column = 0; column < neuronColumns; column++) {
+      const neuron = neuronAt(row, column);
+      addAxon(neuron, neuronAt(row + 1, column), 'axon');
+      addAxon(neuron, neuronAt(row, column + 1), 'branch');
+      if (random01(neuron.id, 20) > .42) addAxon(neuron, neuronAt(row + 1, column + 1), 'branch');
+    }
+  }
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
   const scale = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
@@ -169,57 +208,141 @@
   new ResizeObserver(resize).observe(figure);
   window.addEventListener('resize', resize, { passive: true });
 
-  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, intensity = 1) {
-    const u = contourParameter(progress);
+  function neuronSurface(u, v, yaw, pitch, roll, size, offsetX, offsetY) {
     const frame = frameAt(u);
-    const v = frontSurfaceV(frame, yaw, pitch, roll) + laneOffset;
-    const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
-    const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
-    const tailSteps = 16;
-    const tailLength = .03;
+    const position = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
+    const normal = normalize(add(
+      scale(frame.normal, Math.cos(v)),
+      scale(frame.binormal, Math.sin(v))
+    ));
+    const facing = cameraPoint(normal, yaw, pitch, roll)[2];
+    return { x: position.x + offsetX, y: position.y + offsetY, z: position.z, facing };
+  }
 
+  function axonSurface(axon, t, yaw, pitch, roll, size, offsetX, offsetY) {
+    const bend = Math.sin(Math.PI * t);
+    return neuronSurface(
+      axon.from.u + axon.deltaU * t + axon.bendU * bend,
+      axon.from.v + axon.deltaV * t + axon.bendV * bend,
+      yaw, pitch, roll, size, offsetX, offsetY
+    );
+  }
+
+  function drawNeuralNetwork(seconds, yaw, pitch, roll, size, offsetX, offsetY) {
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
-    ctx.globalAlpha = intensity;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    for (let i = tailSteps; i > 0; i--) {
-      const beforeU = contourParameter(progress - tailLength * i / tailSteps);
-      const nextU = contourParameter(progress - tailLength * (i - 1) / tailSteps);
-      const beforeFrame = frameAt(beforeU);
-      const nextFrame = frameAt(nextU);
-      const beforeV = frontSurfaceV(beforeFrame, yaw, pitch, roll) + laneOffset;
-      const nextV = frontSurfaceV(nextFrame, yaw, pitch, roll) + laneOffset;
-      const projectedA = project(surfacePoint(beforeU, beforeV, beforeFrame), yaw, pitch, roll, size);
-      const projectedB = project(surfacePoint(nextU, nextV, nextFrame), yaw, pitch, roll, size);
-      const a = { ...projectedA, x: projectedA.x + offsetX, y: projectedA.y + offsetY };
-      const b = { ...projectedB, x: projectedB.x + offsetX, y: projectedB.y + offsetY };
-      const strength = 1 - i / (tailSteps + 1);
+
+    for (const axon of axons) {
+      const samples = 9;
+      const points = [];
+      let brightestFacing = -1;
+      for (let step = 0; step <= samples; step++) {
+        const point = axonSurface(axon, step / samples, yaw, pitch, roll, size, offsetX, offsetY);
+        points.push(point);
+        brightestFacing = Math.max(brightestFacing, point.facing);
+      }
       ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(112,239,229,${.08 + .45 * strength})`;
-      ctx.lineWidth = .45 + 1.05 * strength;
-      ctx.shadowColor = 'rgba(113,240,229,.92)';
-      ctx.shadowBlur = 1.5 + 4 * strength;
+      let pathOpen = false;
+      for (const point of points) {
+        if (point.facing > -.06) {
+          if (!pathOpen) ctx.moveTo(point.x, point.y);
+          else ctx.lineTo(point.x, point.y);
+          pathOpen = true;
+        } else {
+          pathOpen = false;
+        }
+      }
+      const visible = clamp((brightestFacing + .16) / .9);
+      ctx.globalAlpha = visible * (axon.kind === 'axon' ? .22 : .15);
+      ctx.strokeStyle = axon.kind === 'axon' ? 'rgba(99,177,231,.76)' : 'rgba(110,232,220,.72)';
+      ctx.lineWidth = axon.kind === 'axon' ? .48 : .34;
       ctx.stroke();
+
+      const cycle = seconds / axon.pulsePeriod + axon.phase;
+      const interval = Math.floor(cycle);
+      const intervalPhase = cycle - interval;
+      const firing = random01(axon.id, interval + 300) > axon.firingThreshold;
+      const wasFiring = random01(axon.id, interval + 299) > axon.firingThreshold;
+      const firingWindow = .28;
+      if (!(firing || wasFiring) || intervalPhase > firingWindow) continue;
+      const travel = clamp(intervalPhase / firingWindow);
+      const fade = Math.min(1, travel * 5, (1 - travel) * 5);
+      const intensity = (firing ? fade : 1 - fade) * visible;
+      if (intensity < .04) continue;
+      ctx.shadowColor = 'rgba(109,255,238,.9)';
+      ctx.shadowBlur = 3.4;
+      for (let bead = 0; bead < 6; bead++) {
+        const t = travel - (5 - bead) / 5 * .19;
+        if (t < 0 || t > 1) continue;
+        const point = axonSurface(axon, t, yaw, pitch, roll, size, offsetX, offsetY);
+        const strength = ((bead + 1) / 6) * intensity * clamp((point.facing + .12) / .8);
+        if (strength < .04) continue;
+        ctx.globalAlpha = strength;
+        ctx.fillStyle = bead === 5 ? '#eafffb' : '#6df7e8';
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, .55 + .45 * bead / 5, 0, TAU);
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
     }
-    ctx.shadowBlur = 0;
-    const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 16);
-    glow.addColorStop(0, 'rgba(255,255,255,.72)');
-    glow.addColorStop(.18, 'rgba(180,255,248,.48)');
-    glow.addColorStop(.48, 'rgba(80,231,224,.2)');
-    glow.addColorStop(1, 'rgba(50,207,222,0)');
-    ctx.fillStyle = glow;
-    ctx.beginPath();
-    ctx.arc(head.x, head.y, 16, 0, TAU);
-    ctx.fill();
-    ctx.fillStyle = '#f4fffe';
-    ctx.shadowColor = '#81fff0';
-    ctx.shadowBlur = 4;
-    ctx.beginPath();
-    ctx.arc(head.x, head.y, 1, 0, TAU);
-    ctx.fill();
+
+    for (const neuron of neurons) {
+      const soma = neuronSurface(neuron.u, neuron.v, yaw, pitch, roll, size, offsetX, offsetY);
+      if (soma.facing < -.16) continue;
+      const visibility = clamp((soma.facing + .16) / .86);
+
+      ctx.globalAlpha = .19 * visibility;
+      ctx.strokeStyle = 'rgba(119,206,233,.8)';
+      ctx.lineWidth = .32;
+      for (let branch = 0; branch < 3; branch++) {
+        const angle = TAU * branch / 3 + (random01(neuron.id, 30) - .5) * .62;
+        const deltaU = .065 * Math.cos(angle);
+        const deltaV = .34 * Math.sin(angle);
+        ctx.beginPath();
+        let open = false;
+        for (let step = 0; step <= 4; step++) {
+          const t = step / 4;
+          const point = neuronSurface(
+            neuron.u + deltaU * t + .018 * Math.sin(Math.PI * t),
+            neuron.v + deltaV * t,
+            yaw, pitch, roll, size, offsetX, offsetY
+          );
+          if (point.facing > -.06) {
+            if (!open) ctx.moveTo(point.x, point.y);
+            else ctx.lineTo(point.x, point.y);
+            open = true;
+          } else open = false;
+        }
+        ctx.stroke();
+      }
+
+      const cycle = seconds / neuron.pulsePeriod + neuron.phase;
+      const interval = Math.floor(cycle);
+      const intervalPhase = cycle - interval;
+      const threshold = .68;
+      const firing = random01(neuron.id, interval + 700) > threshold;
+      const wasFiring = random01(neuron.id, interval + 699) > threshold;
+      const transition = Math.min(1, intervalPhase / .18);
+      const activation = firing ? (wasFiring ? 1 : transition) : (wasFiring ? 1 - transition : 0);
+      const intensity = (.17 + .83 * activation) * visibility;
+      const radius = 3.5 + 4.2 * activation;
+      const glow = ctx.createRadialGradient(soma.x, soma.y, 0, soma.x, soma.y, radius);
+      glow.addColorStop(0, `rgba(238,255,252,${.86 * intensity})`);
+      glow.addColorStop(.2, `rgba(114,255,239,${.64 * intensity})`);
+      glow.addColorStop(1, 'rgba(65,221,221,0)');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(soma.x, soma.y, radius, 0, TAU);
+      ctx.fill();
+      ctx.globalAlpha = intensity;
+      ctx.fillStyle = '#eafffb';
+      ctx.beginPath();
+      ctx.arc(soma.x, soma.y, .72 + .48 * activation, 0, TAU);
+      ctx.fill();
+    }
     ctx.restore();
   }
 
@@ -299,24 +422,7 @@
       ctx.fill();
     }
 
-    const laneOffsets = [-1.54, -1.369, -1.198, -1.027, -.856, -.685, -.514, -.343, -.172, 0, .172, .343, .514, .685, .856, 1.027, 1.198, 1.369, 1.54];
-    for (let group = 0; group < groupCount; group++) {
-      const groupProgress = (progress + group / groupCount) % 1;
-      for (const [laneIndex, laneOffset] of laneOffsets.entries()) {
-        const frequency = .1 + .018 * laneIndex;
-        const intervalDuration = .32 + .28 * random01(laneIndex, 0);
-        const interval = Math.floor(seconds / intervalDuration);
-        const intervalPhase = (seconds / intervalDuration) - interval;
-        const firingThreshold = .4 + .18 * random01(laneIndex, 1);
-        const firing = random01(laneIndex, interval + 2) > firingThreshold;
-        const wasFiring = random01(laneIndex, interval + 1) > firingThreshold;
-        const transition = Math.min(1, intervalPhase / .22);
-        const activation = firing ? (wasFiring ? 1 : transition) : (wasFiring ? 1 - transition : 0);
-        const pulse = (.11 + .17 * (.5 + .5 * Math.sin(seconds * TAU * frequency + laneIndex * 1.71)))
-          * activation * (.7 + .3 * random01(laneIndex, interval + 4096));
-        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, pulse);
-      }
-    }
+    drawNeuralNetwork(seconds, yaw, pitch, roll, size, offsetX, offsetY);
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
   }
