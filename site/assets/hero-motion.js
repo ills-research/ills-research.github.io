@@ -38,6 +38,32 @@
     const radius = 1.05 + .55 * Math.cos(3 * u);
     return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .67 * Math.sin(3 * u)];
   }
+  const arcSamples = 4096;
+  const arcLengths = new Float64Array(arcSamples + 1);
+  let totalArcLength = 0;
+  let previousCenter = centerline(0);
+  for (let i = 1; i <= arcSamples; i++) {
+    const point = centerline(TAU * i / arcSamples);
+    totalArcLength += Math.hypot(
+      point[0] - previousCenter[0],
+      point[1] - previousCenter[1],
+      point[2] - previousCenter[2]
+    );
+    arcLengths[i] = totalArcLength;
+    previousCenter = point;
+  }
+  function contourParameter(progress) {
+    const wrapped = ((progress % 1) + 1) % 1;
+    const target = wrapped * totalArcLength;
+    let low = 0, high = arcSamples;
+    while (low + 1 < high) {
+      const middle = (low + high) >> 1;
+      if (arcLengths[middle] <= target) low = middle; else high = middle;
+    }
+    const segmentLength = arcLengths[low + 1] - arcLengths[low] || 1;
+    const withinSegment = (target - arcLengths[low]) / segmentLength;
+    return TAU * (low + withinSegment) / arcSamples;
+  }
   function orientBase(point) {
     const cy = Math.cos(.65), sy = Math.sin(.65);
     const y = point[1] * cy - point[2] * sy;
@@ -124,7 +150,7 @@
   window.addEventListener('resize', resize, { passive: true });
 
   function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, intensity = 1) {
-    const u = progress * TAU;
+    const u = contourParameter(progress);
     const frame = frameAt(u);
     const v = frontSurfaceV(frame, yaw, pitch, roll) + laneOffset;
     const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
@@ -137,9 +163,8 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     for (let i = tailSteps; i > 0; i--) {
-      const behind = progress - tailLength * i / tailSteps;
-      const beforeU = ((behind % 1) + 1) % 1 * TAU;
-      const nextU = ((progress - tailLength * (i - 1) / tailSteps) % 1 + 1) % 1 * TAU;
+      const beforeU = contourParameter(progress - tailLength * i / tailSteps);
+      const nextU = contourParameter(progress - tailLength * (i - 1) / tailSteps);
       const beforeFrame = frameAt(beforeU);
       const nextFrame = frameAt(nextU);
       const beforeV = frontSurfaceV(beforeFrame, yaw, pitch, roll) + laneOffset;
@@ -253,8 +278,12 @@
 
     const laneOffsets = [-.62, -.31, 0, .31, .62];
     const progress = (seconds / 18) % 1;
-    for (const laneOffset of laneOffsets) {
-      drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .92);
+    const groupCount = 3;
+    for (let group = 0; group < groupCount; group++) {
+      const groupProgress = (progress + group / groupCount) % 1;
+      for (const laneOffset of laneOffsets) {
+        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .92);
+      }
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
