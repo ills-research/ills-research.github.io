@@ -106,7 +106,7 @@
     return {
       x: position.x, y: position.y, z: position.z,
       color: `rgba(${red},${green},${blue},${.52 + .35 * depth})`,
-      radius: .48 + .31 * depth
+      radius: .4 + .24 * depth
     };
   }
 
@@ -123,14 +123,14 @@
   new ResizeObserver(resize).observe(figure);
   window.addEventListener('resize', resize, { passive: true });
 
-  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY) {
+  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, intensity = 1) {
     const u = progress * TAU;
     const frame = frameAt(u);
     const v = frontSurfaceV(frame, yaw, pitch, roll);
     const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
     const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
-    const tailSteps = 25;
-    const tailLength = .065;
+    const tailSteps = 12;
+    const tailLength = .018;
 
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
@@ -152,27 +152,27 @@
       ctx.beginPath();
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(112,239,229,${.12 + .7 * strength})`;
-      ctx.lineWidth = .8 + 1.8 * strength;
+      ctx.strokeStyle = `rgba(112,239,229,${(.08 + .45 * strength) * intensity})`;
+      ctx.lineWidth = .45 + 1.05 * strength;
       ctx.shadowColor = 'rgba(113,240,229,.92)';
-      ctx.shadowBlur = 2 + 8 * strength;
+      ctx.shadowBlur = 1.5 + 4 * strength;
       ctx.stroke();
     }
     ctx.shadowBlur = 0;
-    const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 14);
-    glow.addColorStop(0, 'rgba(255,255,255,.98)');
-    glow.addColorStop(.13, 'rgba(180,255,248,.98)');
-    glow.addColorStop(.36, 'rgba(80,231,224,.72)');
+    const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 7.5);
+    glow.addColorStop(0, 'rgba(255,255,255,.95)');
+    glow.addColorStop(.18, 'rgba(180,255,248,.88)');
+    glow.addColorStop(.48, 'rgba(80,231,224,.5)');
     glow.addColorStop(1, 'rgba(50,207,222,0)');
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(head.x, head.y, 14, 0, TAU);
+    ctx.arc(head.x, head.y, 7.5, 0, TAU);
     ctx.fill();
     ctx.fillStyle = '#f4fffe';
     ctx.shadowColor = '#81fff0';
-    ctx.shadowBlur = 11;
+    ctx.shadowBlur = 6;
     ctx.beginPath();
-    ctx.arc(head.x, head.y, 2.1, 0, TAU);
+    ctx.arc(head.x, head.y, 1.25, 0, TAU);
     ctx.fill();
     ctx.restore();
   }
@@ -193,8 +193,8 @@
     const surfaceWidth = Math.min(width, height * 1200 / 972);
     const surfaceHeight = Math.min(height, width * 972 / 1200);
     const size = Math.min(surfaceWidth / 3.75, surfaceHeight / 3.08) * .82;
-    const uSteps = mobile.matches ? 190 : 300;
-    const vSteps = mobile.matches ? 34 : 48;
+    const uSteps = mobile.matches ? 220 : 380;
+    const vSteps = mobile.matches ? 40 : 58;
     const vertices = new Array(uSteps * vSteps);
     const index = (u, v) => ((v + vSteps) % vSteps) * uSteps + ((u + uSteps) % uSteps);
 
@@ -222,8 +222,8 @@
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.lineWidth = .52;
-    ctx.strokeStyle = 'rgba(100,165,225,.22)';
-    for (let vi = 0; vi < vSteps; vi += 3) {
+    ctx.strokeStyle = 'rgba(100,165,225,.17)';
+    for (let vi = 0; vi < vSteps; vi += 2) {
       ctx.beginPath();
       for (let ui = 0; ui <= uSteps; ui++) {
         const p = vertices[index(ui, vi)];
@@ -232,8 +232,8 @@
       ctx.stroke();
     }
     ctx.lineWidth = .38;
-    ctx.strokeStyle = 'rgba(100,165,225,.12)';
-    const ringSkip = mobile.matches ? 10 : 12;
+    ctx.strokeStyle = 'rgba(100,165,225,.085)';
+    const ringSkip = mobile.matches ? 8 : 10;
     for (let ui = 0; ui < uSteps; ui += ringSkip) {
       ctx.beginPath();
       for (let vi = 0; vi <= vSteps; vi++) {
@@ -251,7 +251,14 @@
       ctx.fill();
     }
 
-    drawPulse((seconds / 18) % 1, yaw, pitch, roll, size, offsetX, offsetY);
+    const pulseCount = 5;
+    const pulseSpacing = .014;
+    const progress = (seconds / 18) % 1;
+    for (let i = 0; i < pulseCount; i++) {
+      const pulseProgress = (progress + i * pulseSpacing) % 1;
+      const pulseStrength = .88 + .12 * i / (pulseCount - 1);
+      drawPulse(pulseProgress, yaw, pitch, roll, size, offsetX, offsetY, pulseStrength);
+    }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
   }
