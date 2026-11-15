@@ -64,6 +64,14 @@
     const withinSegment = (target - arcLengths[low]) / segmentLength;
     return TAU * (low + withinSegment) / arcSamples;
   }
+  function contourProgressAtParameter(u) {
+    const wrapped = ((u % TAU) + TAU) % TAU;
+    const samplePosition = wrapped / TAU * arcSamples;
+    const low = Math.floor(samplePosition);
+    const fraction = samplePosition - low;
+    const distance = arcLengths[low] + (arcLengths[low + 1] - arcLengths[low]) * fraction;
+    return distance / totalArcLength;
+  }
   function orientBase(point) {
     const cy = Math.cos(.65), sy = Math.sin(.65);
     const y = point[1] * cy - point[2] * sy;
@@ -114,7 +122,7 @@
     const binormal = cameraPoint(frame.binormal, yaw, pitch, roll);
     return Math.atan2(binormal[2], normal[2]);
   }
-  function makeVertex(u, v, yaw, pitch, roll, size) {
+  function makeVertex(u, v, yaw, pitch, roll, size, flowProgress, groupCount) {
     const frame = frameAt(u);
     const point = surfacePoint(u, v, frame);
     const position = project(point, yaw, pitch, roll, size);
@@ -125,14 +133,17 @@
     const depth = clamp((point[2] + 1.35) / 2.7);
     const sweep = clamp((Math.cos(u - .8) + .45 * Math.sin(v + u) + .9) / 2);
     const diffuse = .73 + .27 * Math.max(0, dot(n, lightDirection));
-    const brightness = (.51 + .47 * depth) * (.81 + .19 * Math.cos(v - 1.1)) * diffuse;
-    const red = Math.round((69 + 66 * sweep + 28 * depth) * brightness);
-    const green = Math.round((102 + 146 * sweep) * brightness);
+    const meshProgress = contourProgressAtParameter(u);
+    const wavePhase = TAU * groupCount * (meshProgress - flowProgress);
+    const flow = .5 + .5 * Math.cos(wavePhase);
+    const brightness = (.51 + .47 * depth) * (.81 + .19 * Math.cos(v - 1.1)) * diffuse * (.96 + .08 * flow);
+    const red = Math.round((69 + 66 * sweep + 28 * depth - 4 * flow) * brightness);
+    const green = Math.min(255, Math.round((102 + 146 * sweep + 16 * flow) * brightness));
     const blue = Math.round((252 - 34 * sweep) * brightness);
     return {
       x: position.x, y: position.y, z: position.z,
-      color: `rgba(${red},${green},${blue},${.52 + .35 * depth})`,
-      radius: .4 + .24 * depth
+      color: `rgba(${red},${green},${blue},${.48 + .31 * depth + .12 * flow})`,
+      radius: .35 + .2 * depth + .12 * flow
     };
   }
 
@@ -156,7 +167,7 @@
     const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
     const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
     const tailSteps = 12;
-    const tailLength = .018;
+    const tailLength = .024;
 
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
@@ -185,20 +196,20 @@
       ctx.stroke();
     }
     ctx.shadowBlur = 0;
-    const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 7.5);
-    glow.addColorStop(0, 'rgba(255,255,255,.95)');
-    glow.addColorStop(.18, 'rgba(180,255,248,.88)');
-    glow.addColorStop(.48, 'rgba(80,231,224,.5)');
+    const glow = ctx.createRadialGradient(head.x, head.y, 0, head.x, head.y, 16);
+    glow.addColorStop(0, 'rgba(255,255,255,.72)');
+    glow.addColorStop(.18, 'rgba(180,255,248,.48)');
+    glow.addColorStop(.48, 'rgba(80,231,224,.2)');
     glow.addColorStop(1, 'rgba(50,207,222,0)');
     ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(head.x, head.y, 7.5, 0, TAU);
+    ctx.arc(head.x, head.y, 16, 0, TAU);
     ctx.fill();
     ctx.fillStyle = '#f4fffe';
     ctx.shadowColor = '#81fff0';
-    ctx.shadowBlur = 6;
+    ctx.shadowBlur = 4;
     ctx.beginPath();
-    ctx.arc(head.x, head.y, 1.25, 0, TAU);
+    ctx.arc(head.x, head.y, 1, 0, TAU);
     ctx.fill();
     ctx.restore();
   }
@@ -219,6 +230,8 @@
     const surfaceWidth = Math.min(width, height * 1200 / 972);
     const surfaceHeight = Math.min(height, width * 972 / 1200);
     const size = Math.min(surfaceWidth / 3.75, surfaceHeight / 3.08) * .82;
+    const groupCount = 10;
+    const progress = (seconds / 18) % 1;
     const uSteps = mobile.matches ? 220 : 380;
     const vSteps = mobile.matches ? 40 : 58;
     const vertices = new Array(uSteps * vSteps);
@@ -228,7 +241,7 @@
       const v = TAU * vi / vSteps;
       for (let ui = 0; ui < uSteps; ui++) {
         const u = TAU * ui / uSteps;
-        vertices[index(ui, vi)] = makeVertex(u, v, yaw, pitch, roll, size);
+        vertices[index(ui, vi)] = makeVertex(u, v, yaw, pitch, roll, size, progress, groupCount);
       }
     }
 
@@ -278,12 +291,10 @@
     }
 
     const laneOffsets = [-.62, -.31, 0, .31, .62];
-    const progress = (seconds / 18) % 1;
-    const groupCount = 10;
     for (let group = 0; group < groupCount; group++) {
       const groupProgress = (progress + group / groupCount) % 1;
       for (const laneOffset of laneOffsets) {
-        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .42);
+        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .12);
       }
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
