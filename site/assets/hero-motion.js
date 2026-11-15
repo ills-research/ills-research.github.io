@@ -134,8 +134,10 @@
     const sweep = clamp((Math.cos(u - .8) + .45 * Math.sin(v + u) + .9) / 2);
     const diffuse = .73 + .27 * Math.max(0, dot(n, lightDirection));
     const meshProgress = contourProgressAtParameter(u);
-    const wavePhase = TAU * groupCount * (meshProgress - flowProgress);
-    const flow = .5 + .5 * Math.cos(wavePhase);
+    const relativeProgress = ((meshProgress - flowProgress + .5) % 1 + 1) % 1 - .5;
+    const nearestGroupProgress = Math.round(relativeProgress * groupCount) / groupCount;
+    const flowDistance = Math.abs(relativeProgress - nearestGroupProgress);
+    const flow = Math.exp(-.5 * (flowDistance / .024) ** 2);
     const brightness = (.51 + .47 * depth) * (.81 + .19 * Math.cos(v - 1.1)) * diffuse * (.96 + .08 * flow);
     const red = Math.round((69 + 66 * sweep + 28 * depth - 4 * flow) * brightness);
     const green = Math.min(255, Math.round((102 + 146 * sweep + 16 * flow) * brightness));
@@ -230,7 +232,7 @@
     const surfaceWidth = Math.min(width, height * 1200 / 972);
     const surfaceHeight = Math.min(height, width * 972 / 1200);
     const size = Math.min(surfaceWidth / 3.75, surfaceHeight / 3.08) * .82;
-    const groupCount = 10;
+    const groupCount = 1;
     const progress = (seconds / 18) % 1;
     const uSteps = mobile.matches ? 220 : 380;
     const vSteps = mobile.matches ? 40 : 58;
@@ -290,11 +292,11 @@
       ctx.fill();
     }
 
-    const laneOffsets = [-.62, -.31, 0, .31, .62];
+    const laneOffsets = [-1.54, -1.369, -1.198, -1.027, -.856, -.685, -.514, -.343, -.172, 0, .172, .343, .514, .685, .856, 1.027, 1.198, 1.369, 1.54];
     for (let group = 0; group < groupCount; group++) {
       const groupProgress = (progress + group / groupCount) % 1;
       for (const laneOffset of laneOffsets) {
-        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .12);
+        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .11);
       }
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
