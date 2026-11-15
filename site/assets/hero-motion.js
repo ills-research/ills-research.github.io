@@ -123,10 +123,10 @@
   new ResizeObserver(resize).observe(figure);
   window.addEventListener('resize', resize, { passive: true });
 
-  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, intensity = 1) {
+  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, intensity = 1) {
     const u = progress * TAU;
     const frame = frameAt(u);
-    const v = frontSurfaceV(frame, yaw, pitch, roll);
+    const v = frontSurfaceV(frame, yaw, pitch, roll) + laneOffset;
     const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
     const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
     const tailSteps = 12;
@@ -142,8 +142,8 @@
       const nextU = ((progress - tailLength * (i - 1) / tailSteps) % 1 + 1) % 1 * TAU;
       const beforeFrame = frameAt(beforeU);
       const nextFrame = frameAt(nextU);
-      const beforeV = frontSurfaceV(beforeFrame, yaw, pitch, roll);
-      const nextV = frontSurfaceV(nextFrame, yaw, pitch, roll);
+      const beforeV = frontSurfaceV(beforeFrame, yaw, pitch, roll) + laneOffset;
+      const nextV = frontSurfaceV(nextFrame, yaw, pitch, roll) + laneOffset;
       const projectedA = project(surfacePoint(beforeU, beforeV, beforeFrame), yaw, pitch, roll, size);
       const projectedB = project(surfacePoint(nextU, nextV, nextFrame), yaw, pitch, roll, size);
       const a = { ...projectedA, x: projectedA.x + offsetX, y: projectedA.y + offsetY };
@@ -251,13 +251,10 @@
       ctx.fill();
     }
 
-    const pulseCount = 5;
-    const pulseSpacing = .014;
+    const laneOffsets = [-.62, -.31, 0, .31, .62];
     const progress = (seconds / 18) % 1;
-    for (let i = 0; i < pulseCount; i++) {
-      const pulseProgress = (progress + i * pulseSpacing) % 1;
-      const pulseStrength = .88 + .12 * i / (pulseCount - 1);
-      drawPulse(pulseProgress, yaw, pitch, roll, size, offsetX, offsetY, pulseStrength);
+    for (const laneOffset of laneOffsets) {
+      drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .92);
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
