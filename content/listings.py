@@ -133,6 +133,30 @@ CALENDAR = [
              "credit": "McGill University", "source": "https://www.mcgill.ca/bellairs/media-gallery/detail/616/45"},
         ],
     },
+    {
+        "id": "ills-evaluation-2026",
+        "kind": ("Milestone", "Étape marquante"),
+        "start": "2026-04-27", "end": "2026-04-29",
+        "date": ("27–29 April 2026", "Du 27 au 29 avril 2026"),
+        "details": ("ÉTS · Montréal", "ÉTS · Montréal"),
+        "title": ("ILLS evaluation in Montréal", "Évaluation de l’ILLS à Montréal"),
+        "summary": (
+            "From 27 to 29 April, the ILLS community gathered in Montréal for the laboratory’s evaluation, presenting its work and discussing the scientific programme ahead.",
+            "Du 27 au 29 avril, la communauté de l’ILLS s’est réunie à Montréal pour l’évaluation du laboratoire, afin de présenter ses travaux et d’échanger sur son programme scientifique.",
+        ),
+        "photos": [
+            {"file": "ills-evaluation-2026-group.jpg", "size": (3900, 1365),
+             "alt": ("ILLS researchers and students gather for the laboratory evaluation in Montréal.",
+                    "Des chercheurs et étudiants de l’ILLS réunis à Montréal pour l’évaluation du laboratoire.")},
+            {"file": "ills-evaluation-2026-auditorium.jpg", "size": (4080, 3072),
+             "alt": ("Researchers attend a presentation during the ILLS evaluation in Montréal.",
+                    "Des chercheurs assistent à une présentation pendant l’évaluation de l’ILLS à Montréal.")},
+            {"file": "ills-evaluation-2026-seminar-room.jpg", "size": (4080, 3072),
+             "alt": ("ILLS researchers and students gather for a presentation in Montréal.",
+                    "Des chercheurs et étudiants de l’ILLS assistent à une présentation à Montréal.")},
+        ],
+        "photo_layout": "lead",
+    },
 ]
 
 CNRS_VISIT_ARTICLES = (
@@ -490,7 +514,8 @@ def render_entry(entry, fr, prefix):
             f'<img src="{src}" alt="{escape(photo["alt"][fr])}" width="{width}" height="{height}" loading="lazy" decoding="async">'
             f'{caption}</figure>'
         )
-    gallery = '<div class="event-photos">' + ''.join(figures) + '</div>' if figures else ''
+    gallery_class = 'event-photos event-photos--lead' if entry.get('photo_layout') == 'lead' else 'event-photos'
+    gallery = f'<div class="{gallery_class}">' + ''.join(figures) + '</div>' if figures else ''
     return f"""
       <li class="notice-row"{attributes}>
         <div class="notice-meta">{kind}<p>{date_text}</p><p>{escape(entry["details"][fr])}</p></div>
