@@ -20,6 +20,13 @@
   let running = false;
 
   const clamp = (value, low = 0, high = 1) => Math.max(low, Math.min(high, value));
+  const random01 = (light, step) => {
+    let value = Math.imul(light + 1, 0x9e3779b1) ^ Math.imul(step + 1, 0x85ebca6b);
+    value ^= value >>> 16;
+    value = Math.imul(value, 0x7feb352d);
+    value ^= value >>> 15;
+    return (value >>> 0) / 4294967296;
+  };
   const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
   const scale = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
@@ -297,7 +304,16 @@
       const groupProgress = (progress + group / groupCount) % 1;
       for (const [laneIndex, laneOffset] of laneOffsets.entries()) {
         const frequency = .1 + .018 * laneIndex;
-        const pulse = .08 + .1 * (.5 + .5 * Math.sin(seconds * TAU * frequency + laneIndex * 1.71));
+        const intervalDuration = .32 + .28 * random01(laneIndex, 0);
+        const interval = Math.floor(seconds / intervalDuration);
+        const intervalPhase = (seconds / intervalDuration) - interval;
+        const firingThreshold = .4 + .18 * random01(laneIndex, 1);
+        const firing = random01(laneIndex, interval + 2) > firingThreshold;
+        const wasFiring = random01(laneIndex, interval + 1) > firingThreshold;
+        const transition = Math.min(1, intervalPhase / .22);
+        const activation = firing ? (wasFiring ? 1 : transition) : (wasFiring ? 1 - transition : 0);
+        const pulse = (.11 + .17 * (.5 + .5 * Math.sin(seconds * TAU * frequency + laneIndex * 1.71)))
+          * activation * (.7 + .3 * random01(laneIndex, interval + 4096));
         drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, pulse);
       }
     }
