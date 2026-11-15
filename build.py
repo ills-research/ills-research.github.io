@@ -51,7 +51,7 @@ def home(fr,pre):
       <div class="hero-copy"><div class="eyebrow">{t("CNRS International Research Laboratory","Laboratoire de recherche international du CNRS")}</div>
       <h1>{heading}</h1><p>{t("We study how machines learn, when their predictions can be trusted, and how they can support decisions in the real world.","Nous étudions comment les machines apprennent, quand leurs prédictions sont fiables et comment elles peuvent éclairer les décisions humaines.")}</p>
       <div class="hero-actions"><a class="btn btn-aqua" href="research.html">{t("Explore our research","Explorer nos recherches")}{icon()}</a><a class="link-arrow" href="research.html#publications">Publications{icon("arrow",True)}</a></div></div>
-      <figure class="hero-figure" aria-label="{t("A three-dimensional learning surface with a group of small signals traveling across its contour","Une surface d’apprentissage en trois dimensions parcourue par un groupe de petits signaux le long de son contour")}">
+      <figure class="hero-figure" aria-label="{t("A three-dimensional learning surface with five parallel signals moving across it together","Une surface d’apprentissage en trois dimensions parcourue par cinq signaux parallèles qui avancent ensemble")}">
         <img class="hero-surface-fallback" src="{pre}assets/art/learning-surface.webp" alt="" width="1200" height="972" fetchpriority="high">
         <canvas class="hero-surface-motion" aria-hidden="true"></canvas>
         <span class="plate" aria-hidden="true">x(u, v) ∈ ℝ³</span>
