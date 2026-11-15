@@ -123,11 +123,12 @@
   new ResizeObserver(resize).observe(figure);
   window.addEventListener('resize', resize, { passive: true });
 
-  function drawPulse(progress, yaw, pitch, roll, size) {
+  function drawPulse(progress, yaw, pitch, roll, size, offsetX, offsetY) {
     const u = progress * TAU;
     const frame = frameAt(u);
     const v = frontSurfaceV(frame, yaw, pitch, roll);
-    const head = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
+    const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
+    const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
     const tailSteps = 25;
     const tailLength = .065;
 
@@ -143,8 +144,10 @@
       const nextFrame = frameAt(nextU);
       const beforeV = frontSurfaceV(beforeFrame, yaw, pitch, roll);
       const nextV = frontSurfaceV(nextFrame, yaw, pitch, roll);
-      const a = project(surfacePoint(beforeU, beforeV, beforeFrame), yaw, pitch, roll, size);
-      const b = project(surfacePoint(nextU, nextV, nextFrame), yaw, pitch, roll, size);
+      const projectedA = project(surfacePoint(beforeU, beforeV, beforeFrame), yaw, pitch, roll, size);
+      const projectedB = project(surfacePoint(nextU, nextV, nextFrame), yaw, pitch, roll, size);
+      const a = { ...projectedA, x: projectedA.x + offsetX, y: projectedA.y + offsetY };
+      const b = { ...projectedB, x: projectedB.x + offsetX, y: projectedB.y + offsetY };
       const strength = 1 - i / (tailSteps + 1);
       ctx.beginPath();
       ctx.moveTo(a.x, a.y);
@@ -189,7 +192,7 @@
     const roll = .018 * Math.sin(seconds * .075);
     const surfaceWidth = Math.min(width, height * 1200 / 972);
     const surfaceHeight = Math.min(height, width * 972 / 1200);
-    const size = Math.min(surfaceWidth / 3.75, surfaceHeight / 3.08) * .96;
+    const size = Math.min(surfaceWidth / 3.75, surfaceHeight / 3.08) * .82;
     const uSteps = mobile.matches ? 190 : 300;
     const vSteps = mobile.matches ? 34 : 48;
     const vertices = new Array(uSteps * vSteps);
@@ -201,6 +204,18 @@
         const u = TAU * ui / uSteps;
         vertices[index(ui, vi)] = makeVertex(u, v, yaw, pitch, roll, size);
       }
+    }
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (const p of vertices) {
+      minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x);
+      minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
+    }
+    const offsetX = width * .5 - (minX + maxX) * .5;
+    const offsetY = height * .5 - (minY + maxY) * .5;
+    for (const p of vertices) {
+      p.x += offsetX;
+      p.y += offsetY;
     }
 
     ctx.clearRect(0, 0, width, height);
@@ -236,7 +251,7 @@
       ctx.fill();
     }
 
-    drawPulse((seconds / 18) % 1, yaw, pitch, roll, size);
+    drawPulse((seconds / 18) % 1, yaw, pitch, roll, size, offsetX, offsetY);
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
   }
