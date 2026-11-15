@@ -54,8 +54,6 @@ def home(fr,pre):
       <figure class="hero-figure" aria-label="{t("A three-dimensional learning surface with one broad group of lights traveling across the mesh","Une surface d’apprentissage en trois dimensions parcourue par un large groupe de lumières en mouvement sur le maillage")}">
         <img class="hero-surface-fallback" src="{pre}assets/art/learning-surface.webp" alt="" width="1200" height="972" fetchpriority="high">
         <canvas class="hero-surface-motion" aria-hidden="true"></canvas>
-        <span class="plate" aria-hidden="true">x(u, v) ∈ ℝ³</span>
-        <svg class="axis-key" viewBox="0 0 56 50" fill="none" aria-hidden="true"><path d="M14 32V5m0 27 29 5m-29-5 13-12" stroke="currentColor"/><g fill="currentColor" font-family="monospace" font-size="7"><text x="13" y="4">z</text><text x="45" y="40">x</text><text x="29" y="21">y</text></g></svg>
       </figure>
     </div><div class="hero-base"><span class="geography">Montréal, Canada <i></i> France</span>
       <nav class="overview-jumps" aria-label="{t("On this page","Sur cette page")}"><a href="#laboratory">{t("Laboratory","Laboratoire")}</a><a href="#partners">{t("Partners","Partenaires")}</a><a href="#contact">Contact</a></nav>

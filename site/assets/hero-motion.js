@@ -168,8 +168,8 @@
     const v = frontSurfaceV(frame, yaw, pitch, roll) + laneOffset;
     const projectedHead = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
     const head = { ...projectedHead, x: projectedHead.x + offsetX, y: projectedHead.y + offsetY };
-    const tailSteps = 12;
-    const tailLength = .024;
+    const tailSteps = 16;
+    const tailLength = .03;
 
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
@@ -295,8 +295,10 @@
     const laneOffsets = [-1.54, -1.369, -1.198, -1.027, -.856, -.685, -.514, -.343, -.172, 0, .172, .343, .514, .685, .856, 1.027, 1.198, 1.369, 1.54];
     for (let group = 0; group < groupCount; group++) {
       const groupProgress = (progress + group / groupCount) % 1;
-      for (const laneOffset of laneOffsets) {
-        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .11);
+      for (const [laneIndex, laneOffset] of laneOffsets.entries()) {
+        const frequency = .1 + .018 * laneIndex;
+        const pulse = .08 + .1 * (.5 + .5 * Math.sin(seconds * TAU * frequency + laneIndex * 1.71));
+        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, pulse);
       }
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
