@@ -160,6 +160,7 @@
 
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
+    ctx.globalAlpha = intensity;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     for (let i = tailSteps; i > 0; i--) {
@@ -177,7 +178,7 @@
       ctx.beginPath();
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(112,239,229,${(.08 + .45 * strength) * intensity})`;
+      ctx.strokeStyle = `rgba(112,239,229,${.08 + .45 * strength})`;
       ctx.lineWidth = .45 + 1.05 * strength;
       ctx.shadowColor = 'rgba(113,240,229,.92)';
       ctx.shadowBlur = 1.5 + 4 * strength;
@@ -278,11 +279,11 @@
 
     const laneOffsets = [-.62, -.31, 0, .31, .62];
     const progress = (seconds / 18) % 1;
-    const groupCount = 3;
+    const groupCount = 10;
     for (let group = 0; group < groupCount; group++) {
       const groupProgress = (progress + group / groupCount) % 1;
       for (const laneOffset of laneOffsets) {
-        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .92);
+        drawPulse(groupProgress, yaw, pitch, roll, size, offsetX, offsetY, laneOffset, .42);
       }
     }
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
