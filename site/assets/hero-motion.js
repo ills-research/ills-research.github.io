@@ -356,7 +356,7 @@
     if (lastFrame) elapsed += Math.min(now - lastFrame, 100);
     lastFrame = now;
     const seconds = elapsed / 1000;
-    const yaw = -.22 + .075 * Math.sin(seconds * .105);
+    const yaw = -.22 + seconds * (TAU / 90) + .075 * Math.sin(seconds * .105);
     const pitch = .11 + .045 * Math.sin(seconds * .087 + .7);
     const roll = .018 * Math.sin(seconds * .075);
     const surfaceWidth = Math.min(width, height * 1200 / 972);
