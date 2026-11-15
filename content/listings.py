@@ -157,6 +157,62 @@ CALENDAR = [
         ],
         "photo_layout": "lead",
     },
+    {
+        "id": "dataia-centoria-chair-2026",
+        "kind": ("Research chair", "Chaire de recherche"),
+        "start": "2026-05-06",
+        "date": ("6 May 2026", "6 mai 2026"),
+        "details": ("DATAIA · Université Paris-Saclay", "DataIA · Université Paris-Saclay"),
+        "title": ("DATAIA launches the CentOrIA chair on attention-based AI", "DataIA lance la chaire CentOrIA sur l’IA fondée sur l’attention"),
+        "summary": (
+            "The three-year modular chair is co-held by ILLS director Pablo Piantanida, Claire Boyer and Étienne Boursier. Their team will study the mathematical foundations of attention-based models, including large language models, sequential learning and communication between AI agents.",
+            "Cette chaire modulaire de trois ans est co-portée par Pablo Piantanida, directeur de l’ILLS, Claire Boyer et Étienne Boursier. L’équipe étudiera les fondements mathématiques des modèles à mécanisme d’attention, notamment les grands modèles de langue, l’apprentissage séquentiel et la communication entre agents d’IA.",
+        ),
+        "links": [
+            {"label": ("CentOrIA chair at DATAIA", "La chaire CentOrIA sur le site de DataIA"),
+             "url": ("https://www.dataia.eu/en/node/1394", "https://www.dataia.eu/node/1394")},
+            {"label": ("CentraleSupélec announcement", "Annonce de CentraleSupélec"),
+             "url": ("https://www.dataia.eu/en/communiques/trois-nouvelles-chaires-en-ia-demarrent-centralesupelec", "https://www.dataia.eu/communiques/trois-nouvelles-chaires-en-ia-demarrent-centralesupelec")},
+        ],
+    },
+    {
+        "id": "tal-arbel-recognitions-2023-2025",
+        "kind": ("Awards and distinctions", "Prix et distinctions"),
+        "start": "2025",
+        "date": ("2023–2025", "2023–2025"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Tal Arbel receives research honours from MICCAI, the CAE and CIFAR", "Tal Arbel reçoit des distinctions de MICCAI, de l’Académie canadienne du génie et de CIFAR"),
+        "summary": (
+            "A paper co-authored by Tal Arbel was shortlisted for the MICCAI 2023 Best Paper/Young Scientist Award. In 2024, she was named a Fellow of the Canadian Academy of Engineering; her Canada CIFAR AI Chair was renewed for 2025–2029.",
+            "Un article cosigné par Tal Arbel a été présélectionné pour le prix du meilleur article / jeune scientifique de MICCAI 2023. En 2024, elle a été élue Fellow de l’Académie canadienne du génie; sa chaire Canada CIFAR en IA a ensuite été renouvelée pour 2025–2029.",
+        ),
+        "links": [
+            {"label": ("MICCAI 2023 paper listing", "Notice de l’article à MICCAI 2023"),
+             "url": ("https://www.mcgill.ca/cim/research/publications/arbel-tal",) * 2},
+            {"label": ("CAE 2024 new Fellows", "Nouveaux Fellows 2024 de l’Académie canadienne du génie"),
+             "url": ("https://www.cae-acg.ca/wp-content/uploads/2024/05/2024-New-Fellows-Media-Release-EN-1.pdf",) * 2},
+            {"label": ("Tal Arbel’s McGill profile", "Profil de Tal Arbel à McGill"),
+             "url": ("https://cim.mcgill.ca/~arbel/",) * 2},
+        ],
+    },
+    {
+        "id": "derek-nowrouzezahrai-recognitions-2023",
+        "kind": ("Research chair appointments", "Nominations à des chaires de recherche"),
+        "start": "2023-10-03",
+        "date": ("2023", "2023"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Derek Nowrouzezahrai appointed to two major AI research chairs", "Derek Nowrouzezahrai nommé à deux chaires majeures en intelligence artificielle"),
+        "summary": (
+            "In 2023, Derek Nowrouzezahrai was appointed a Canada CIFAR AI Chair and named lead of the first Ubisoft–Mila Industrial Research Chair, a five-year initiative on responsible AI tools for creating video-game worlds.",
+            "En 2023, Derek Nowrouzezahrai a été nommé titulaire d’une chaire Canada CIFAR en IA et responsable de la première chaire industrielle Ubisoft–Mila, une initiative de cinq ans consacrée aux outils d’IA responsable pour la création de mondes de jeux vidéo.",
+        ),
+        "links": [
+            {"label": ("Canada CIFAR AI Chair announcement", "Annonce de sa chaire Canada CIFAR en IA"),
+             "url": ("https://mila.quebec/en/news/the-canadian-institute-for-advanced-research-cifar-and-mila-appoint-three-new-canada-cifar-ai",) * 2},
+            {"label": ("Ubisoft–Mila Industrial Research Chair", "Chaire industrielle Ubisoft–Mila"),
+             "url": ("https://mila.quebec/en/news/professor-derek-nowrouzezahrai-awarded-the-first-ubisoft-mila-research-chair",) * 2},
+        ],
+    },
 ]
 
 CNRS_VISIT_ARTICLES = (
@@ -214,6 +270,62 @@ PAVILION_OPENING_2025 = {
 
 NEWS = [
     CNRS_VISIT_2026,
+    {
+        "id": "dataia-centoria-chair-news-2026",
+        "kind": ("Research chair", "Chaire de recherche"),
+        "start": "2026-05-06",
+        "date": ("6 May 2026", "6 mai 2026"),
+        "details": ("CentraleSupélec · France", "CentraleSupélec · France"),
+        "title": ("ILLS director Pablo Piantanida co-leads DATAIA’s CentOrIA chair", "Pablo Piantanida, directeur de l’ILLS, co-porte la chaire CentOrIA de DataIA"),
+        "summary": (
+            "With Claire Boyer and Étienne Boursier, Piantanida will lead a three-year project on the mathematical principles of learning and communication in attention-based models. The collaboration brings together ILLS, the Orsay Mathematics Laboratory and Inria’s Céleste team.",
+            "Avec Claire Boyer et Étienne Boursier, Pablo Piantanida pilotera un projet de trois ans sur les principes mathématiques de l’apprentissage et de la communication dans les modèles à mécanisme d’attention. Le projet réunit l’ILLS, le Laboratoire de mathématiques d’Orsay et l’équipe Céleste d’Inria.",
+        ),
+        "links": [
+            {"label": ("CentOrIA chair at DATAIA", "La chaire CentOrIA sur le site de DataIA"),
+             "url": ("https://www.dataia.eu/en/node/1394", "https://www.dataia.eu/node/1394")},
+            {"label": ("Read the announcement", "Lire le communiqué"),
+             "url": ("https://www.dataia.eu/en/communiques/trois-nouvelles-chaires-en-ia-demarrent-centralesupelec", "https://www.dataia.eu/communiques/trois-nouvelles-chaires-en-ia-demarrent-centralesupelec")},
+        ],
+    },
+    {
+        "id": "tal-arbel-recognitions-news-2023-2025",
+        "kind": ("Awards and distinctions", "Prix et distinctions"),
+        "start": "2025",
+        "date": ("2023–2025", "2023–2025"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Tal Arbel receives research honours from MICCAI, the CAE and CIFAR", "Tal Arbel reçoit des distinctions de MICCAI, de l’Académie canadienne du génie et de CIFAR"),
+        "summary": (
+            "A paper co-authored by Tal Arbel was shortlisted for the MICCAI 2023 Best Paper/Young Scientist Award. In 2024, she was named a Fellow of the Canadian Academy of Engineering; her Canada CIFAR AI Chair was renewed for 2025–2029.",
+            "Un article cosigné par Tal Arbel a été présélectionné pour le prix du meilleur article / jeune scientifique de MICCAI 2023. En 2024, elle a été élue Fellow de l’Académie canadienne du génie; sa chaire Canada CIFAR en IA a ensuite été renouvelée pour 2025–2029.",
+        ),
+        "links": [
+            {"label": ("MICCAI 2023 paper listing", "Notice de l’article à MICCAI 2023"),
+             "url": ("https://www.mcgill.ca/cim/research/publications/arbel-tal",) * 2},
+            {"label": ("CAE 2024 new Fellows", "Nouveaux Fellows 2024 de l’Académie canadienne du génie"),
+             "url": ("https://www.cae-acg.ca/wp-content/uploads/2024/05/2024-New-Fellows-Media-Release-EN-1.pdf",) * 2},
+            {"label": ("Tal Arbel’s McGill profile", "Profil de Tal Arbel à McGill"),
+             "url": ("https://cim.mcgill.ca/~arbel/",) * 2},
+        ],
+    },
+    {
+        "id": "derek-nowrouzezahrai-recognitions-news-2023",
+        "kind": ("Research chair appointments", "Nominations à des chaires de recherche"),
+        "start": "2023-10-03",
+        "date": ("2023", "2023"),
+        "details": ("McGill University · Montréal", "Université McGill · Montréal"),
+        "title": ("Derek Nowrouzezahrai appointed to two major AI research chairs", "Derek Nowrouzezahrai nommé à deux chaires majeures en intelligence artificielle"),
+        "summary": (
+            "In 2023, Derek Nowrouzezahrai was appointed a Canada CIFAR AI Chair and named lead of the first Ubisoft–Mila Industrial Research Chair, a five-year initiative on responsible AI tools for creating video-game worlds.",
+            "En 2023, Derek Nowrouzezahrai a été nommé titulaire d’une chaire Canada CIFAR en IA et responsable de la première chaire industrielle Ubisoft–Mila, une initiative de cinq ans consacrée aux outils d’IA responsable pour la création de mondes de jeux vidéo.",
+        ),
+        "links": [
+            {"label": ("Canada CIFAR AI Chair announcement", "Annonce de sa chaire Canada CIFAR en IA"),
+             "url": ("https://mila.quebec/en/news/the-canadian-institute-for-advanced-research-cifar-and-mila-appoint-three-new-canada-cifar-ai",) * 2},
+            {"label": ("Ubisoft–Mila Industrial Research Chair", "Chaire industrielle Ubisoft–Mila"),
+             "url": ("https://mila.quebec/en/news/professor-derek-nowrouzezahrai-awarded-the-first-ubisoft-mila-research-chair",) * 2},
+        ],
+    },
     {
         "id": "diag-nos-chair-2026",
         "kind": ("Research chair", "Chaire de recherche"),
