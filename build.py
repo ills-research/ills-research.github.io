@@ -51,8 +51,9 @@ def home(fr,pre):
       <div class="hero-copy"><div class="eyebrow">{t("CNRS International Research Laboratory","Laboratoire de recherche international du CNRS")}</div>
       <h1>{heading}</h1><p>{t("We study how machines learn, when their predictions can be trusted, and how they can support decisions in the real world.","Nous étudions comment les machines apprennent, quand leurs prédictions sont fiables et comment elles peuvent éclairer les décisions humaines.")}</p>
       <div class="hero-actions"><a class="btn btn-aqua" href="research.html">{t("Explore our research","Explorer nos recherches")}{icon()}</a><a class="link-arrow" href="research.html#publications">Publications{icon("arrow",True)}</a></div></div>
-      <figure class="hero-figure" aria-label="{t("Illustration of a parametric surface sampled as a cloud of points","Illustration d’une surface paramétrique représentée par un nuage de points")}">
-        <img src="{pre}assets/art/learning-surface.webp" alt="" width="1200" height="972" fetchpriority="high">
+      <figure class="hero-figure" aria-label="{t("A three-dimensional learning surface with one signal tracing its full contour","Une surface d’apprentissage en trois dimensions parcourue par un signal qui en suit tout le contour")}">
+        <img class="hero-surface-fallback" src="{pre}assets/art/learning-surface.webp" alt="" width="1200" height="972" fetchpriority="high">
+        <canvas class="hero-surface-motion" aria-hidden="true"></canvas>
         <span class="plate" aria-hidden="true">x(u, v) ∈ ℝ³</span>
         <svg class="axis-key" viewBox="0 0 56 50" fill="none" aria-hidden="true"><path d="M14 32V5m0 27 29 5m-29-5 13-12" stroke="currentColor"/><g fill="currentColor" font-family="monospace" font-size="7"><text x="13" y="4">z</text><text x="45" y="40">x</text><text x="29" y="21">y</text></g></svg>
       </figure>
@@ -82,6 +83,8 @@ def build_page(slug,fr,member=None):
     extra = ''.join(f'<link rel="stylesheet" href="{prefix}{asset_url(name + ".css")}">' for name in page_styles.get(slug, ()))
     if slug == 'research':
         extra += f'<script defer src="{prefix}{asset_url("publications.js")}"></script>'
+    if slug == 'index':
+        extra += f'<script defer src="{prefix}{asset_url("hero-motion.js")}"></script>'
     logo_alt=t('ILLS home','Accueil de l’ILLS')
     if member:
         body = people.render_profile(member, fr, prefix)
