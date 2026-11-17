@@ -8,6 +8,7 @@
   const member = control('member');
   const year = control('year');
   const search = control('search');
+  const jointOnly = control('joint');
   const types = [...catalogue.querySelectorAll('[data-category]')];
   const categories = {
     preprint: t('Preprint', 'Prépublication'),
@@ -40,6 +41,12 @@
     const venue = paper.venue === 'CoRR' ? 'arXiv' : paper.venue;
     const meta = element('p', [categories[paper.category], venue].filter(Boolean).join(' · '), 'publication-venue');
     if (paper.volume) meta.title = paper.volume;
+    if (paper.joint_source) {
+      const badge = element('span', t('France–Canada co-authored', 'Cosignée France–Canada'), 'publication-joint-badge');
+      badge.title = t('Coauthored by researchers affiliated with institutions in France and Canada.',
+        'Cosignée par des chercheurs affiliés à des établissements en France et au Canada.');
+      meta.append(badge);
+    }
     const title = element('h4');
     const url = paper.category === 'preprint' ? (paper.arxiv || paper.paper) : (paper.paper || paper.arxiv);
     title.append(url ? link(paper.title, url) : paper.title);
@@ -88,6 +95,7 @@
     const idx = personIndex.get(member.value);
     results = papers.filter((paper, i) => (!category || paper.category === category) &&
       (!year.value || paper.year === Number(year.value)) &&
+      (!jointOnly.checked || Boolean(paper.joint_source)) &&
       (idx === undefined || paper.members.includes(idx)) && words.every(word => searchable[i].includes(word)));
     types.forEach(button => button.setAttribute('aria-pressed', String(category === button.dataset.category)));
     page = 0;
@@ -95,7 +103,8 @@
   }
   function syncLinks() {
     const params = new URLSearchParams(location.search);
-    for (const [name, value] of [['member', member.value], ['year', year.value], ['category', category], ['q', search.value]]) {
+    for (const [name, value] of [['member', member.value], ['year', year.value], ['category', category],
+      ['joint', jointOnly.checked ? '1' : ''], ['q', search.value]]) {
       if (value) params.set(name, value);
       else params.delete(name);
     }
@@ -117,6 +126,7 @@
   member.value = params.get('member') || '';
   year.value = params.get('year') || '';
   search.value = params.get('q') || '';
+  jointOnly.checked = params.get('joint') === '1';
   category = types.find(button => button.dataset.category === params.get('category'))?.dataset.category || '';
   if (location.hash === '#publications') {
     const language = document.querySelector('.lang-link');
@@ -128,6 +138,7 @@
   search.addEventListener('input', update);
   member.addEventListener('change', update);
   year.addEventListener('change', update);
+  jointOnly.addEventListener('change', update);
   types.forEach(button => button.addEventListener('click', () => {
     category = category === button.dataset.category ? '' : button.dataset.category;
     update();
@@ -136,6 +147,7 @@
     search.value = '';
     year.value = '';
     member.value = '';
+    jointOnly.checked = false;
     category = '';
     update();
   });
@@ -147,12 +159,12 @@
     });
   }
   control('export').addEventListener('click', () => {
-    const rows = [[t('Year', 'Année'), t('Category', 'Catégorie'), t('Title', 'Titre'), t('Authors', 'Auteurs'),
+    const rows = [[t('Year', 'Année'), t('Category', 'Catégorie'), t('France–Canada joint', 'France–Canada conjoint'), t('Title', 'Titre'), t('Authors', 'Auteurs'),
       t('Venue', 'Lieu de publication'), t('Proceedings title', 'Titre des actes'), t('ILLS members', 'Membres de l’ILLS'), 'arXiv', t('Paper', 'Article'), 'BibTeX']];
-    for (const paper of results) rows.push([paper.year, categories[paper.category], paper.title, paper.authors.join(', '),
+    for (const paper of results) rows.push([paper.year, categories[paper.category], paper.joint_source ? t('Yes', 'Oui') : t('No', 'Non'), paper.title, paper.authors.join(', '),
       paper.venue, paper.volume, paper.members.map(i => people[i].name).join(', '), paper.arxiv, paper.paper, paper.bibtex]);
     const quote = (value, column) => {
-      const text = column === 9 ? String(value) : String(value).replace(/^[=+@-]/, char => "'" + char);
+      const text = column === 10 ? String(value) : String(value).replace(/^[=+@-]/, char => "'" + char);
       return '"' + text.replaceAll('"', '""') + '"';
     };
     const csv = rows.map(row => row.map(quote).join(',')).join('\r\n');

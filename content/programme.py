@@ -31,7 +31,7 @@ def render(fr: bool, prefix: str) -> str:
         f'<a href="#research-areas">{nav_heading}</a>'
         f'<a href="#funding-research-chairs">{escape(funding.TITLE[fr])}</a>'
         '<a href="#publications">Publications</a>'
-        f'<a href="#joint-research-papers">{"Publications conjointes" if fr else "Joint research publications"}</a></nav>',
+        f'<a href="?joint=1#publications">{"Publications conjointes France–Canada" if fr else "France–Canada joint publications"}</a></nav>',
         '</div></header>',
         '<div class="wrap programme-layout" id="research-areas">',
         '<nav class="programme-nav" aria-labelledby="axes-nav-title">',

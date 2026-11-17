@@ -6,7 +6,6 @@ from html import escape
 import json
 from pathlib import Path
 from urllib.parse import urlencode
-from itertools import groupby
 import unicodedata
 import re
 
@@ -122,6 +121,8 @@ def unique_works(papers):
         item['members'] = sorted({member for record in records for member in record.get('members', ())})
         if not item.get('arxiv'):
             item['arxiv'] = next((record.get('arxiv') for record in records if record.get('arxiv')), '')
+        if not item.get('joint_source'):
+            item['joint_source'] = next((record.get('joint_source') for record in records if record.get('joint_source')), '')
         unique.append(item)
     return unique
 
@@ -256,66 +257,6 @@ def _publication_overview_html(fr, papers):
     return ''.join(parts)
 
 
-def joint_references(papers):
-    """Prefer the published citation for a preprint, keeping distinct published papers."""
-    def clean(s):
-        return ''.join(c for c in unicodedata.normalize('NFKD', s.casefold()) if c.isalnum())
-
-    def byline(p):
-        # DBLP sometimes spells out a middle name only on the published edition.
-        return [(clean(n.split()[0]), ''.join(clean(t)[:1] for t in n.split()[1:-1]),
-                 clean(n.split()[-1])) for n in p['authors']]
-    verified = [p for p in papers if p.get('joint_source')]
-    published = [dict(p) for p in verified if p['category'] != 'preprint']
-    references = list(published)
-    for pre in (p for p in verified if p['category'] == 'preprint'):
-        names = byline(pre)
-        matches = [p for p in published
-                   if (pre['arxiv'] and pre['arxiv'] == p['arxiv']) or
-                      (pre['paper'] and pre['paper'] == p['paper']) or
-                      (names == byline(p) and clean(pre['title']) == clean(p['title']))]
-        if matches:
-            for p in matches:
-                if not p['arxiv']:
-                    p['arxiv'] = pre['arxiv']
-        else:
-            references.append(pre)
-    return sorted(references, key=lambda p: (-p['year'], clean(p['title']), p['key']))
-
-
-def render_joint(fr, papers):
-    def t(en, french):
-        return french if fr else en
-    refs = joint_references(papers)
-    heading = t('Joint research publications', 'Publications conjointes')
-    intro = t('Papers coauthored by researchers at institutions in France and Canada, including collaborators outside ILLS.',
-              'Articles cosignés par des chercheurs et chercheuses rattachés à des établissements en France et au Canada, y compris hors de l’ILLS.')
-    count = len(refs)
-    parts = ['<section class="joint-papers" id="joint-research-papers" aria-labelledby="joint-heading">',
-             f'<h3 id="joint-heading">{heading}</h3><p class="lead">{intro} <span>{count} {t("references", "références")}.</span></p>']
-    for i, (year, rows) in enumerate(groupby(refs, key=lambda p: p['year'])):
-        rows = list(rows)
-        unit = t('reference', 'référence') if len(rows) == 1 else t('references', 'références')
-        parts.append(f'<details class="joint-year"{" open" if i == 0 else ""}><summary>{year} '
-                     f'<span>({len(rows)} {unit})</span></summary><ol>')
-        for p in rows:
-            venue = p['volume'] or p['venue']
-            if p['category'] == 'preprint':
-                venue = t('Preprint', 'Prépublication') + (' · arXiv' if p['arxiv'] else '')
-            links = []
-            for label, url in [(t('Paper', 'Article'), p['paper']), ('arXiv', p['arxiv'])]:
-                if url:
-                    links.append(f'<a href="{escape(url)}">{label}</a>')
-            bib = (f'<details class="publication-citation"><summary aria-label="{t("BibTeX for", "Référence BibTeX pour")} '
-                   f'{escape(p["title"])}">BibTeX</summary><pre>{escape(p["bibtex"])}</pre></details>')
-            parts.append(f'<li data-key="{escape(p["key"])}"><h4 lang="en">{escape(p["title"])}</h4>'
-                         f'<p>{escape(", ".join(p["authors"]))}</p><p class="joint-venue">{escape(venue)}, {year}.</p>'
-                         f'<div class="publication-resources">{" ".join(links)} {bib}</div></li>')
-        parts.append('</ol></details>')
-    parts.append('</section>')
-    return ''.join(parts)
-
-
 def render(fr: bool) -> str:
     data = catalogue()
     people = data['people']
@@ -355,6 +296,8 @@ def render(fr: bool) -> str:
             <label>{t('Year', 'Année')}<select id="pub-year"><option value="">{t('All years', 'Toutes les années')}</option>{year_options}</select></label>
             <label>{t('ILLS member', 'Membre de l’ILLS')}<select id="pub-member"><option value="">{t('All members', 'Tous les membres')}</option>{''.join(member_options)}</select></label>
           </div>
+          <label class="catalogue-joint-filter"><input type="checkbox" id="pub-joint">
+            <span>{t('France–Canada joint publications only', 'Publications conjointes France–Canada uniquement')}</span></label>
           <div class="catalogue-tools"><button type="button" id="pub-reset">{t('Clear filters', 'Effacer les filtres')}</button>
             <button type="button" id="pub-export">{t('Download results (CSV)', 'Télécharger les résultats (CSV)')}</button></div>
           {overview}
@@ -364,7 +307,6 @@ def render(fr: bool) -> str:
             <span id="pub-page"></span><button type="button" id="pub-next">{t('Next', 'Suivante')}</button></nav>
         </div><noscript><p>{t('Enable JavaScript to search the full catalogue.', 'Activez JavaScript pour parcourir le catalogue complet.')}</p></noscript>
         <script type="application/json" id="bibliography">{payload}</script>''',
-        render_joint(fr, data['papers']),
         '</div></section>',
     ]
     return "\n".join(parts)

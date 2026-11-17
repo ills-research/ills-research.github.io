@@ -62,6 +62,14 @@
   max-height: 3rem;
 }
 
+#support-partners .network-partner {
+  grid-template-columns: minmax(0, min(11rem, 48vw)) minmax(0, 1fr) 1rem;
+}
+
+#support-partners .network-mark img {
+  max-height: 4.25rem;
+}
+
 .network-name {
   font-size: 1rem;
   line-height: 1.4;
