@@ -26,7 +26,37 @@
     "mila_profile": "https://mila.quebec/en/directory/tamara-paris-paris",
     "image": "tamara-paris.webp",
     "portrait_source": "https://tamaraaprs.github.io/",
-    "portrait_url": "https://tamaraaprs.github.io/Moi.jpg"
+    "portrait_url": "https://tamaraaprs.github.io/Moi.jpg",
+    "biography": {
+      "slug": "tamara-paris",
+      "text": [
+        "Tamara Paris is a doctoral researcher in a joint program between McGill University and Université Paris Cité. Her research examines technical approaches to AI governance at the intersection of AI ethics and theoretical computer science.",
+        "Tamara Paris prépare un doctorat conjoint entre l’Université McGill et l’Université Paris Cité. Ses travaux portent sur les approches techniques de la gouvernance de l’IA, à la croisée de l’éthique de l’IA et de l’informatique théorique."
+      ],
+      "topics": [
+        [
+          "Responsible AI",
+          "IA responsable"
+        ],
+        [
+          "AI governance",
+          "Gouvernance de l’IA"
+        ],
+        [
+          "AI ethics",
+          "Éthique de l’IA"
+        ],
+        [
+          "Theoretical computer science",
+          "Informatique théorique"
+        ]
+      ],
+      "sources": [
+        "https://tamaraaprs.github.io/",
+        "https://ca.linkedin.com/in/tamaraprs"
+      ]
+    },
+    "linkedin": "https://ca.linkedin.com/in/tamaraprs"
   },
   {
     "name": "Erik Mamet",
@@ -53,7 +83,39 @@
     "website": "https://l2s.centralesupelec.fr/u/mamet-erik/",
     "linkedin": "https://www.linkedin.com/in/erik-mamet/",
     "image": "erik-mamet.webp",
-    "portrait_source": "https://fr.linkedin.com/in/erik-mamet"
+    "portrait_source": "https://fr.linkedin.com/in/erik-mamet",
+    "biography": {
+      "slug": "erik-mamet",
+      "text": [
+        "Erik Mamet’s doctoral research develops deep-learning methods for compressing dynamic 3D point clouds. The project brings together learned compression and efficient representation of 3D visual data.",
+        "Les travaux doctoraux d’Erik Mamet portent sur des méthodes d’apprentissage profond pour compresser des nuages de points 3D dynamiques. Le projet associe compression par apprentissage et représentation efficace de données visuelles en 3D."
+      ],
+      "topics": [
+        [
+          "Deep learning",
+          "Apprentissage profond"
+        ],
+        [
+          "3D point-cloud compression",
+          "Compression de nuages de points 3D"
+        ],
+        [
+          "Dynamic 3D data",
+          "Données 3D dynamiques"
+        ],
+        [
+          "Visual communication",
+          "Communication visuelle"
+        ]
+      ],
+      "sources": [
+        "https://l2s.centralesupelec.fr/en/u/valenzise-giuseppe/phd_students/"
+      ]
+    },
+    "website_label": [
+      "L2S profile",
+      "Profil L2S"
+    ]
   },
   {
     "name": "Guillermo Martin de Paula",
@@ -76,11 +138,40 @@
       "Benedikt Bollig",
       "Christian Desrosiers"
     ],
-    "website": "https://mila.quebec/en/directory/guillermo-martin-de-paula",
     "mila_profile": "https://mila.quebec/en/directory/guillermo-martin-de-paula",
     "image": "guillermo-martin-de-paula.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
-    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/13442/portrait-of-guillermo-martin-de-paula.jpeg.webp?itok=hu_dlAiB"
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/13442/portrait-of-guillermo-martin-de-paula.jpeg.webp?itok=hu_dlAiB",
+    "biography": {
+      "slug": "guillermo-martin-de-paula",
+      "text": [
+        "Guillermo Martin de Paula studies how agents learn and communicate in multi-agent systems. Their work connects reinforcement learning and AI safety, including strategic communication between agents.",
+        "Guillermo Martin de Paula étudie l’apprentissage et la communication entre agents dans les systèmes multi-agents. Ses travaux relient l’apprentissage par renforcement à la sûreté de l’IA, notamment à la communication stratégique entre agents."
+      ],
+      "topics": [
+        [
+          "Multi-agent systems",
+          "Systèmes multi-agents"
+        ],
+        [
+          "Reinforcement learning",
+          "Apprentissage par renforcement"
+        ],
+        [
+          "AI safety",
+          "Sûreté de l’IA"
+        ],
+        [
+          "Strategic communication",
+          "Communication stratégique"
+        ]
+      ],
+      "sources": [
+        "https://mila.quebec/en/directory/guillermo-martin-de-paula",
+        "https://pablo-piantanida.org/"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/guillermo-martin-de-paula-92473896"
   },
   {
     "name": "Cléa Chataigner",
@@ -107,7 +198,37 @@
     "mila_profile": "https://mila.quebec/en/directory/chataigner-clea",
     "image": "clea-chataigner.webp",
     "portrait_source": "https://cleachataig.github.io/",
-    "portrait_url": "https://cleachataig.github.io/images/Clea_Chataigner.jpeg"
+    "portrait_url": "https://cleachataig.github.io/images/Clea_Chataigner.jpeg",
+    "biography": {
+      "slug": "clea-chataigner",
+      "text": [
+        "Cléa Chataigner’s research develops reliable ways to audit large language models. Her work studies how evaluation can provide contextual, budget-aware evidence about model capabilities, limitations and real-world impact.",
+        "Les travaux de Cléa Chataigner visent à concevoir des méthodes fiables d’audit des grands modèles de langue. Elle étudie comment l’évaluation peut fournir des éléments contextualisés et adaptés aux ressources disponibles sur les capacités, les limites et les effets réels des modèles."
+      ],
+      "topics": [
+        [
+          "Large language models",
+          "Grands modèles de langue"
+        ],
+        [
+          "AI auditing",
+          "Audit de l’IA"
+        ],
+        [
+          "Evaluation and reliability",
+          "Évaluation et fiabilité"
+        ],
+        [
+          "Robustness and fairness",
+          "Robustesse et équité"
+        ]
+      ],
+      "sources": [
+        "https://cleachataig.github.io/",
+        "https://www.centralesupelec.fr/chercheurs/clea-chataigner"
+      ]
+    },
+    "linkedin": "https://ca.linkedin.com/in/cl%C3%A9a-chataigner/fr"
   },
   {
     "name": "Lorenzo Sia",
@@ -132,7 +253,36 @@
     ],
     "linkedin": "https://www.linkedin.com/in/lorenzo-sia/",
     "image": "lorenzo-sia.webp",
-    "portrait_source": "https://www.linkedin.com/pub/dir/Lorenzo/Sia"
+    "portrait_source": "https://www.linkedin.com/pub/dir/Lorenzo/Sia",
+    "biography": {
+      "slug": "lorenzo-sia",
+      "text": [
+        "Lorenzo Sia’s doctoral project applies deep learning to multimodal expression recognition for eHealth. It investigates how visual, audio and other signals can support more personalized recognition in digital health settings.",
+        "Le projet doctoral de Lorenzo Sia applique l’apprentissage profond à la reconnaissance multimodale des expressions en santé numérique. Il examine comment les signaux visuels, audio et autres peuvent soutenir une reconnaissance plus personnalisée dans des contextes de santé numérique."
+      ],
+      "topics": [
+        [
+          "Multimodal learning",
+          "Apprentissage multimodal"
+        ],
+        [
+          "Expression and emotion recognition",
+          "Reconnaissance des expressions et des émotions"
+        ],
+        [
+          "Domain adaptation",
+          "Adaptation de domaine"
+        ],
+        [
+          "Digital health",
+          "Santé numérique"
+        ]
+      ],
+      "sources": [
+        "https://www.etsmtl.ca/etudier-a-lets/corps-professoral/egranger",
+        "https://pure.etsmtl.ca/en/publications/"
+      ]
+    }
   },
   {
     "name": "Nicolas Richet",
@@ -158,7 +308,36 @@
     "website": "https://nicolas-richet.github.io/",
     "linkedin": "https://www.linkedin.com/in/richet-nicolas/",
     "image": "nicolas-richet.webp",
-    "portrait_source": "https://ca.linkedin.com/in/richet-nicolas"
+    "portrait_source": "https://ca.linkedin.com/in/richet-nicolas",
+    "biography": {
+      "slug": "nicolas-richet",
+      "text": [
+        "Nicolas Richet’s doctoral work studies the adaptation of vision-language models for human behaviour recognition. Their research also addresses multimodal emotion recognition and adaptation to new visual domains.",
+        "Les travaux doctoraux de Nicolas Richet portent sur l’adaptation de modèles vision-langage à la reconnaissance des comportements humains. Ses recherches abordent également la reconnaissance multimodale des émotions et l’adaptation à de nouveaux domaines visuels."
+      ],
+      "topics": [
+        [
+          "Vision-language models",
+          "Modèles vision-langage"
+        ],
+        [
+          "Human behaviour recognition",
+          "Reconnaissance des comportements humains"
+        ],
+        [
+          "Multimodal emotion recognition",
+          "Reconnaissance multimodale des émotions"
+        ],
+        [
+          "Few-shot adaptation",
+          "Adaptation en quelques exemples"
+        ]
+      ],
+      "sources": [
+        "https://www.etsmtl.ca/etudier-a-lets/corps-professoral/egranger",
+        "https://pure.etsmtl.ca/en/publications/textualized-andfeature-based-models-forcompound-multimodal-emotio/"
+      ]
+    }
   },
   {
     "name": "Philippe Formont",
@@ -181,11 +360,40 @@
       "Ismail Ben Ayed",
       "Pablo Piantanida"
     ],
-    "website": "https://mila.quebec/en/directory/philippe-formont",
     "mila_profile": "https://mila.quebec/en/directory/philippe-formont",
     "image": "philippe-formont.webp",
     "portrait_source": "https://mila.quebec/en/directory/philippe-formont",
-    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10571/portrait-of-philippe-formont.png.webp?itok=fNPMr8ux"
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10571/portrait-of-philippe-formont.png.webp?itok=fNPMr8ux",
+    "biography": {
+      "slug": "philippe-formont",
+      "text": [
+        "Philippe Formont works on machine learning methods for molecular modelling and drug discovery. Their research brings together graph neural networks, representation learning and generative models for molecular data.",
+        "Philippe Formont étudie des méthodes d’apprentissage automatique pour la modélisation moléculaire et la découverte de médicaments. Ses travaux combinent réseaux de neurones sur graphes, apprentissage de représentations et modèles génératifs pour les données moléculaires."
+      ],
+      "topics": [
+        [
+          "Graph neural networks",
+          "Réseaux de neurones sur graphes"
+        ],
+        [
+          "Molecular modeling",
+          "Modélisation moléculaire"
+        ],
+        [
+          "Representation learning",
+          "Apprentissage de représentations"
+        ],
+        [
+          "Generative models for drug discovery",
+          "Modèles génératifs pour la découverte de médicaments"
+        ]
+      ],
+      "sources": [
+        "https://mila.quebec/en/directory/philippe-formont"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/philippe-formont/en",
+    "scholar": "https://scholar.google.com/citations?user=c1WXdVAAAAAJ"
   },
   {
     "name": "Julien Nicolas",
@@ -212,7 +420,40 @@
     "mila_profile": "https://mila.quebec/en/directory/julien-nicolas",
     "image": "julien-nicolas.webp",
     "portrait_source": "https://mila.quebec/en/directory/julien-nicolas",
-    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10681/portrait-of-julien-nicolas.jpeg.webp?itok=krixuBmN"
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10681/portrait-of-julien-nicolas.jpeg.webp?itok=krixuBmN",
+    "biography": {
+      "slug": "julien-nicolas",
+      "text": [
+        "Julien Nicolas studies decentralized machine learning, with a focus on recommender systems. Their doctoral work examines how to balance personalization with privacy and resilience in distributed systems.",
+        "Julien Nicolas étudie l’apprentissage automatique décentralisé, notamment les systèmes de recommandation. Ses travaux doctoraux examinent comment concilier personnalisation, confidentialité et résilience dans des systèmes distribués."
+      ],
+      "topics": [
+        [
+          "Decentralized machine learning",
+          "Apprentissage automatique décentralisé"
+        ],
+        [
+          "Recommender systems",
+          "Systèmes de recommandation"
+        ],
+        [
+          "Privacy",
+          "Confidentialité"
+        ],
+        [
+          "Resilience and distributed systems",
+          "Résilience et systèmes distribués"
+        ]
+      ],
+      "sources": [
+        "https://liris.cnrs.fr/these/these-julien-nicolas",
+        "https://mila.quebec/en/directory/julien-nicolas"
+      ]
+    },
+    "website_label": [
+      "LIRIS profile",
+      "Profil LIRIS"
+    ]
   },
   {
     "name": "Matteo Sammut",
@@ -240,7 +481,41 @@
     "mila_profile": "https://mila.quebec/en/directory/matteo-sammut",
     "image": "matteo-sammut.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
-    "portrait_url": "https://pablo-piantanida.org/img/students/matteo-sammut.jpg"
+    "portrait_url": "https://pablo-piantanida.org/img/students/matteo-sammut.jpg",
+    "biography": {
+      "slug": "matteo-sammut",
+      "text": [
+        "Matteo Sammut’s doctoral research investigates theoretical foundations for evaluating and auditing generative AI. Their work focuses on robustness, alignment and principled ways to assess generative models.",
+        "Les recherches doctorales de Matteo Sammut portent sur les fondements théoriques de l’évaluation et de l’audit de l’IA générative. Ses travaux s’intéressent à la robustesse, à l’alignement et à des méthodes rigoureuses d’évaluation des modèles génératifs."
+      ],
+      "topics": [
+        [
+          "Generative AI",
+          "IA générative"
+        ],
+        [
+          "AI auditing and evaluation",
+          "Audit et évaluation de l’IA"
+        ],
+        [
+          "Robustness",
+          "Robustesse"
+        ],
+        [
+          "AI alignment",
+          "Alignement de l’IA"
+        ]
+      ],
+      "sources": [
+        "https://mila.quebec/fr/annuaire/matteo-sammut",
+        "https://dauphine.psl.eu/recherche/cvtheque/profil/sammut-matteo"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/matteo-sammut-03b3331a2",
+    "website_label": [
+      "Dauphine profile",
+      "Profil Dauphine"
+    ]
   },
   {
     "name": "Natacha Gillet",
@@ -265,7 +540,36 @@
     ],
     "linkedin": "https://www.linkedin.com/in/natacha-gillet-86ab452a6/",
     "image": "natacha-gillet.webp",
-    "portrait_source": "https://ca.linkedin.com/in/natacha-gillet-86ab452a6"
+    "portrait_source": "https://ca.linkedin.com/in/natacha-gillet-86ab452a6",
+    "biography": {
+      "slug": "natacha-gillet",
+      "text": [
+        "Natacha Gillet studies personalized expression recognition using multimodal domain adaptation. The research explores how models can adapt to differences between people and support recognition in digital health applications.",
+        "Natacha Gillet étudie la reconnaissance personnalisée des expressions à l’aide de l’adaptation de domaine multimodale. Ses travaux examinent comment les modèles peuvent s’adapter aux différences entre les personnes et contribuer à des applications en santé numérique."
+      ],
+      "topics": [
+        [
+          "Expression recognition",
+          "Reconnaissance des expressions"
+        ],
+        [
+          "Multimodal learning",
+          "Apprentissage multimodal"
+        ],
+        [
+          "Domain adaptation",
+          "Adaptation de domaine"
+        ],
+        [
+          "Digital health",
+          "Santé numérique"
+        ]
+      ],
+      "sources": [
+        "https://www.etsmtl.ca/etudier-a-lets/corps-professoral/egranger",
+        "https://pure.etsmtl.ca/en/publications/musaco-multimodal-subject-specific-selection-and-adaptation-for-e/"
+      ]
+    }
   },
   {
     "name": "Maxime Darrin",
@@ -292,7 +596,38 @@
     "mila_profile": "https://mila.quebec/en/directory/maxime-darrin",
     "image": "maxime-darrin.webp",
     "portrait_source": "https://mila.quebec/en/directory/maxime-darrin",
-    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/9756/portrait-of-maxime-darrin.webp?itok=osRsUp_5"
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/9756/portrait-of-maxime-darrin.webp?itok=osRsUp_5",
+    "biography": {
+      "slug": "maxime-darrin",
+      "text": [
+        "Maxime Darrin’s doctoral work connects information theory and machine learning for natural language processing. Their research includes evaluating text generation, robustness and methods for detecting when models are operating outside their training conditions.",
+        "Les travaux doctoraux de Maxime Darrin relient la théorie de l’information et l’apprentissage automatique au traitement automatique des langues. Ses recherches portent notamment sur l’évaluation de la génération de texte, la robustesse et la détection de situations qui s’écartent des conditions d’apprentissage."
+      ],
+      "topics": [
+        [
+          "Information theory",
+          "Théorie de l’information"
+        ],
+        [
+          "Natural language processing",
+          "Traitement automatique des langues"
+        ],
+        [
+          "Text generation evaluation",
+          "Évaluation de la génération de texte"
+        ],
+        [
+          "Robustness and out-of-distribution detection",
+          "Robustesse et détection hors distribution"
+        ]
+      ],
+      "sources": [
+        "https://icannos.github.io/",
+        "https://mila.quebec/en/directory/maxime-darrin"
+      ]
+    },
+    "linkedin": "https://www.linkedin.com/in/maxime-darrin/",
+    "scholar": "https://scholar.google.com/citations?user=RvosZu4AAAAJ"
   },
   {
     "name": "Zouhair Ziani",
@@ -316,7 +651,36 @@
       "François-Xavier Coudoux",
       "Patrick Corlay"
     ],
-    "linkedin": "https://www.linkedin.com/in/zouhair-ziani-7a280016a/"
+    "linkedin": "https://www.linkedin.com/in/zouhair-ziani-7a280016a/",
+    "biography": {
+      "slug": "zouhair-ziani",
+      "text": [
+        "Zouhair Ziani’s doctoral research focuses on reliable, low-latency delivery of immersive video. Their work addresses video transmission under error-prone conditions, including methods for detecting and correcting transmission errors.",
+        "Les recherches doctorales de Zouhair Ziani portent sur la transmission fiable et à faible latence de vidéos immersives. Ses travaux abordent la transmission vidéo en présence d’erreurs, notamment des méthodes de détection et de correction des erreurs de transmission."
+      ],
+      "topics": [
+        [
+          "Immersive video",
+          "Vidéo immersive"
+        ],
+        [
+          "Low-latency streaming",
+          "Diffusion à faible latence"
+        ],
+        [
+          "Reliable video transmission",
+          "Transmission vidéo fiable"
+        ],
+        [
+          "Error correction",
+          "Correction d’erreurs"
+        ]
+      ],
+      "sources": [
+        "https://www.etsmtl.ca/en/study-at-ets/professors/scoulombe",
+        "https://www.uphf.fr/iemn/publications"
+      ]
+    }
   },
   {
     "name": "Yujing Zhang",
@@ -342,7 +706,40 @@
     ],
     "website": "https://espace.etsmtl.ca/id/eprint/3571/",
     "image": "yujing-zhang.webp",
-    "portrait_source": "https://espace2.etsmtl.ca/id/eprint/30394/1/Coulombe-S-2024-30394.pdf#page=16"
+    "portrait_source": "https://espace2.etsmtl.ca/id/eprint/30394/1/Coulombe-S-2024-30394.pdf#page=16",
+    "biography": {
+      "slug": "yujing-zhang",
+      "text": [
+        "Yujing Zhang’s doctoral research used deep learning to improve video list decoding in error-prone transmission systems. The work combines no-reference image-quality assessment with video decoding to select the best reconstructed candidate after transmission errors.",
+        "Les recherches doctorales de Yujing Zhang ont utilisé l’apprentissage profond pour améliorer le décodage par liste vidéo dans des systèmes de transmission sujets aux erreurs. Ses travaux combinent l’évaluation de la qualité d’image sans référence et le décodage vidéo afin de sélectionner la meilleure reconstruction après des erreurs de transmission."
+      ],
+      "topics": [
+        [
+          "Deep learning",
+          "Apprentissage profond"
+        ],
+        [
+          "Video transmission",
+          "Transmission vidéo"
+        ],
+        [
+          "Image-quality assessment",
+          "Évaluation de la qualité d’image"
+        ],
+        [
+          "Error-resilient decoding",
+          "Décodage résilient aux erreurs"
+        ]
+      ],
+      "sources": [
+        "https://espace.etsmtl.ca/id/eprint/3571/",
+        "https://espace2.etsmtl.ca/id/eprint/30394/1/Coulombe-S-2024-30394.pdf"
+      ]
+    },
+    "website_label": [
+      "Doctoral thesis",
+      "Thèse de doctorat"
+    ]
   },
   {
     "name": "Imrane Zaakour",
@@ -368,7 +765,41 @@
     "website": "https://crest.science/user/imrane-zaakour/",
     "image": "imrane-zaakour.webp",
     "portrait_source": "https://ai4idf.fr/news/view/j2cfe4b3d8407ed1791f",
-    "portrait_url": "https://ai4idf.fr/content/posts/1769551756_201263a2dd7440f6eb8f.jpg"
+    "portrait_url": "https://ai4idf.fr/content/posts/1769551756_201263a2dd7440f6eb8f.jpg",
+    "biography": {
+      "slug": "imrane-zaakour",
+      "text": [
+        "Imrane Zaakour studies sequential decision-making and learning under partial information. Their theoretical work asks how stochastic information about uncertain environments can help design more effective and robust learning-augmented algorithms.",
+        "Imrane Zaakour étudie la prise de décision séquentielle et l’apprentissage avec information partielle. Ses travaux théoriques examinent comment l’information stochastique sur des environnements incertains peut aider à concevoir des algorithmes plus efficaces et robustes, enrichis par des prédictions."
+      ],
+      "topics": [
+        [
+          "Learning-augmented algorithms",
+          "Algorithmes enrichis par l’apprentissage"
+        ],
+        [
+          "Sequential decision-making",
+          "Prise de décision séquentielle"
+        ],
+        [
+          "Stochastic methods",
+          "Méthodes stochastiques"
+        ],
+        [
+          "Learning under uncertainty",
+          "Apprentissage sous incertitude"
+        ]
+      ],
+      "sources": [
+        "https://ai4idf.fr/news/view/j2cfe4b3d8407ed1791f",
+        "https://crest.science/user/imrane-zaakour/"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/imrane-zaakour",
+    "website_label": [
+      "CREST profile",
+      "Profil CREST"
+    ]
   },
   {
     "name": "Chiara Roverato",
@@ -391,12 +822,43 @@
       "Mark Coates",
       "Pablo Piantanida"
     ],
-    "website": "https://mila.quebec/en/directory/chiara-roverato",
     "mila_profile": "https://mila.quebec/en/directory/chiara-roverato",
     "image": "chiara-roverato.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
     "portrait_url": "https://pablo-piantanida.org/img/students/chiara-roverato.jpg",
-    "supervising_partner": "Université Paris-Saclay"
+    "supervising_partner": "Université Paris-Saclay",
+    "biography": {
+      "slug": "chiara-roverato",
+      "text": [
+        "Chiara Roverato’s research explores generative models for structured data, including tabular data. Her work draws on Bayesian inference to develop and assess models that can represent complex data distributions.",
+        "Les recherches de Chiara Roverato portent sur les modèles génératifs pour les données structurées, notamment les données tabulaires. Ses travaux s’appuient sur l’inférence bayésienne pour concevoir et évaluer des modèles capables de représenter des distributions de données complexes."
+      ],
+      "topics": [
+        [
+          "Generative models",
+          "Modèles génératifs"
+        ],
+        [
+          "Tabular data",
+          "Données tabulaires"
+        ],
+        [
+          "Bayesian inference",
+          "Inférence bayésienne"
+        ],
+        [
+          "Machine learning",
+          "Apprentissage automatique"
+        ]
+      ],
+      "sources": [
+        "https://mila.quebec/en/directory/chiara-roverato",
+        "https://mila.quebec/fr/annuaire/chiara-roverato",
+        "https://www.alphaxiv.org/@chiara-roverato"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/chiara-roverato-16a1191bb",
+    "scholar": "https://scholar.google.com/citations?user=d6VDzNQAAAAJ"
   },
   {
     "name": "Eric Aubinais",
@@ -418,7 +880,40 @@
     "website": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/",
     "image": "eric-aubinais.webp",
     "portrait_source": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/",
-    "portrait_url": "https://www.imo.universite-paris-saclay.fr/media/filer_public_thumbnails/filer_public/a0/1e/a01e229d-2514-4a94-9216-e60d43309acd/image.jpeg__1462x2048_q85_subsampling-2.jpg"
+    "portrait_url": "https://www.imo.universite-paris-saclay.fr/media/filer_public_thumbnails/filer_public/a0/1e/a01e229d-2514-4a94-9216-e60d43309acd/image.jpeg__1462x2048_q85_subsampling-2.jpg",
+    "biography": {
+      "slug": "eric-aubinais",
+      "text": [
+        "Eric Aubinais studies data security in machine-learning models, theoretically and empirically. Their doctoral research focuses on membership-inference attacks and the limits of confidentiality protections for trained models.",
+        "Eric Aubinais étudie la sécurité des données dans les modèles d’apprentissage automatique, sur les plans théorique et empirique. Ses recherches doctorales portent sur les attaques par inférence d’appartenance et les limites des garanties de confidentialité des modèles entraînés."
+      ],
+      "topics": [
+        [
+          "Machine-learning privacy",
+          "Confidentialité en apprentissage automatique"
+        ],
+        [
+          "Membership inference",
+          "Inférence d’appartenance"
+        ],
+        [
+          "Data security",
+          "Sécurité des données"
+        ],
+        [
+          "Statistical learning theory",
+          "Théorie de l’apprentissage statistique"
+        ]
+      ],
+      "sources": [
+        "https://www.imo.universite-paris-saclay.fr/fr/perso/eric-aubinais/"
+      ]
+    },
+    "linkedin": "https://www.linkedin.com/in/eric-aubinais/",
+    "website_label": [
+      "Paris-Saclay profile",
+      "Profil Paris-Saclay"
+    ]
   },
   {
     "name": "Antoine Andurao",
@@ -439,7 +934,31 @@
     ],
     "image": "antoine-andurao.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
-    "portrait_url": "https://pablo-piantanida.org/img/students/antoine-andurao.jpg"
+    "portrait_url": "https://pablo-piantanida.org/img/students/antoine-andurao.jpg",
+    "biography": {
+      "slug": "antoine-andurao",
+      "text": [
+        "Antoine Andurao’s doctoral project investigates foundation models for 3D medical imaging. The work explores how large-scale learned representations can support the analysis of volumetric medical data.",
+        "Le projet doctoral d’Antoine Andurao porte sur les modèles de fondation pour l’imagerie médicale 3D. Les travaux explorent comment des représentations apprises à grande échelle peuvent contribuer à l’analyse de données médicales volumétriques."
+      ],
+      "topics": [
+        [
+          "Foundation models",
+          "Modèles de fondation"
+        ],
+        [
+          "3D medical imaging",
+          "Imagerie médicale 3D"
+        ],
+        [
+          "Medical image analysis",
+          "Analyse d’images médicales"
+        ]
+      ],
+      "sources": [
+        "https://pablo-piantanida.org/"
+      ]
+    }
   },
   {
     "name": "Matthieu Dubois",
@@ -466,7 +985,39 @@
     "image": "matthieu-dubois.webp",
     "portrait_source": "https://baggerofwords.github.io/",
     "portrait_url": "https://baggerofwords.github.io/images/profile.png",
-    "supervising_partner": "Université Paris-Saclay"
+    "supervising_partner": "Université Paris-Saclay",
+    "biography": {
+      "slug": "matthieu-dubois",
+      "text": [
+        "Matthieu Dubois is a doctoral researcher in natural language processing whose work focuses on texts generated by large language models. Their research studies detection of machine-written text as well as broader questions about text generation, diversity and model behaviour.",
+        "Matthieu Dubois mène des recherches doctorales en traitement automatique des langues sur les textes produits par les grands modèles de langue. Ses travaux portent sur la détection des textes générés automatiquement ainsi que sur des questions plus larges de génération, de diversité et de comportement des modèles."
+      ],
+      "topics": [
+        [
+          "Natural language processing",
+          "Traitement automatique des langues"
+        ],
+        [
+          "AI-generated text detection",
+          "Détection de textes générés par l’IA"
+        ],
+        [
+          "Text generation",
+          "Génération de texte"
+        ],
+        [
+          "Large language models",
+          "Grands modèles de langue"
+        ]
+      ],
+      "sources": [
+        "https://baggerofwords.github.io/",
+        "https://www.isir.upmc.fr/personnel/duboism/",
+        "https://www.isir.upmc.fr/en/personnel/duboism/",
+        "https://fr.linkedin.com/in/matthieuduboisnlp"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/matthieuduboisnlp"
   },
   {
     "name": "Arthur Satouf",
@@ -489,10 +1040,39 @@
       "Benjamin Piwowarski",
       "Pablo Piantanida"
     ],
-    "website": "https://fr.linkedin.com/in/arthur-satouf",
     "image": "arthur-satouf.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
-    "portrait_url": "https://pablo-piantanida.org/img/students/arthur-satouf.jpg"
+    "portrait_url": "https://pablo-piantanida.org/img/students/arthur-satouf.jpg",
+    "biography": {
+      "slug": "arthur-satouf",
+      "text": [
+        "Arthur Satouf’s research combines information retrieval with pragmatic reasoning. Their work explores how reasoning about queries and document collections can improve sparse retrieval and search systems based on language models.",
+        "Les recherches d’Arthur Satouf associent la recherche d’information au raisonnement pragmatique. Ses travaux examinent comment le raisonnement sur les requêtes et les collections de documents peut améliorer la recherche parcimonieuse et les systèmes de recherche fondés sur des modèles de langue."
+      ],
+      "topics": [
+        [
+          "Information retrieval",
+          "Recherche d’information"
+        ],
+        [
+          "Pragmatic reasoning",
+          "Raisonnement pragmatique"
+        ],
+        [
+          "Sparse retrieval",
+          "Recherche parcimonieuse"
+        ],
+        [
+          "Natural language processing",
+          "Traitement automatique des langues"
+        ]
+      ],
+      "sources": [
+        "https://fr.linkedin.com/in/arthur-satouf",
+        "https://arxiv.org/abs/2505.03676"
+      ]
+    },
+    "linkedin": "https://fr.linkedin.com/in/arthur-satouf"
   },
   {
     "name": "Lautaro Estienne",
@@ -514,7 +1094,39 @@
     "website": "https://www.lisn.upsaclay.fr/membres/estienne-lautaro/",
     "image": "lautaro-estienne.webp",
     "portrait_source": "https://pablo-piantanida.org/#people",
-    "portrait_url": "https://pablo-piantanida.org/img/students/lautaro-estienne.jpg"
+    "portrait_url": "https://pablo-piantanida.org/img/students/lautaro-estienne.jpg",
+    "biography": {
+      "slug": "lautaro-estienne",
+      "text": [
+        "Lautaro Estienne’s doctoral research focuses on dialogue systems for human–machine interaction. The project studies conversational methods that support natural and effective exchanges between people and interactive systems.",
+        "Les recherches doctorales de Lautaro Estienne portent sur les systèmes de dialogue pour l’interaction humain-machine. Le projet étudie des méthodes conversationnelles favorisant des échanges naturels et efficaces entre les personnes et les systèmes interactifs."
+      ],
+      "topics": [
+        [
+          "Dialogue systems",
+          "Systèmes de dialogue"
+        ],
+        [
+          "Human–machine interaction",
+          "Interaction humain-machine"
+        ],
+        [
+          "Conversational AI",
+          "IA conversationnelle"
+        ]
+      ],
+      "sources": [
+        "https://www.lisn.upsaclay.fr/membres/estienne-lautaro/",
+        "https://www.liaa.dc.uba.ar/equipo/lautaro-estienne/",
+        "https://ca.linkedin.com/in/lautaro-estienne-916a71231"
+      ]
+    },
+    "website_label": [
+      "LISN profile",
+      "Profil LISN"
+    ],
+    "linkedin": "https://ca.linkedin.com/in/lautaro-estienne-916a71231",
+    "scholar": "https://scholar.google.com/citations?hl=en&user=-ao1M0cAAAAJ"
   },
   {
     "name": "Zahra Dehghani Tafti",
@@ -537,10 +1149,39 @@
       "Pablo Piantanida",
       "Mohammadhadi Shateri"
     ],
-    "website": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
     "mila_profile": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
     "image": "zahra-dehghani-tafti.webp",
     "portrait_source": "https://mila.quebec/en/directory/zahra-dehghani-tafti",
-    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10570/portrait-of-zahra-dehghani-tafti.jpeg.webp?itok=F5tcpqvl"
+    "portrait_url": "https://mila.quebec/sites/default/files/styles/member_full/public/member/10570/portrait-of-zahra-dehghani-tafti.jpeg.webp?itok=F5tcpqvl",
+    "biography": {
+      "slug": "zahra-dehghani-tafti",
+      "text": [
+        "Zahra Dehghani Tafti studies machine unlearning: methods for removing selected information from trained models while preserving their remaining capabilities. The research connects unlearning with privacy, computer vision and machine-learning theory.",
+        "Zahra Dehghani Tafti étudie le désapprentissage automatique, c’est-à-dire des méthodes visant à retirer certaines informations d’un modèle entraîné tout en préservant ses autres capacités. Ses recherches relient le désapprentissage à la confidentialité, à la vision par ordinateur et à la théorie de l’apprentissage automatique."
+      ],
+      "topics": [
+        [
+          "Machine unlearning",
+          "Désapprentissage automatique"
+        ],
+        [
+          "Privacy",
+          "Confidentialité"
+        ],
+        [
+          "Computer vision",
+          "Vision par ordinateur"
+        ],
+        [
+          "Machine-learning theory",
+          "Théorie de l’apprentissage automatique"
+        ]
+      ],
+      "sources": [
+        "https://mila.quebec/en/directory/zahra-dehghani-tafti"
+      ]
+    },
+    "scholar": "https://scholar.google.com/citations?user=VqHpMu4AAAAJ",
+    "linkedin": "https://www.linkedin.com/in/zahra-dehghani-t/"
   }
 ]

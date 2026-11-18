@@ -161,6 +161,22 @@
 .student-mila { display: inline-block; margin-top: .35rem; }
 .student-profile-link { display: inline-block; margin-top: .5rem; font-size: .87rem; color: #174f68; }
 .student-profile-link:hover, .student-profile-link:focus-visible { text-decoration: underline; }
+.student-profile-advisors { margin-top: .55rem; color: #435569; }
+.student-profile-advisors strong { font-weight: 600; }
+.student-profile .student-profile-initials {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: clamp(8rem, 15vw, 12rem);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #e4eced;
+  color: #426479;
+  font: 500 clamp(2rem, 4vw, 3.3rem) var(--sans);
+}
+.student-profile .student-mila { display: inline-block; margin-top: .6rem; }
+.student-profile .student-mila .mila-wordmark { height: 1.4rem; vertical-align: middle; }
 .leader-card {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -210,6 +226,7 @@
 .researcher-appointments, .researcher-topics, .researcher-links { padding: 0; margin: 0; list-style: none; }
 .researcher-appointments { margin-top: .4rem; color: #435569; }
 .researcher-body { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(13rem, 1fr); gap: clamp(2rem, 8vw, 7rem); padding-block: clamp(2.5rem, 4.5vw, 4.6rem); }
+.researcher-body--solo { grid-template-columns: minmax(0, 1fr); }
 .researcher-body h2 { font-size: clamp(1.7rem, 2.3vw, 2.2rem); letter-spacing: -.04em; }
 .researcher-bio { max-width: 62ch; font-size: clamp(1.05rem, 1.35vw, 1.24rem); line-height: 1.62; margin: 1rem 0 1.65rem; }
 .researcher-topics { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }

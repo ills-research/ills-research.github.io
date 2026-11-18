@@ -181,11 +181,10 @@ def render_profile(member, fr, prefix):
 
 def student_card(student, fr, assets):
     name = escape(student['name'])
-    heading = name
-    if student.get('website'):
-        first, last = name.rsplit(' ', 1)
-        heading = (f'<a href="{escape(student["website"])}">{first} <span class="name-tail">{last}'
-                   '<span class="profile-arrow" aria-hidden="true">↗</span></span></a>')
+    first, last = name.rsplit(' ', 1)
+    profile = f'people/students/{escape(student["biography"]["slug"])}.html'
+    heading = (f'<a href="{profile}">{first} <span class="name-tail">{last}'
+               '<span class="profile-arrow" aria-hidden="true">→</span></span></a>')
     if student.get('image'):
         portrait = (f'<img class="member-photo" src="{assets}students/{escape(student["image"])}" '
                     'width="184" height="184" loading="lazy" decoding="async" alt="">')
@@ -218,6 +217,76 @@ def student_card(student, fr, assets):
           <p class="student-advisors"><strong>{'Codirection' if fr else 'Co-advisors'}</strong> {supervisors}</p>{linkedin}
         </div>
       </li>'''
+
+
+def render_student_profile(student, fr, prefix):
+    bio = student['biography']
+    t = lambda en, french: french if fr else en
+    assets = escape(f'{prefix}assets/')
+    kind = ('Doctorat en cotutelle' if fr else 'Joint doctorate (cotutelle)') if student['type'] == 'cotutelle' else (
+        'Doctorat en codirection' if fr else 'Co-advised doctorate'
+    )
+    affiliations = ''.join(
+        f'<li>{flagged_affiliation(institution, country, fr, assets)}</li>'
+        for country, institution in student['institutions']
+    )
+    advisors = ', '.join(escape(name) for name in student['advisors'])
+    if student.get('supervising_partner'):
+        marker = t(' (co-supervision)', ' (codirection)')
+        affiliations = affiliations.replace(
+            escape(student['supervising_partner']) + '</span></li>',
+            escape(student['supervising_partner']) + marker + '</span></li>'
+        )
+    topics = ''.join(f'<li>{escape(pair[fr])}</li>' for pair in bio['topics'])
+    website = student.get('website')
+    website_label = student.get('website_label', ['Personal website', 'Site personnel'])
+    if isinstance(website_label, str):
+        website_label = [website_label, website_label]
+    links_data = [
+        (website_label[fr], website),
+        ('Google Scholar', student.get('scholar')),
+        ('LinkedIn', student.get('linkedin')),
+        (t('Mila profile', 'Profil Mila'), student.get('mila_profile')),
+    ]
+    links = ''.join(
+        f'<li><a href="{escape(url)}">{escape(label)} <span aria-hidden="true">↗</span></a></li>'
+        for label, url in links_data if url
+    )
+    image = student.get('image')
+    if image:
+        portrait = (f'<img src="{prefix}assets/students/{escape(image)}" alt="" '
+                    'width="192" height="192" loading="lazy" decoding="async">')
+    else:
+        initials = escape(student['name'].split()[0][0] + student['name'].split()[-1][0])
+        portrait = f'<span class="member-photo student-initials student-profile-initials" aria-hidden="true">{initials}</span>'
+    badge = f'<a href="{escape(student["mila_profile"])}" class="student-mila">{mila_logo(assets)}</a>' if student.get('mila_profile') else ''
+    body_class = 'researcher-body' if links else 'researcher-body researcher-body--solo'
+    online_panel = (f'<aside aria-labelledby="profiles"><h2 id="profiles">{t("Find me online", "Liens professionnels")}</h2>'
+                    f'<ul class="researcher-links">{links}</ul></aside>') if links else ''
+    return f'''
+      <article class="researcher-profile student-profile">
+        <header class="researcher-head"><div class="wrap">
+          <a class="researcher-back" href="../../people.html#students"><span aria-hidden="true">←</span> {t('People', 'Équipe')}</a>
+          <div class="researcher-identity">
+            {portrait}
+            <div><p class="eyebrow">{t('ILLS doctoral project', 'Projet doctoral à l’ILLS')}</p>
+              <h1>{escape(student['name'])}</h1>
+              <p class="researcher-role">{kind}</p>
+              <ul class="researcher-appointments">{affiliations}</ul>
+              <p class="student-profile-advisors"><strong>{t('Co-advisors', 'Co-direction')}</strong> {advisors}</p>
+              {badge}
+            </div>
+          </div>
+        </div></header>
+        <div class="wrap {body_class}">
+          <section aria-labelledby="biography"><h2 id="biography">{t('Biography', 'Biographie')}</h2>
+            <p class="researcher-bio">{escape(bio['text'][fr])}</p>
+            <h3 class="micro">{t('Research topics', 'Thèmes de recherche')}</h3>
+            <ul class="researcher-topics">{topics}</ul>
+          </section>
+          {online_panel}
+        </div>
+      </article>'''
 
 
 def render(fr: bool, prefix: str) -> str:
