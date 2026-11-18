@@ -58,34 +58,50 @@ def home(fr,pre):
     </div><div class="hero-base"><span class="geography">Montréal, Canada <i></i> France</span>
       <nav class="overview-jumps" aria-label="{t("On this page","Sur cette page")}"><a href="#laboratory">{t("Laboratory","Laboratoire")}</a><a href="#partners">{t("Partners","Partenaires")}</a><a href="#contact">Contact</a></nav>
     </div></div></section>
-    <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">{t("Scientific programme","Programme scientifique")}</p><h2>{t("Research directions","Axes de recherche")}</h2><p class="research-intro">{t("Four questions about the foundations and uses of learning systems.","Quatre questions sur les fondements et les usages des systèmes d’apprentissage.")}</p></div><a class="link-arrow" href="research.html">{t("View programme","Voir le programme")}{icon()}</a></div><div class="axis-grid">{cards}</div></div></section>
+    <section class="section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">{t("Scientific programme","Programme scientifique")}</p><h2>{t("Research directions","Axes de recherche")}</h2><p class="research-intro">{t("How can learning systems stay reliable when data are uncertain or conditions change? Across four connected research areas, ILLS studies machine learning foundations, trustworthy generative AI, multi-agent AI and world models, and applications in healthcare and critical engineering. The programme also asks how to evaluate systems, protect privacy, and support responsible deployment in real settings.","Comment concevoir des systèmes d’apprentissage qui restent fiables lorsque les données sont incertaines ou que les conditions changent ? À travers quatre axes complémentaires, l’ILLS étudie les fondements de l’apprentissage automatique, l’IA générative digne de confiance, l’IA multi-agents et les modèles du monde, ainsi que les applications en santé et dans les systèmes d’ingénierie critiques. Le programme examine aussi l’évaluation, la protection de la vie privée et les conditions d’un déploiement responsable.")}</p></div><a class="link-arrow" href="research.html">{t("View programme","Voir le programme")}{icon()}</a></div><div class="axis-grid">{cards}</div></div></section>
     {laboratory.render(fr,pre)}
     {network.render(fr,pre)}
     {laboratory.render_contact(fr,pre)}'''
 
-def build_page(slug,fr,member=None):
+def build_page(slug,fr,member=None,student=None):
     def t(en,frn):return frn if fr else en
-    up='../' if member else ''
-    prefix=up+('../' if fr else '')
-    filename=f'people/{member["biography"]["slug"]}.html' if member else f'{slug}.html'
+    profile = bool(member or student)
+    up = ('../../../' if fr else '../../') if student else ('../' if member else '')
+    if student:
+        prefix = up
+    elif member:
+        prefix = up + ('../' if fr else '')
+    else:
+        prefix = '../' if fr else ''
+    if student:
+        filename=f'people/students/{student["biography"]["slug"]}.html'
+    else:
+        filename=f'people/{member["biography"]["slug"]}.html' if member else f'{slug}.html'
     altlang='en' if fr else 'fr'
-    alternate=up+('../' if fr else 'fr/')+filename
+    if student and fr:
+        alternate=up+filename
+    else:
+        alternate=up+('../' if fr else 'fr/')+filename
     page_title='International Laboratory on Learning Systems' if slug=='index' else next(r[1+fr] for r in NAV if r[0]==slug)
     if fr and slug=='index':page_title='Laboratoire international sur les systèmes d’apprentissage'
     if member:page_title=member['name']
-    description=member['biography']['text'][fr] if member else DESCRIPTIONS[slug][fr]
-    current='location' if member else 'page'
+    if student:page_title=student['name']
+    description=(member or student)['biography']['text'][fr] if profile else DESCRIPTIONS[slug][fr]
+    current='location' if profile else 'page'
     nav=''.join('<a href="'+up+r[0]+'.html"'+(f' aria-current="{current}"' if r[0]==slug else '')+'>'+escape(r[1+fr])+'</a>' for r in NAV)
     page_styles = {'index': ('network',), 'research': ('programme', 'publications'), 'people': ('people',),
                    'seminars-events': ('events',), 'news': ('events',)}
     extra = ''.join(f'<link rel="stylesheet" href="{prefix}{asset_url(name + ".css")}">' for name in page_styles.get(slug, ()))
     if slug == 'research':
         extra += f'<script defer src="{prefix}{asset_url("publications.js")}"></script>'
+        extra += f'<script defer src="{prefix}{asset_url("papers-carousel.js")}"></script>'
     if slug == 'index':
         extra += f'<script defer src="{prefix}{asset_url("hero-motion.js")}"></script>'
     logo_alt=t('ILLS home','Accueil de l’ILLS')
     if member:
         body = people.render_profile(member, fr, prefix)
+    elif student:
+        body = people.render_student_profile(student, fr, prefix)
     else:
         render = {
             'index': home, 'people': people.render, 'research': programme.render,
@@ -143,5 +159,6 @@ if __name__=='__main__':
     for fr in (False,True):
         for slug,*_ in NAV:build_page(slug,fr)
         for member in profiles:build_page('people',fr,member)
+        for student in people.STUDENTS:build_page('people',fr,student=student)
         for slug in LEGACY_PAGES:build_redirect(slug,fr)
-    print(f'Built {2 * (len(NAV) + len(profiles))} pages and {2 * len(LEGACY_PAGES)} redirects in site/.')
+    print(f'Built {2 * (len(NAV) + len(profiles) + len(people.STUDENTS))} pages and {2 * len(LEGACY_PAGES)} redirects in site/.')

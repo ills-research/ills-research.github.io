@@ -3,7 +3,61 @@
 from html import escape
 
 from content import funding, publications
-from content.research import AXES, FR_AXES
+from content.research import AXES, FR_AXES, FOUNDATIONS_PAPERS
+from content.research_papers import AXIS_PAPERS
+
+
+def render_axis_papers(fr: bool, prefix: str, axis_slug: str, papers: list) -> str:
+    section_title = 'Publications sélectionnées' if fr else 'Selected publications'
+    intro = (
+        'Quelques travaux de membres et d’étudiants de l’ILLS illustrent les questions de cet axe.'
+        if fr else
+        'A selection of ILLS member and student research connected to this axis.'
+    )
+    authors_label = 'Auteurs de l’ILLS' if fr else 'ILLS authors'
+    previous_label = 'Publications précédentes' if fr else 'Previous papers'
+    next_label = 'Publications suivantes' if fr else 'Next papers'
+    read_label = 'Lire l’article' if fr else 'Read paper'
+    position_label = 'sur' if fr else 'of'
+    cards = []
+    papers = sorted(papers, key=lambda paper: int(paper['year']))
+    total = len(papers)
+    for i, paper in enumerate(papers, 1):
+        title = escape(paper['title'])
+        authors = ', '.join(
+            f'<a href="{escape(author.get("url") or prefix + author["path"], quote=True)}">{escape(author["name"])}</a>'
+            for author in paper['ills_authors']
+        )
+        figure_src = paper.get('figure_url') or (prefix + 'assets/' + paper['figure'])
+        cards.append(
+            f'<article class="axis-paper-card" role="group" aria-roledescription="slide" '
+            f'aria-label="{i} {position_label} {total}">'
+            f'<a class="axis-paper-visual" href="{escape(paper["url"], quote=True)}" '
+            f'aria-label="{read_label}: {title}"><img src="{escape(figure_src, quote=True)}" '
+            f'alt="{escape(paper["figure_alt"][int(fr)], quote=True)}" loading="lazy" decoding="async"></a>'
+            f'<p class="axis-paper-credit"><a href="{escape(paper["url"], quote=True)}">'
+            f'{escape(paper["credit"])}</a><span aria-hidden="true">·</span>'
+            f'<a href="{escape(paper["license_url"], quote=True)}">{escape(paper["license"])}</a></p>'
+            f'<div class="axis-paper-copy"><p class="axis-paper-meta">{escape(paper["year"])} '
+            f'<span aria-hidden="true">·</span> {escape(paper["venue"])}</p>'
+            f'<h4><a href="{escape(paper["url"], quote=True)}">{title}</a></h4>'
+            f'<p class="axis-paper-summary">{escape(paper["summary"][int(fr)])}</p>'
+            f'<p class="axis-paper-authors"><span>{authors_label}:</span> {authors}</p></div>'
+            '</article>'
+        )
+    return (
+        f'<section class="axis-papers" aria-labelledby="{axis_slug}-papers-title" data-paper-carousel>'
+        '<div class="axis-papers-head"><div>'
+        f'<p class="eyebrow">{("Research in action" if not fr else "La recherche en pratique")}</p>'
+        f'<h3 id="{axis_slug}-papers-title">{section_title}</h3><p>{intro}</p></div>'
+        '<div class="axis-papers-controls">'
+        f'<button type="button" data-paper-prev aria-label="{previous_label}" disabled>←</button>'
+        f'<button type="button" data-paper-next aria-label="{next_label}">→</button>'
+        '</div></div>'
+        f'<div class="axis-paper-track" data-paper-track role="region" tabindex="0" '
+        f'aria-label="{section_title}" aria-roledescription="carousel">{"".join(cards)}</div>'
+        '</section>'
+    )
 
 
 def render(fr: bool, prefix: str) -> str:
@@ -71,6 +125,9 @@ def render(fr: bool, prefix: str) -> str:
                 f'<p>{escape(example["description"])}</p></section>'
             )
         parts.append('</div></article>')
+        papers = FOUNDATIONS_PAPERS if slug == 'foundations' else AXIS_PAPERS.get(slug, ())
+        if papers:
+            parts.append(render_axis_papers(fr, prefix, slug, papers))
     parts.append('</div></div>')
     parts.append(funding.render(fr, prefix))
     parts.append(publications.render(fr))

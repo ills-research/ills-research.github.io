@@ -48,6 +48,32 @@
 .research-project-logos a { display: inline-flex; align-items: center; justify-content: center; }
 .research-project-logos img { display: block; width: auto; height: 1.5rem; max-width: 4.8rem; object-fit: contain; }
 .programme-examples p { margin: 0; color: #425366; line-height: 1.65; font-size: 1rem; }
+.axis-papers { margin-top: clamp(2.7rem, 5vw, 4.5rem); }
+.axis-papers-head { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.25rem; }
+.axis-papers-head .eyebrow { margin: 0 0 .45rem; }
+.axis-papers-head h3 { margin: 0; font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.15; letter-spacing: -.035em; }
+.axis-papers-head > div:first-child > p:last-child { margin: .55rem 0 0; color: #425366; line-height: 1.55; }
+.axis-papers-controls { display: flex; flex: none; gap: .5rem; }
+.axis-papers-controls button { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid #c9d3df; border-radius: 50%; color: var(--navy); background: #fff; font-size: 1.2rem; cursor: pointer; }
+.axis-papers-controls button:hover:not(:disabled), .axis-papers-controls button:focus-visible { border-color: var(--blue); color: var(--blue); }
+.axis-papers-controls button:disabled { color: #9ca9b5; cursor: default; }
+.axis-paper-track { display: grid; grid-auto-columns: calc((100% - 1.15rem) / 2); grid-auto-flow: column; gap: 1.15rem; overflow-x: auto; overscroll-behavior-inline: contain; padding: .1rem .1rem .8rem; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #aebbc7 transparent; scrollbar-width: thin; }
+.axis-paper-card { min-width: 0; overflow: hidden; display: flex; flex-direction: column; scroll-snap-align: start; border: 1px solid #d7dfe6; border-radius: 5px; background: #fff; }
+.axis-paper-visual { display: grid; grid-template-rows: minmax(0, 1fr); place-items: center; height: clamp(11rem, 18vw, 14rem); padding: .75rem 1rem; background: #f5f7f8; overflow: hidden; }
+.axis-paper-visual img { display: block; min-width: 0; min-height: 0; width: 100%; height: 100%; object-fit: contain; }
+.axis-paper-credit { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem; margin: 0; padding: .55rem .9rem; border-bottom: 1px solid #e6ebef; color: #5b6d7d; font-size: .7rem; line-height: 1.4; }
+.axis-paper-credit a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }
+.axis-paper-credit a:hover, .axis-paper-credit a:focus-visible { color: var(--blue); }
+.axis-paper-copy { display: flex; flex: 1; flex-direction: column; padding: 1rem 1rem 1.1rem; }
+.axis-paper-meta { margin: 0 0 .55rem; color: #53677a; font: 600 .68rem/1.3 var(--mono); letter-spacing: .035em; text-transform: uppercase; }
+.axis-paper-copy h4 { margin: 0; font-size: 1.04rem; line-height: 1.35; letter-spacing: -.02em; }
+.axis-paper-copy h4 a { color: var(--ink); text-decoration-color: #b6c1cb; text-underline-offset: .18em; }
+.axis-paper-copy h4 a:hover, .axis-paper-copy h4 a:focus-visible { color: var(--blue); text-decoration-color: currentColor; }
+.axis-paper-summary { margin: .7rem 0 1rem; color: #425366; font-size: .91rem; line-height: 1.5; }
+.axis-paper-authors { margin: auto 0 0; color: #33455b; font-size: .79rem; line-height: 1.55; }
+.axis-paper-authors > span { display: block; margin-bottom: .12rem; color: #6b7a88; font-size: .68rem; font-weight: 600; letter-spacing: .025em; text-transform: uppercase; }
+.axis-paper-authors a { color: #263c55; text-decoration: underline; text-decoration-color: #b6c1cb; text-underline-offset: .16em; }
+.axis-paper-authors a:hover, .axis-paper-authors a:focus-visible { color: var(--blue); }
 .funding-section { border-top: 1px solid var(--line); }
 .funding-section .lead { max-width: 49rem; margin-bottom: 2rem; }
 .funding-group { border-top: 1px solid var(--line); }
@@ -122,4 +148,11 @@
   .programme-chapter-head { grid-template-columns: 1fr; gap: 1.05rem; }
   .programme-chapter-head img { width: min(100%, 32rem); height: auto; object-fit: contain; }
   .programme-examples { grid-template-columns: 1fr; gap: 1rem; }
+  .axis-papers-head { align-items: center; gap: 1rem; }
+  .axis-papers-head > div:first-child > p:last-child { max-width: 34rem; }
+  .axis-paper-track { grid-auto-columns: 100%; }
+  .axis-paper-visual { height: 13rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .axis-paper-track { scroll-behavior: auto; }
 }
