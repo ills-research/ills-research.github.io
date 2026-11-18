@@ -40,7 +40,7 @@ document.querySelectorAll('[data-paper-carousel]').forEach((carousel) => {
         left: atEnd ? 0 : Math.min(track.scrollLeft + step, track.scrollWidth - track.clientWidth),
         behavior: 'smooth',
       });
-    }, 5500);
+    }, 4500);
   };
 
   toggle.addEventListener('click', () => {
