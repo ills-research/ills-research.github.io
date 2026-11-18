@@ -53,10 +53,9 @@
 .axis-papers-head .eyebrow { margin: 0 0 .45rem; }
 .axis-papers-head h3 { margin: 0; font-size: clamp(1.45rem, 2.4vw, 2rem); line-height: 1.15; letter-spacing: -.035em; }
 .axis-papers-head > div:first-child > p:last-child { margin: .55rem 0 0; color: #425366; line-height: 1.55; }
-.axis-papers-controls { display: flex; flex: none; gap: .5rem; }
-.axis-papers-controls button { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid #c9d3df; border-radius: 50%; color: var(--navy); background: #fff; font-size: 1.2rem; cursor: pointer; }
-.axis-papers-controls button:hover:not(:disabled), .axis-papers-controls button:focus-visible { border-color: var(--blue); color: var(--blue); }
-.axis-papers-controls button:disabled { color: #9ca9b5; cursor: default; }
+.axis-papers-controls { display: flex; flex: none; }
+.axis-papers-controls button { border: 1px solid #c9d3df; border-radius: 999px; padding: .55rem .85rem; color: var(--navy); background: #fff; font: 600 .78rem/1.2 var(--sans); cursor: pointer; }
+.axis-papers-controls button:hover, .axis-papers-controls button:focus-visible { border-color: var(--blue); color: var(--blue); }
 .axis-paper-track { display: grid; grid-auto-columns: calc((100% - 1.15rem) / 2); grid-auto-flow: column; gap: 1.15rem; overflow-x: auto; overscroll-behavior-inline: contain; padding: .1rem .1rem .8rem; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-color: #aebbc7 transparent; scrollbar-width: thin; }
 .axis-paper-card { min-width: 0; overflow: hidden; display: flex; flex-direction: column; scroll-snap-align: start; border: 1px solid #d7dfe6; border-radius: 5px; background: #fff; }
 .axis-paper-visual { display: grid; grid-template-rows: minmax(0, 1fr); place-items: center; height: clamp(11rem, 18vw, 14rem); padding: .75rem 1rem; background: #f5f7f8; overflow: hidden; }

@@ -1,28 +1,87 @@
 document.querySelectorAll('[data-paper-carousel]').forEach((carousel) => {
   const track = carousel.querySelector('[data-paper-track]');
-  const previous = carousel.querySelector('[data-paper-prev]');
-  const next = carousel.querySelector('[data-paper-next]');
-  if (!track || !previous || !next) return;
-  const cards = Array.from(track.querySelectorAll('.axis-paper-card'));
+  const toggle = carousel.querySelector('[data-paper-toggle]');
+  if (!track || !toggle) return;
 
+  const cards = Array.from(track.querySelectorAll('.axis-paper-card'));
   if (cards.length < 2) return;
 
-  const updateControls = () => {
-    previous.disabled = track.scrollLeft <= 2;
-    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
-  };
-  const move = direction => {
-    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
-    const amount = cards[0].getBoundingClientRect().width + gap;
-    track.scrollBy({
-      left: direction * amount,
-      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-    });
+  const isFrench = document.documentElement.lang === 'fr';
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let userPaused = reducedMotion.matches;
+  let hoverPaused = false;
+  let focusPaused = false;
+  let interactionTimer;
+  let interval;
+
+  const updateToggle = () => {
+    const label = userPaused
+      ? (isFrench ? 'Reprendre le carrousel' : 'Play carousel')
+      : (isFrench ? 'Mettre le carrousel en pause' : 'Pause carousel');
+    const visibleLabel = userPaused ? (isFrench ? 'Reprendre' : 'Play') : 'Pause';
+    toggle.textContent = visibleLabel;
+    toggle.setAttribute('aria-label', label);
   };
 
-  previous.addEventListener('click', () => move(-1));
-  next.addEventListener('click', () => move(1));
-  track.addEventListener('scroll', updateControls, { passive: true });
-  new ResizeObserver(updateControls).observe(track);
-  updateControls();
+  const stop = () => {
+    window.clearInterval(interval);
+    interval = undefined;
+  };
+
+  const start = () => {
+    stop();
+    if (userPaused || hoverPaused || focusPaused) return;
+    interval = window.setInterval(() => {
+      const style = getComputedStyle(track);
+      const gap = Number.parseFloat(style.columnGap) || 0;
+      const step = cards[0].getBoundingClientRect().width + gap;
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 3;
+      track.scrollTo({
+        left: atEnd ? 0 : Math.min(track.scrollLeft + step, track.scrollWidth - track.clientWidth),
+        behavior: 'smooth',
+      });
+    }, 6500);
+  };
+
+  toggle.addEventListener('click', () => {
+    userPaused = !userPaused;
+    updateToggle();
+    start();
+  });
+
+  carousel.addEventListener('pointerenter', () => {
+    hoverPaused = true;
+    stop();
+  });
+  carousel.addEventListener('pointerleave', () => {
+    hoverPaused = false;
+    start();
+  });
+  carousel.addEventListener('focusin', () => {
+    focusPaused = true;
+    stop();
+  });
+  carousel.addEventListener('focusout', (event) => {
+    if (!carousel.contains(event.relatedTarget)) {
+      focusPaused = false;
+      start();
+    }
+  });
+
+  track.addEventListener('pointerdown', () => {
+    stop();
+    window.clearTimeout(interactionTimer);
+  });
+  track.addEventListener('pointerup', () => {
+    window.clearTimeout(interactionTimer);
+    interactionTimer = window.setTimeout(start, 9000);
+  });
+  reducedMotion.addEventListener('change', (event) => {
+    if (event.matches) userPaused = true;
+    updateToggle();
+    start();
+  });
+
+  updateToggle();
+  start();
 });

@@ -15,8 +15,7 @@ def render_axis_papers(fr: bool, prefix: str, axis_slug: str, papers: list) -> s
         'A selection of ILLS member and student research connected to this axis.'
     )
     authors_label = 'Auteurs de l’ILLS' if fr else 'ILLS authors'
-    previous_label = 'Publications précédentes' if fr else 'Previous papers'
-    next_label = 'Publications suivantes' if fr else 'Next papers'
+    pause_label = 'Mettre le carrousel en pause' if fr else 'Pause carousel'
     read_label = 'Lire l’article' if fr else 'Read paper'
     position_label = 'sur' if fr else 'of'
     cards = []
@@ -51,9 +50,8 @@ def render_axis_papers(fr: bool, prefix: str, axis_slug: str, papers: list) -> s
         f'<p class="eyebrow">{("Research in action" if not fr else "La recherche en pratique")}</p>'
         f'<h3 id="{axis_slug}-papers-title">{section_title}</h3><p>{intro}</p></div>'
         '<div class="axis-papers-controls">'
-        f'<button type="button" data-paper-prev aria-label="{previous_label}" disabled>←</button>'
-        f'<button type="button" data-paper-next aria-label="{next_label}">→</button>'
-        '</div></div>'
+        f'<button type="button" data-paper-toggle aria-label="{pause_label}">'
+        f'{("Pause" if not fr else "Pause")}</button></div></div>'
         f'<div class="axis-paper-track" data-paper-track role="region" tabindex="0" '
         f'aria-label="{section_title}" aria-roledescription="carousel">{"".join(cards)}</div>'
         '</section>'
