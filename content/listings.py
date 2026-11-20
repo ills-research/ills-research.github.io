@@ -28,6 +28,21 @@ NEWS_INTRO = (
 
 CALENDAR = [
     {
+        "id": "ills-renewal-2027-2031",
+        "kind": ("Laboratory milestone", "Étape importante du laboratoire"),
+        "start": "2027-01-01",
+        "date": ("From 2027 · five-year period", "À partir de 2027 · période de cinq ans"),
+        "details": ("France · Québec", "France · Québec"),
+        "title": (
+            "ILLS begins a new five-year period",
+            "L’ILLS entame une nouvelle période de cinq ans",
+        ),
+        "summary": (
+            "Renewed for 2027–2031, the International Laboratory on Learning Systems will continue its France–Québec research partnership, bringing teams together in Montréal for joint research and doctoral training.",
+            "Renouvelé pour 2027–2031, l’International Laboratory on Learning Systems poursuivra son partenariat de recherche entre la France et le Québec, en réunissant les équipes à Montréal autour de projets conjoints et de la formation doctorale.",
+        ),
+    },
+    {
         "id": "workshop-nlp-2024",
         "kind": ("Workshop", "Atelier"),
         "start": "2024-10-01",
@@ -581,7 +596,7 @@ OPENINGS = [
 ]
 
 
-def render_entry(entry, fr, prefix):
+def render_entry(entry, fr, prefix, compact=False, target=None):
     attributes = ''
     kind = ''
     date_text = escape(entry['date'][fr])
@@ -589,7 +604,7 @@ def render_entry(entry, fr, prefix):
         start = entry['start']
         end = entry.get('end', start)
         attributes = f' id="{entry["id"]}" data-start="{start}" data-end="{end}"'
-        if not fr and 'featured_en' in entry:
+        if not compact and not fr and 'featured_en' in entry:
             return render_featured_workshop(entry, attributes)
         kind_label = escape(entry['kind'][fr])
         english_kind = entry['kind'][0].lower()
@@ -602,6 +617,14 @@ def render_entry(entry, fr, prefix):
             )
         kind = f'<span class="notice-kind">{award_icon}{kind_label}</span>'
         date_text = f'<time datetime="{start}">{date_text}</time>'
+    if compact:
+        title = escape(entry["title"][fr])
+        if target:
+            title = f'<a href="{escape(target)}#{escape(entry["id"])}">{title}</a>'
+        return f'''<li class="notice-row notice-row--compact"{attributes}>
+          <div class="notice-meta">{kind}<p>{date_text}</p><p>{escape(entry["details"][fr])}</p></div>
+          <div class="notice-copy"><h3>{title}</h3>
+            <p class="notice-summary">{escape(entry["summary"][fr])}</p></div></li>'''
     link = ''
     if 'links' in entry:
         link = ''.join(
@@ -820,46 +843,205 @@ def render_featured_workshop(entry, attributes):
       </li>"""
 
 
+
+EVENT_NAV = (
+    ('seminars-events', ('Aperçu', 'Overview'), 'overview'),
+    ('upcoming-events', ('À venir', 'Upcoming events'), 'upcoming'),
+    ('seminars', ('Séminaires', 'Seminars'), 'seminars'),
+    ('past-events', ('Événements passés', 'Past events'), 'past'),
+    ('institutional-visits', ('Visites institutionnelles', 'Institutional visits'), 'visits'),
+)
+
+
+def _event_slug(slug):
+    if slug == 'seminars-events':
+        return 'overview'
+    if slug == 'upcoming-events':
+        return 'upcoming'
+    if slug == 'seminars' or slug.startswith('seminars-archive-'):
+        return 'seminars'
+    if slug == 'past-events' or slug.startswith('past-events-'):
+        return 'past'
+    if slug == 'institutional-visits' or slug.startswith('institutional-visits-'):
+        return 'visits'
+    return ''
+
+
+def render_event_nav(slug, fr):
+    active = _event_slug(slug)
+    items = []
+    for route, labels, category in EVENT_NAV:
+        current = ' aria-current="page"' if category == active else ''
+        items.append(f'<a href="{route}.html"{current}>{escape(labels[0 if fr else 1])}</a>')
+    label = 'Navigation des événements' if fr else 'Events navigation'
+    return f'<nav class="event-subnav" aria-label="{label}"><div class="wrap">{"".join(items)}</div></nav>'
+
+
+def event_archive_slugs():
+    today = datetime.now(ZoneInfo('America/Toronto')).date().isoformat()
+    seminar_years = sorted({talk['date'][:4] for talk in seminars.SEMINARS if talk['date'] < today}, reverse=True)
+    visit_years = sorted({item['start'][:4] for item in INSTITUTIONAL_EVENTS
+                          if item.get('end', item['start']) < today}, reverse=True)
+    visit_ids = {item['id'] for item in INSTITUTIONAL_EVENTS}
+    past_years = sorted({item['start'][:4] for item in CALENDAR
+                         if item['id'] not in visit_ids and item.get('end', item['start']) < today}, reverse=True)
+    return ([f'seminars-archive-{year}' for year in seminar_years]
+            + [f'past-events-{year}' for year in past_years]
+            + [f'institutional-visits-{year}' for year in visit_years])
+
+
+def _years_nav(years, route, selected, fr):
+    links = []
+    for year in years:
+        current = ' aria-current="page"' if year == selected else ''
+        links.append(f'<a href="{route}-{year}.html"{current}>{year}</a>')
+    label = 'Archives par année' if fr else 'Browse by year'
+    return f'<nav class="event-year-nav" aria-label="{label}">{"".join(links)}</nav>'
+
+
+def _event_title(slug, fr, year=None):
+    if year:
+        if slug.startswith('seminars-archive-'):
+            return (f'Séminaires · {year}', f'Seminars · {year}')[0 if fr else 1]
+        if slug.startswith('institutional-visits-'):
+            return (f'Visites institutionnelles · {year}', f'Institutional visits · {year}')[0 if fr else 1]
+        return (f'Événements passés · {year}', f'Past events · {year}')[0 if fr else 1]
+    labels = {
+        'seminars-events': CALENDAR_TITLE,
+        'upcoming-events': ('Événements à venir', 'Upcoming events'),
+        'seminars': ('Séminaires', 'Seminars'),
+        'past-events': ('Événements passés', 'Past events'),
+        'institutional-visits': ('Visites institutionnelles', 'Institutional visits'),
+    }
+    return labels[slug][0 if fr else 1]
+
+
+def _event_hero(title, intro, fr):
+    eyebrow = 'Événements de l’ILLS' if fr else 'ILLS events'
+    return f'''<header class="inner-hero"><div class="wrap"><p class="eyebrow">{eyebrow}</p>
+      <h1>{escape(title)}</h1><p class="lead">{escape(intro)}</p></div></header>'''
+
+
+def _visible_calendar_events(fr):
+    return [item for item in CALENDAR if not (fr and len(item['title']) == 1)]
+
+
+def _event_year(item):
+    return item['start'][:4]
+
+
 def render_calendar(fr, prefix):
     today = datetime.now(ZoneInfo('America/Toronto')).date().isoformat()
-    upcoming = []
-    past = []
-    for item in sorted(CALENDAR, key=lambda item: item['start']):
-        if fr and len(item['title']) == 1:
-            continue
-        if item.get('end', item['start']) >= today:
-            upcoming.append(item)
-        else:
-            past.append(item)
+    entries = _visible_calendar_events(fr)
+    upcoming = sorted((item for item in entries if item.get('end', item['start']) >= today),
+                      key=lambda item: item['start'])
+    visit_ids = {item['id'] for item in INSTITUTIONAL_EVENTS}
+    past = sorted((item for item in entries if item.get('end', item['start']) < today
+                   and item['id'] not in visit_ids), key=lambda item: item['start'], reverse=True)
+    visits = sorted((item for item in INSTITUTIONAL_EVENTS if not (fr and len(item['title']) == 1)),
+                    key=lambda item: item['start'], reverse=True)
+    labels = {
+        'upcoming': ('Événements à venir', 'Upcoming events'),
+        'past': ('Événements passés', 'Past events'),
+        'visits': ('Visites institutionnelles', 'Institutional visits'),
+    }
+    view_all = 'Tout voir' if fr else 'View all'
     groups = [
-        ('upcoming', 'Événements à venir' if fr else 'Upcoming events', upcoming,
-         'Aucun événement à venir n’a encore été annoncé.' if fr else 'No upcoming events have been announced.'),
-        ('seminars', 'Séminaires' if fr else 'Seminars', (), ''),
-        ('archive', 'Événements passés' if fr else 'Past events', reversed(past),
-         'Aucun événement passé à afficher.' if fr else 'There are no past events to display.'),
+        ('upcoming', upcoming[:3], 'upcoming-events.html'),
+        ('seminars', None, 'seminars.html'),
+        ('past', past[:3], 'past-events.html'),
+        ('visits', visits[:3], 'institutional-visits.html'),
     ]
-    if not fr:
-        groups.append(('institutional-visits', 'Institutional visits',
-                       sorted(INSTITUTIONAL_EVENTS, key=lambda item: item['start'], reverse=True),
-                       'No institutional visits have been listed.'))
-    jumps = ''.join(f'<a href="#{slug}">{escape(heading)}</a>' for slug, heading, _, _ in groups)
-    parts = [f"""
-      <header class="inner-hero"><div class="wrap">
-        <h1>{escape(CALENDAR_TITLE[fr])}</h1><p class="lead">{CALENDAR_INTRO[fr]}</p>
-        <nav class="section-jumps" aria-label="{'Sur cette page' if fr else 'On this page'}">
-          {jumps}
-        </nav>
-      </div></header>
-      <div class="wrap calendar" data-calendar-date="{today}">"""]
-    for slug, heading, entries, message in groups:
-        if slug == 'seminars':
-            parts.append(seminars.render(fr, today, prefix))
+    parts = [_event_hero(CALENDAR_TITLE[fr], CALENDAR_INTRO[fr], fr),
+             f'<div class="wrap calendar" data-calendar-date="{today}">']
+    for group, group_entries, target in groups:
+        if group == 'seminars':
+            parts.append(seminars.render_preview(fr, today))
             continue
-        rows = ''.join(render_entry(item, fr, prefix) for item in entries)
-        parts.append(f"""
-          <section id="{slug}" class="notice-section calendar-section" aria-labelledby="{slug}-heading">
-            <h2 id="{slug}-heading">{escape(heading)}</h2>
-            <p class="calendar-empty"{' hidden' if rows else ''}>{message}</p>
-            <ul class="notice-list">{rows}</ul>
-          </section>""")
+        title = labels[group][0 if fr else 1]
+        section_id = 'archive' if group == 'past' else 'institutional-visits' if group == 'visits' else group
+        rows = ''.join(render_entry(item, fr, prefix, compact=True,
+                                    target=(f'upcoming-events.html' if group == 'upcoming' else
+                                            f'past-events-{_event_year(item)}.html' if group == 'past' else
+                                            f'institutional-visits-{_event_year(item)}.html'))
+                       for item in group_entries)
+        if group == 'upcoming':
+            empty = 'Aucun événement à venir n’a encore été annoncé.' if fr else 'No upcoming events have been announced.'
+        else:
+            empty = 'Aucun élément à afficher.' if fr else 'Nothing to show yet.'
+        parts.append(f'''<section id="{section_id}" class="notice-section calendar-section" aria-labelledby="{group}-heading">
+          <div class="event-section-head"><h2 id="{group}-heading">{escape(title)}</h2>
+            <a class="link-arrow" href="{target}">{view_all} <span aria-hidden="true">→</span></a></div>
+          <p class="calendar-empty"{' hidden' if rows else ''}>{empty}</p><ul class="notice-list">{rows}</ul></section>''')
     return ''.join(parts) + '</div>'
+
+
+def render_event_page(slug, fr, prefix):
+    today = datetime.now(ZoneInfo('America/Toronto')).date().isoformat()
+    year = None
+    for route_prefix in ('seminars-archive-', 'past-events-', 'institutional-visits-'):
+        if slug.startswith(route_prefix):
+            year = slug[len(route_prefix):]
+            break
+    title = _event_title(slug, fr, year)
+    if slug == 'seminars-events':
+        return render_calendar(fr, prefix)
+    if slug == 'seminars' or slug.startswith('seminars-archive-'):
+        return seminars.render_archive(fr, today, prefix, year)
+
+    if slug == 'upcoming-events':
+        entries = [item for item in _visible_calendar_events(fr)
+                   if item.get('end', item['start']) >= today]
+        entries.sort(key=lambda item: item['start'])
+        rows = ''.join(render_entry(item, fr, prefix) for item in entries)
+        empty = 'Aucun événement à venir n’a encore été annoncé.' if fr else 'No upcoming events have been announced.'
+        intro = ('Découvrez les prochains rendez-vous de l’ILLS à Montréal et en ligne.' if fr
+                 else 'Find upcoming ILLS events in Montréal and online.')
+        list_title = title
+        archive_nav = ''
+        heading_id = 'upcoming-heading'
+    elif slug == 'past-events' or slug.startswith('past-events-'):
+        visit_ids = {item['id'] for item in INSTITUTIONAL_EVENTS}
+        entries = [item for item in _visible_calendar_events(fr)
+                   if item.get('end', item['start']) < today and item['id'] not in visit_ids]
+        entries.sort(key=lambda item: item['start'], reverse=True)
+        years = sorted({_event_year(item) for item in entries}, reverse=True)
+        if year:
+            entries = [item for item in entries if _event_year(item) == year]
+            list_title = ('Événements' if fr else 'Events') + ' · ' + year
+            intro = (f'Archives des événements de l’ILLS pour {year}.' if fr
+                     else f'ILLS event archive for {year}.')
+        else:
+            entries = entries[:3]
+            list_title = 'Événements passés récents' if fr else 'Recent past events'
+            intro = ('Ateliers, rencontres et temps forts récents du laboratoire. Les archives sont organisées par année.' if fr
+                     else 'Recent workshops, meetings and milestones. Browse older events by year.')
+        archive_nav = _years_nav(years, 'past-events', year, fr)
+        rows = ''.join(render_entry(item, fr, prefix) for item in entries)
+        empty = 'Aucun événement passé à afficher.' if fr else 'There are no past events to display.'
+        heading_id = 'past-heading'
+    elif slug == 'institutional-visits' or slug.startswith('institutional-visits-'):
+        entries = sorted((item for item in INSTITUTIONAL_EVENTS if not (fr and len(item['title']) == 1)),
+                         key=lambda item: item['start'], reverse=True)
+        years = sorted({_event_year(item) for item in entries}, reverse=True)
+        if year:
+            entries = [item for item in entries if _event_year(item) == year]
+            list_title = ('Visites' if fr else 'Visits') + ' · ' + year
+            intro = (f'Archives des visites institutionnelles de l’ILLS pour {year}.' if fr
+                     else f'Institutional visit archive for {year}.')
+        else:
+            entries = entries[:3]
+            list_title = 'Visites institutionnelles récentes' if fr else 'Recent institutional visits'
+            intro = ('Découvrez les visites de délégations et les rencontres institutionnelles à l’ILLS. Les archives sont organisées par année.' if fr
+                     else 'Delegation visits and institutional meetings at ILLS. Browse older visits by year.')
+        archive_nav = _years_nav(years, 'institutional-visits', year, fr)
+        rows = ''.join(render_entry(item, fr, prefix) for item in entries)
+        empty = 'Aucune visite institutionnelle à afficher.' if fr else 'There are no institutional visits to display.'
+        heading_id = 'visits-heading'
+    else:
+        raise ValueError(f'Unknown event page: {slug}')
+
+    content = f'''<section class="notice-section calendar-section" aria-labelledby="{heading_id}">
+      <h2 id="{heading_id}">{escape(list_title)}</h2>{archive_nav}<ul class="notice-list">{rows}</ul>
+      <p class="calendar-empty"{' hidden' if rows else ''}>{empty}</p></section>'''
+    return _event_hero(title, intro, fr) + f'<div class="wrap calendar">{content}</div>'

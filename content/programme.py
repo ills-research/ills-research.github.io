@@ -100,10 +100,10 @@ def render(fr: bool, prefix: str) -> str:
         slug = axis['slug']
         parts.extend([
             f'<article class="programme-chapter" id="{slug}" aria-labelledby="chapter-{n}">',
-            '<div class="programme-chapter-head"><div>',
+            '<div class="programme-chapter-head no-illustration"><div>',
             f'<p class="eyebrow">{axis_word} {roman_numerals[n - 1]}</p>',
             f'<h2 id="chapter-{n}">{escape(axis["title"])}</h2></div>',
-            f'<img src="{assets}art/axis-{n}.png" width="759" height="503" alt="" loading="lazy"></div>',
+            '</div>',
             f'<p class="programme-body">{escape(axis["description"])}</p>',
             '<div class="programme-examples">',
         ])

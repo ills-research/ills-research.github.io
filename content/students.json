@@ -627,7 +627,8 @@
       ]
     },
     "linkedin": "https://www.linkedin.com/in/maxime-darrin/",
-    "scholar": "https://scholar.google.com/citations?user=RvosZu4AAAAJ"
+    "scholar": "https://scholar.google.com/citations?user=RvosZu4AAAAJ",
+    "former": true
   },
   {
     "name": "Zouhair Ziani",
@@ -680,7 +681,8 @@
         "https://www.etsmtl.ca/en/study-at-ets/professors/scoulombe",
         "https://www.uphf.fr/iemn/publications"
       ]
-    }
+    },
+    "former": true
   },
   {
     "name": "Yujing Zhang",
@@ -739,7 +741,8 @@
     "website_label": [
       "Doctoral thesis",
       "Thèse de doctorat"
-    ]
+    ],
+    "former": true
   },
   {
     "name": "Imrane Zaakour",
@@ -913,7 +916,8 @@
     "website_label": [
       "Paris-Saclay profile",
       "Profil Paris-Saclay"
-    ]
+    ],
+    "former": true
   },
   {
     "name": "Antoine Andurao",
@@ -1017,7 +1021,8 @@
         "https://fr.linkedin.com/in/matthieuduboisnlp"
       ]
     },
-    "linkedin": "https://fr.linkedin.com/in/matthieuduboisnlp"
+    "linkedin": "https://fr.linkedin.com/in/matthieuduboisnlp",
+    "former": true
   },
   {
     "name": "Arthur Satouf",

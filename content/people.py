@@ -219,6 +219,20 @@ def student_card(student, fr, assets):
       </li>'''
 
 
+def visitor_avatar(visitor, assets):
+    """Render a circular portrait with a consistent initials fallback."""
+    words = visitor['name'].replace('-', ' ').split()
+    initials = escape((words[0][0] + words[-1][0]).upper()) if words else '?'
+    image = visitor.get('image')
+    portrait = ''
+    if image:
+        source = image if image.startswith(('https://', 'http://')) else assets + escape(image)
+        portrait = (f'<img class="visitor-avatar" src="{source}" alt="" width="60" height="60" '
+                    'loading="lazy" decoding="async">')
+    return (f'<span class="visitor-avatar-wrap"><span class="visitor-avatar-initials" '
+            f'aria-hidden="true">{initials}</span>{portrait}</span>')
+
+
 def render_student_profile(student, fr, prefix):
     bio = student['biography']
     t = lambda en, french: french if fr else en
@@ -296,6 +310,7 @@ def render(fr: bool, prefix: str) -> str:
     associate_title = 'Membres associés' if fr else 'Associate members'
     past_title = 'Anciens membres' if fr else 'Past members'
     student_title = 'Étudiantes et étudiants' if fr else 'Students'
+    former_student_title = 'Anciennes et anciens étudiants' if fr else 'Former students'
     visitors_title = 'Chercheuses et chercheurs invités' if fr else 'Visiting researchers'
     team_alt = (
         'Les membres de l’ILLS posent sur plusieurs rangs dans un escalier baigné de lumière.'
@@ -307,10 +322,12 @@ def render(fr: bool, prefix: str) -> str:
     visiting = [member for member in MEMBERS if member['status'] == 'visiting']
     doctoral_names = {student['name'].casefold() for student in STUDENTS}
     other_students = [m for m in MEMBERS if m['status'] == 'student' and m['name'].casefold() not in doctoral_names]
+    current_students = [student for student in STUDENTS if not student.get('former')]
+    former_students = [student for student in STUDENTS if student.get('former')]
     student_groups = []
     for kind, title_en, title_fr in [('cotutelle', 'Joint doctorates (cotutelle)', 'Doctorats en cotutelle'),
                                      ('co-advised', 'Co-advised doctorates', 'Doctorats en codirection')]:
-        group = ''.join(student_card(s, fr, assets) for s in STUDENTS if s['type'] == kind)
+        group = ''.join(student_card(s, fr, assets) for s in current_students if s['type'] == kind)
         student_groups.append(f'<h3 class="student-group-heading">{title_fr if fr else title_en}</h3>'
                               f'<ul class="directory-grid student-grid">{group}</ul>')
     leaders = sorted((m for m in current if 'leadership_order' in m), key=lambda m: m['leadership_order'])
@@ -325,8 +342,9 @@ def render(fr: bool, prefix: str) -> str:
     visiting_names = {member['name'].casefold() for member in visiting}
     listed_visitors = [visitor for visitor in VISITORS if visitor['name'].casefold() not in visiting_names]
     visitor_links = ''.join(
-        f'<li><a href="{escape(visitor["website"])}">{escape(visitor["name"])}'
-        ' <span class="profile-arrow" aria-hidden="true">↗</span></a></li>'
+        f'<li><a class="visitor-card" href="{escape(visitor["website"])}">'
+        f'{visitor_avatar(visitor, assets)}<span class="visitor-card-name">{escape(visitor["name"])}'
+        '<span class="profile-arrow" aria-hidden="true">↗</span></span></a></li>'
         for visitor in listed_visitors
     )
 
@@ -340,6 +358,7 @@ def render(fr: bool, prefix: str) -> str:
               <a href="#associate-members">{associate_title} <span aria-hidden="true">↓</span></a>
               <a href="#past-members">{past_title} <span aria-hidden="true">↓</span></a>
               <a href="#students">{student_title} <span aria-hidden="true">↓</span></a>
+              <a href="#former-students">{former_student_title} <span aria-hidden="true">↓</span></a>
               <a href="#visiting-researchers">{visitors_title} <span aria-hidden="true">↓</span></a>
             </nav>
           </div>
@@ -369,9 +388,11 @@ def render(fr: bool, prefix: str) -> str:
         </ul>
       </div></section>
       <section class="section directory-section" aria-labelledby="students"><div class="wrap">
-        <h2 id="students">{student_title} <span class="member-count">({len(STUDENTS) + len(other_students)})</span></h2>
+        <h2 id="students">{student_title} <span class="member-count">({len(current_students) + len(other_students)})</span></h2>
         {''.join(student_groups)}
         {directory_grid(other_students)}
+        <h3 class="student-group-heading" id="former-students">{former_student_title} <span class="member-count">({len(former_students)})</span></h3>
+        <ul class="directory-grid student-grid">{''.join(student_card(student, fr, assets) for student in former_students)}</ul>
       </div></section>
       <section class="section directory-section" aria-labelledby="visiting-researchers"><div class="wrap" id="visitors">
         <h2 id="visiting-researchers">{visitors_title} <span class="member-count">({len(visiting) + len(listed_visitors)})</span></h2>

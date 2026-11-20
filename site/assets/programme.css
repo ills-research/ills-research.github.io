@@ -39,6 +39,7 @@
 .programme-chapter-head .eyebrow { margin: 0 0 .75rem; }
 .programme-chapter-head h2 { font-size: clamp(1.8rem, 3.5vw, 3.25rem); line-height: 1.04; margin: 0; text-wrap: balance; }
 .programme-chapter-head img { display: block; width: 100%; height: auto; border-radius: 2px; }
+.programme-chapter-head.no-illustration { grid-template-columns: minmax(0, 1fr); }
 .programme-body { margin: 1.55rem 0; color: #33455b; font-size: clamp(1.08rem, 1.45vw, 1.25rem); line-height: 1.65; max-width: 66ch; }
 .programme-examples { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
 .programme-examples section { border-top: 1px solid #d7dfe6; padding-top: 1.2rem; }

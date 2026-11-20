@@ -29,7 +29,7 @@ syncLanguageLink();
 addEventListener('hashchange', syncLanguageLink);
 
 // Static HTML supplies the calendar on build day. Reclassify entries on later visits.
-document.querySelectorAll('img.seminar-speaker-avatar').forEach((image) => {
+document.querySelectorAll('img.seminar-speaker-avatar, img.visitor-avatar').forEach((image) => {
   image.addEventListener('error', () => image.remove(), { once: true });
 });
 

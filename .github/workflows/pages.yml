@@ -38,7 +38,7 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Restore website image and document assets
-        run: unzip -qo ills-site-assets.zip -d . -x site/assets/style.css site/assets/events.css site/assets/network.css site/assets/publications.css site/assets/publications.js site/assets/programme.css site/assets/people.css
+        run: unzip -qo ills-site-assets.zip -d . -x site/assets/style.css site/assets/events.css site/assets/network.css site/assets/publications.css site/assets/publications.js site/assets/programme.css site/assets/people.css site/assets/site.js
       - name: Generate both language editions and check internal links
         run: |
           python3 -B build.py

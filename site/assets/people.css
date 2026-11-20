@@ -203,16 +203,54 @@
   padding: 0;
 }
 .visitor-list li { border-top: 1px solid var(--line); }
-.visitor-list a {
+.visitor-list .visitor-card {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: .6rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .9rem;
   padding: .85rem 0;
   color: #174f68;
   font-weight: 600;
 }
-.visitor-list a:hover, .visitor-list a:focus-visible { text-decoration: underline; text-underline-offset: .18em; }
+.visitor-avatar-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 0 0 3.75rem;
+  width: 3.75rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #d6e2e4;
+  border-radius: 50%;
+  background: #e9f0f1;
+  color: #31586b;
+}
+.visitor-avatar-initials {
+  font: 600 .92rem/1 var(--sans);
+  letter-spacing: .02em;
+}
+.visitor-avatar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 35%;
+  background: #e9f0f1;
+}
+.visitor-card-name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex: 1;
+  gap: .5rem;
+}
+.visitor-list .visitor-card:hover .visitor-card-name,
+.visitor-list .visitor-card:focus-visible .visitor-card-name {
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
 
 .researcher-head { background: #f0f6f6; border-bottom: 1px solid #d7e4e4; }
 .researcher-head .wrap, .researcher-body { max-width: 1330px; }

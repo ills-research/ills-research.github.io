@@ -44,7 +44,7 @@ def icon(name='arrow',small=False):
 def home(fr,pre):
     def t(en,frn):return frn if fr else en
     axes=FR_AXES if fr else AXES
-    cards=''.join(f'''<a class="axis-card" href="research.html#{a["slug"]}"><img class="axis-image" src="{pre}assets/art/axis-{i}.png" alt="" width="759" height="503" loading="lazy"><div class="axis-card-copy"><span class="micro">{t("Research axis","Axe de recherche")} {ROMAN_NUMERALS[i-1]}</span><h3>{a["short_title"]}</h3><p>{a["teaser"]}</p><span class="card-arrow">{icon('arrow',True)}</span></div></a>''' for i,a in enumerate(axes,1))
+    cards=''.join(f'''<a class="axis-card" href="research.html#{a["slug"]}"><div class="axis-illustration"><img class="axis-image" src="{pre}assets/art/axis-{i}.png" alt="" width="759" height="503" loading="lazy"></div><div class="axis-card-copy"><span class="micro">{t("Research axis","Axe de recherche")} {ROMAN_NUMERALS[i-1]}</span><h3>{a["short_title"]}</h3><p>{a["teaser"]}</p><span class="card-arrow">{icon('arrow',True)}</span></div></a>''' for i,a in enumerate(axes,1))
     heading=t('<span>International</span> <span>Laboratory on</span> <em>Learning Systems</em>','<span>Laboratoire international</span> <em>sur les systèmes d’apprentissage</em>')
     return f'''
     <section class="hero"><div class="wrap"><div class="hero-main">
@@ -65,6 +65,8 @@ def home(fr,pre):
 
 def build_page(slug,fr,member=None,student=None):
     def t(en,frn):return frn if fr else en
+    event_pages = {'seminars-events', 'upcoming-events', 'seminars', 'past-events', 'institutional-visits', *listings.event_archive_slugs()}
+    is_event_page = slug in event_pages
     profile = bool(member or student)
     up = ('../../../' if fr else '../../') if student else ('../' if member else '')
     if student:
@@ -82,15 +84,22 @@ def build_page(slug,fr,member=None,student=None):
         alternate=up+filename
     else:
         alternate=up+('../' if fr else 'fr/')+filename
-    page_title='International Laboratory on Learning Systems' if slug=='index' else next(r[1+fr] for r in NAV if r[0]==slug)
+    if is_event_page:
+        archive_year = slug.rsplit('-', 1)[1] if slug in listings.event_archive_slugs() else None
+        page_title = listings._event_title(slug, fr, archive_year)
+    else:
+        page_title='International Laboratory on Learning Systems' if slug=='index' else next(r[1+fr] for r in NAV if r[0]==slug)
     if fr and slug=='index':page_title='Laboratoire international sur les systèmes d’apprentissage'
     if member:page_title=member['name']
     if student:page_title=student['name']
-    description=(member or student)['biography']['text'][fr] if profile else DESCRIPTIONS[slug][fr]
+    description=(member or student)['biography']['text'][fr] if profile else (listings.CALENDAR_INTRO[fr] if is_event_page else DESCRIPTIONS[slug][fr])
     current='location' if profile else 'page'
-    nav=''.join('<a href="'+up+r[0]+'.html"'+(f' aria-current="{current}"' if r[0]==slug else '')+'>'+escape(r[1+fr])+'</a>' for r in NAV)
+    nav=''.join('<a href="'+up+r[0]+'.html"'+(f' aria-current="{current}"' if r[0]==slug or (is_event_page and r[0]=='seminars-events') else '')+'>'+escape(r[1+fr])+'</a>' for r in NAV)
     page_styles = {'index': ('network',), 'research': ('programme', 'publications'), 'people': ('people',),
-                   'seminars-events': ('events',), 'news': ('events',)}
+                   'seminars-events': ('events',), 'upcoming-events': ('events',), 'seminars': ('events',),
+                   'past-events': ('events',), 'institutional-visits': ('events',), 'news': ('events',)}
+    if is_event_page and slug not in page_styles:
+        page_styles[slug] = ('events',)
     extra = ''.join(f'<link rel="stylesheet" href="{prefix}{asset_url(name + ".css")}">' for name in page_styles.get(slug, ()))
     if slug == 'research':
         extra += f'<script defer src="{prefix}{asset_url("publications.js")}"></script>'
@@ -98,7 +107,9 @@ def build_page(slug,fr,member=None,student=None):
     if slug == 'index':
         extra += f'<script defer src="{prefix}{asset_url("hero-motion.js")}"></script>'
     logo_alt=t('ILLS home','Accueil de l’ILLS')
-    if member:
+    if is_event_page:
+        body = listings.render_event_page(slug,fr,prefix)
+    elif member:
         body = people.render_profile(member, fr, prefix)
     elif student:
         body = people.render_student_profile(student, fr, prefix)
@@ -116,12 +127,13 @@ def build_page(slug,fr,member=None,student=None):
 <title>{escape(page_title)} | ILLS</title><meta name="description" content="{escape(description)}"><meta name="theme-color" content="#09192f">
 <link rel="alternate" hreflang="{altlang}" href="{alternate}"><link rel="icon" type="image/png" sizes="64x64" href="{prefix}assets/brand/favicon.png">
 <link rel="stylesheet" href="{prefix}{asset_url("style.css")}">{extra}<script defer src="{prefix}{asset_url("site.js")}"></script></head>
-<body><a class="skip" href="#main">{t("Skip to content","Aller au contenu")}</a>
+<body{' class="events-page"' if is_event_page else ''}><a class="skip" href="#main">{t("Skip to content","Aller au contenu")}</a>
 <header class="site-header"><div class="wrap navrow"><a class="brand" href="{up}index.html" aria-label="{logo_alt}"><img src="{prefix}assets/brand/logo-color.png" width="600" height="240" alt="ILLS"></a>
 <nav id="main-nav" class="main-nav" aria-label="{t("Main navigation","Navigation principale")}">{nav}</nav>
 <div class="nav-end"><a class="lang-link" href="{alternate}" hreflang="{altlang}" lang="{altlang}" aria-label="{t("Version française","English version")}">{icon('globe')}{altlang.upper()}</a>
 <a class="btn header-contact" href="{up}index.html#contact">Contact{icon('out',True)}</a>
 <button class="menu-toggle" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">{icon('menu')}</button></div></div></header>
+{listings.render_event_nav(slug,fr) if is_event_page else ''}
 <main id="main">{body}</main>
 <footer class="footer"><div class="wrap"><div class="foot-row"><a href="{up}index.html" aria-label="{logo_alt}"><img src="{prefix}assets/brand/logo-dark.png" alt="ILLS" width="600" height="240" loading="lazy"></a><nav class="foot-links" aria-label="{t("Footer","Pied de page")}"><a href="{up}index.html#contact">Contact</a><a href="{up}research.html">{t("Research programme","Programme scientifique")}</a><a href="{up}research.html#publications">Publications</a></nav></div><div class="foot-base"><span>International Laboratory on Learning Systems</span><span>Montréal, Québec · France</span></div></div></footer>
 </body></html>''',encoding='utf-8')
@@ -131,7 +143,6 @@ LEGACY_PAGES = {
     'laboratory': ('index.html#laboratory', 'The laboratory', 'Le laboratoire'),
     'network': ('index.html#partners', 'Partner institutions', 'Établissements partenaires'),
     'publications': ('research.html#publications', 'Publications', 'Publications'),
-    'seminars': ('seminars-events.html#seminars', 'Seminars', 'Séminaires'),
     'events': ('seminars-events.html', *listings.CALENDAR_TITLE),
 }
 
@@ -156,9 +167,11 @@ def build_redirect(slug, fr):
 
 if __name__=='__main__':
     profiles=[m for m in people.MEMBERS if 'biography' in m]
+    event_pages=['upcoming-events','seminars','past-events','institutional-visits',*listings.event_archive_slugs()]
     for fr in (False,True):
         for slug,*_ in NAV:build_page(slug,fr)
+        for slug in event_pages:build_page(slug,fr)
         for member in profiles:build_page('people',fr,member)
         for student in people.STUDENTS:build_page('people',fr,student=student)
         for slug in LEGACY_PAGES:build_redirect(slug,fr)
-    print(f'Built {2 * (len(NAV) + len(profiles) + len(people.STUDENTS))} pages and {2 * len(LEGACY_PAGES)} redirects in site/.')
+    print(f'Built {2 * (len(NAV) + len(event_pages) + len(profiles) + len(people.STUDENTS))} pages and {2 * len(LEGACY_PAGES)} redirects in site/.')

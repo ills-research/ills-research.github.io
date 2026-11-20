@@ -44,10 +44,10 @@
 .seminar-speakers { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem; margin: 0 0 .7rem; }
 .seminar-speaker-person { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; color: #185b66; font-weight: 600; text-decoration: none; }
 .seminar-speaker-person:hover .seminar-speaker-name { text-decoration: underline; text-underline-offset: .2em; }
-.seminar-speaker-avatar-wrap { position: relative; display: block; width: 52px; height: 52px; flex: 0 0 52px; }
+.seminar-speaker-avatar-wrap { position: relative; display: block; width: 52px; height: 52px; flex: 0 0 52px; overflow: hidden; border-radius: 50%; }
 .seminar-speaker-avatar { display: block; width: 52px; height: 52px; flex: 0 0 52px; border-radius: 50%; object-fit: cover; background: #e5eef0; }
 .seminar-speaker-avatar-wrap > .seminar-speaker-avatar { position: absolute; inset: 0; }
-.seminar-speaker-initials { display: grid; place-items: center; color: #185b66; border: 1px solid #b7d4ce; background: #e5f2ef; font-size: .85rem; font-weight: 700; }
+.seminar-speaker-initials { display: grid; place-items: center; color: #185b66; border: 1px solid #b7d4ce; border-radius: 50%; background: #e5f2ef; font-size: .85rem; font-weight: 700; }
 .seminar-speaker-name { max-width: 18ch; }
 .seminar-talk h4 { font-size: clamp(1.15rem, 1.6vw, 1.55rem); font-weight: 540; line-height: 1.22; }
 .seminar-talk details { margin-top: .8rem; }
@@ -56,3 +56,36 @@
 .seminar-talk h5 { margin: 1.25rem 0 .2rem; font-size: 1rem; }
 .seminar-talk details p { margin: .45rem 0 .85rem; color: var(--ink); }
 .seminar-references { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .92rem; }
+
+.events-page .site-header { position: sticky; top: 0; z-index: 20; }
+.event-subnav { position: sticky; top: 83px; z-index: 10; border-bottom: 1px solid var(--line); background: rgb(255 255 255 / .97); backdrop-filter: blur(12px); }
+.event-subnav .wrap { display: flex; gap: clamp(1rem, 3vw, 2.5rem); overflow-x: auto; scrollbar-width: thin; }
+.event-subnav a { display: inline-flex; align-items: center; min-height: 48px; flex: 0 0 auto; color: #41546a; font-size: .86rem; font-weight: 600; }
+.event-subnav a:hover, .event-subnav a[aria-current="page"] { color: #0d6c76; }
+.event-subnav a[aria-current="page"] { box-shadow: inset 0 -2px #168d91; }
+.event-subnav a:focus-visible { outline-offset: -4px; }
+.event-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.event-section-head h2 { margin-bottom: 1.25rem; }
+.event-section-head .link-arrow { flex: 0 0 auto; color: var(--blue); font-size: .9rem; }
+.notice-row--compact .notice-summary { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.notice-row--compact h3 a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: .18em; }
+.seminar-preview-list { list-style: none; margin: 0; padding: 0; }
+.seminar-preview-item { display: grid; grid-template-columns: minmax(8rem, .7fr) minmax(0, 2.3fr); gap: 1.3rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+.seminar-preview-item time { color: #185b66; font-size: .88rem; font-weight: 650; }
+.seminar-preview-item p { margin-bottom: .35rem; color: var(--muted); font-size: .88rem; }
+.seminar-preview-item h3 { font-size: clamp(1.05rem, 1.45vw, 1.35rem); font-weight: 560; letter-spacing: -.02em; }
+.seminar-preview-item h3 a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: .18em; }
+.event-year-nav { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 1.5rem; }
+.event-year-nav a { display: inline-flex; min-width: 3.25rem; min-height: 2.25rem; align-items: center; justify-content: center; padding: .35rem .7rem; border: 1px solid #ccd7df; border-radius: 3px; color: #174f68; font-size: .85rem; font-weight: 600; }
+.event-year-nav a:hover, .event-year-nav a[aria-current="page"] { border-color: #168d91; color: #0d6469; background: #eaf7f5; }
+.event-archive-label { margin-top: 2rem; font-size: 1.1rem; font-weight: 600; letter-spacing: -.015em; }
+.calendar-section { scroll-margin-top: 155px; }
+@media (max-width: 1040px) {
+  .event-subnav { top: 69px; }
+}
+@media (max-width: 600px) {
+  .event-subnav .wrap { gap: 1.25rem; }
+  .event-subnav a { min-height: 44px; font-size: .8rem; }
+  .event-section-head { align-items: flex-start; flex-direction: column; gap: 0; }
+  .seminar-preview-item { grid-template-columns: 1fr; gap: .25rem; }
+}

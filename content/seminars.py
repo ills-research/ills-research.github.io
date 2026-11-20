@@ -128,3 +128,87 @@ def render(fr, today, prefix=''):
     return f'''<section id="seminars" class="notice-section calendar-section" aria-labelledby="seminars-heading">
         <h2 id="seminars-heading">{'Séminaires' if fr else 'Seminars'}</h2>
         <p class="seminar-zone">{zone}</p>{''.join(sections)}</section>'''
+
+
+def _archive_years(today):
+    return sorted({talk['date'][:4] for talk in SEMINARS if talk['date'] < today}, reverse=True)
+
+
+def render_preview(fr, today):
+    """Show a few seminar dates and titles on the Events overview."""
+    upcoming = sorted((talk for talk in SEMINARS if talk['date'] >= today),
+                      key=lambda talk: (talk['date'], talk.get('time', '')))
+    past = sorted((talk for talk in SEMINARS if talk['date'] < today),
+                  key=lambda talk: (talk['date'], talk.get('time', '')), reverse=True)
+    talks = upcoming[:3] if upcoming else past[:3]
+    lang = 'fr' if fr else 'en'
+    rows = []
+    for talk in talks:
+        day = date.fromisoformat(talk['date'])
+        day_label = '1ᵉʳ' if fr and day.day == 1 else str(day.day)
+        date_label = f"{day_label} {MONTHS[lang][day.month - 1]} {day.year}"
+        speakers = escape(talk['speaker'].replace(' · ', ', '))
+        rows.append(f'''<li class="seminar-preview-item">
+          <time datetime="{talk['date']}">{date_label}</time>
+          <div><p>{speakers}</p><h3><a href="seminars.html#{escape(talk['id'])}">{escape(talk['title'])}</a></h3></div>
+        </li>''')
+    empty = ('Aucun séminaire n’est annoncé pour le moment.' if fr
+             else 'No seminars have been announced yet.')
+    zone = 'Les horaires sont indiqués à l’heure de Montréal.' if fr else 'Times are local to Montréal.'
+    view_all = 'Tous les séminaires et archives' if fr else 'All seminars and archives'
+    return f'''<section id="seminars" class="notice-section calendar-section" aria-labelledby="seminars-heading">
+      <div class="event-section-head"><h2 id="seminars-heading">{'Séminaires' if fr else 'Seminars'}</h2>
+        <a class="link-arrow" href="seminars.html">{view_all} <span aria-hidden="true">→</span></a></div>
+      <p class="seminar-zone">{zone}</p>
+      <ul class="seminar-preview-list">{''.join(rows)}</ul>
+      <p class="calendar-empty"{' hidden' if rows else ''}>{empty}</p></section>'''
+
+
+def render_archive(fr, today, prefix='', year=None):
+    """Render a small recent-talk page or a single year's complete archive."""
+    lang = 'fr' if fr else 'en'
+    upcoming = sorted((talk for talk in SEMINARS if talk['date'] >= today),
+                      key=lambda talk: (talk['date'], talk.get('time', '')))
+    past = sorted((talk for talk in SEMINARS if talk['date'] < today),
+                  key=lambda talk: (talk['date'], talk.get('time', '')), reverse=True)
+    years = _archive_years(today)
+    year_links = ''.join(
+        f'<a href="seminars-archive-{item}.html"{' aria-current="page"' if item == year else ''}>{item}</a>'
+        for item in years
+    )
+    archive_label = 'Archives par année' if fr else 'Browse seminar archives by year'
+    zone = 'Les horaires sont indiqués à l’heure de Montréal.' if fr else 'All times are local to Montréal.'
+    if year:
+        talks = [talk for talk in past if talk['date'].startswith(str(year))]
+        title = f"Séminaires · {year}" if fr else f"Seminars · {year}"
+        heading = title
+        empty = f"Aucun séminaire passé en {year}." if fr else f"No past seminars in {year}."
+        intro = ('Archives des séminaires de l’ILLS pour cette année.' if fr
+                 else 'ILLS seminar archive for this year.')
+        rows = ''.join(render_talk(talk, fr, prefix) for talk in talks)
+        content = f'''<section class="notice-section calendar-section" aria-labelledby="seminar-archive-heading">
+          <h2 id="seminar-archive-heading">{escape(heading)}</h2>
+          <nav class="event-year-nav" aria-label="{archive_label}">{year_links}</nav>
+          <p class="seminar-zone">{zone}</p><ul class="notice-list">{rows}</ul>
+          <p class="calendar-empty"{' hidden' if rows else ''}>{empty}</p></section>'''
+    else:
+        title = 'Séminaires' if fr else 'Seminars'
+        heading = 'Séminaires passés — les plus récents' if fr else 'Recent past seminars'
+        empty_upcoming = 'Aucun séminaire à venir n’a été annoncé.' if fr else 'No upcoming seminars have been announced.'
+        upcoming_rows = ''.join(render_talk(talk, fr, prefix) for talk in upcoming)
+        recent_rows = ''.join(render_talk(talk, fr, prefix) for talk in past[:4])
+        empty_past = 'Aucun séminaire passé à afficher.' if fr else 'There are no past seminars to display.'
+        archive_links = f'<nav class="event-year-nav" aria-label="{archive_label}">{year_links}</nav>' if years else ''
+        content = f'''<section class="notice-section calendar-section" aria-labelledby="upcoming-seminars-heading">
+          <h2 id="upcoming-seminars-heading">{'Séminaires à venir' if fr else 'Upcoming seminars'}</h2>
+          <p class="seminar-zone">{zone}</p><ul class="notice-list">{upcoming_rows}</ul>
+          <p class="calendar-empty"{' hidden' if upcoming_rows else ''}>{empty_upcoming}</p></section>
+          <section class="notice-section calendar-section" aria-labelledby="recent-seminars-heading">
+          <h2 id="recent-seminars-heading">{heading}</h2><ul class="notice-list">{recent_rows}</ul>
+          <p class="calendar-empty"{' hidden' if recent_rows else ''}>{empty_past}</p>
+          <h3 class="event-archive-label">{archive_label}</h3>{archive_links}</section>'''
+        intro = ('Prochains rendez-vous, derniers échanges et archives annuelles des séminaires de l’ILLS.' if fr
+                 else 'Upcoming talks, recent discussions and yearly archives from the ILLS seminar series.')
+    hero = f'''<header class="inner-hero"><div class="wrap"><p class="eyebrow">{'Événements de l’ILLS' if fr else 'ILLS events'}</p>
+      <h1>{escape(title)}</h1><p class="lead">{escape(intro)}</p></div></header>'''
+    return hero + f'<div class="wrap calendar">{content}</div>'

@@ -5,6 +5,7 @@ from functools import lru_cache
 from html import escape
 import json
 from pathlib import Path
+from datetime import date
 from urllib.parse import urlencode
 import unicodedata
 import re
@@ -278,7 +279,11 @@ def render(fr: bool) -> str:
     member_options = []
     for person in people:
         pid = member_ids()[person['name']]
-        years = str(person['start']) if person['start'] == person['end'] else f"{person['start']}–{person['end']}"
+        end_date = date(person['end'], 12, 31)
+        if person['start'] == person['end'] or end_date > date.today():
+            years = str(person['start'])
+        else:
+            years = f"{person['start']}–{person['end']}"
         member_options.append(f'<option value="{escape(pid)}">{escape(person["name"])} · {years}</option>')
     intro = t('Browse works from member publication windows spanning 2022–Present. Matching preprint and published records are combined.',
               'Parcourez les travaux selon les périodes de publication des membres, de 2022 à aujourd’hui. Les prépublications et versions publiées correspondantes sont regroupées.')

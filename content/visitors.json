@@ -1,7 +1,8 @@
 [
   {
     "name": "Xavier Alameda-Pineda",
-    "website": "https://xavirema.eu/"
+    "website": "https://xavirema.eu/",
+    "image": "https://xavirema.eu/assets/xavi-square.jpg"
   },
   {
     "name": "Habiboulaye Amadou Boubacar",
@@ -13,59 +14,73 @@
   },
   {
     "name": "Eric Aubinais",
-    "website": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/"
+    "website": "https://www.imo.universite-paris-saclay.fr/en/perso/eric-aubinais/",
+    "image": "students/eric-aubinais.webp"
   },
   {
     "name": "Olivier Beaumont",
-    "website": "https://www.labri.fr/perso/obeaumon/"
+    "website": "https://www.labri.fr/perso/obeaumon/",
+    "image": "https://www.labri.fr/perso/obeaumon/index_files/image006.jpg"
   },
   {
     "name": "Sonia Ben Mokhtar",
-    "website": "https://sites.google.com/view/sonia-benmokhtar/accueil"
+    "website": "https://sites.google.com/view/sonia-benmokhtar/accueil",
+    "image": "https://liris.cnrs.fr/system/files/styles/photo_membre/private/photo_membre/photo_sonia.jpg?itok=xs-OA0f-"
   },
   {
     "name": "Anne Benoit",
-    "website": "https://graal.ens-lyon.fr/~abenoit/"
+    "website": "https://graal.ens-lyon.fr/~abenoit/",
+    "image": "https://graal.ens-lyon.fr/~abenoit/img/ab17.jpg"
   },
   {
     "name": "Quentin Bertrand",
-    "website": "https://qb3.github.io/"
+    "website": "https://qb3.github.io/",
+    "image": "https://qb3.github.io/GlobalScholars-0796.jpg"
   },
   {
     "name": "Claire Boyer",
-    "website": "https://www.imo.universite-paris-saclay.fr/~claire.boyer/"
+    "website": "https://www.imo.universite-paris-saclay.fr/~claire.boyer/",
+    "image": "https://www.carmin.tv/media/cache/speaker_high/uploads/speaker/2024-12-19_Boyer-b091fd04dfbfa7dc8c9e896412807a7c.jpg"
   },
   {
     "name": "Ninon Burgos",
-    "website": "https://ninonburgos.com/"
+    "website": "https://ninonburgos.com/",
+    "image": "https://ninonburgos.com/files/ninon-burgos.jpg"
   },
   {
     "name": "Florina Ciorba",
-    "website": "https://dmi.unibas.ch/de/personen/florina-m-ciorba/"
+    "website": "https://dmi.unibas.ch/de/personen/florina-m-ciorba/",
+    "image": "https://avatar.unibas.ch/image/FB724B20-4102-4B17-9B12-92A5B6D71377/m"
   },
   {
     "name": "Pierre Colombo",
-    "website": "https://pierrecolombo.github.io/"
+    "website": "https://pierrecolombo.github.io/",
+    "image": "https://pierrecolombo.github.io/photo.jpg"
   },
   {
     "name": "Gustave Cortal",
-    "website": "https://gustavecortal.com/"
+    "website": "https://gustavecortal.com/",
+    "image": "https://gustavecortal.com/_astro/gustave-cortal-photo.Cfrt_nhK_tRnla.webp"
   },
   {
     "name": "Géraldine Damnati",
-    "website": "https://sites.google.com/site/geraldinedamnati/"
+    "website": "https://sites.google.com/site/geraldinedamnati/",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuw7GVipZzwGMyuYfOQw33Edm5kSrQPPnvhfjynB-eJ2753yddA3aQklk&s=10"
   },
   {
     "name": "Matthieu Dubois",
-    "website": "https://www.isir.upmc.fr/en/personnel/duboism/"
+    "website": "https://www.isir.upmc.fr/en/personnel/duboism/",
+    "image": "students/matthieu-dubois.webp"
   },
   {
     "name": "Pierre Duhamel",
-    "website": "https://l2s.centralesupelec.fr/en/u/duhamel-pierre/"
+    "website": "https://l2s.centralesupelec.fr/en/u/duhamel-pierre/",
+    "image": "https://l2s.centralesupelec.fr/wp-content/uploads/00-L2S-profile-pictures/P.Duhamel-100x100.jpg"
   },
   {
     "name": "Lautaro Estienne",
-    "website": "https://www.lisn.upsaclay.fr/membres/estienne-lautaro/"
+    "website": "https://www.lisn.upsaclay.fr/membres/estienne-lautaro/",
+    "image": "students/lautaro-estienne.webp"
   },
   {
     "name": "Benoit Favre",
@@ -73,15 +88,18 @@
   },
   {
     "name": "Enzo Ferrante",
-    "website": "https://eferrante.github.io/"
+    "website": "https://eferrante.github.io/",
+    "image": "https://eferrante.github.io/images/enzo.jpg"
   },
   {
     "name": "Leo Fillioux",
-    "website": "https://leofillioux.github.io/"
+    "website": "https://leofillioux.github.io/",
+    "image": "https://leofillioux.github.io/assets/img/profile.png?7ef838037a040a3cf23c6418a157d43e="
   },
   {
     "name": "Alain Finkel",
-    "website": "https://lmf.cnrs.fr/AlainFinkel/"
+    "website": "https://lmf.cnrs.fr/AlainFinkel/",
+    "image": "https://lmf.cnrs.fr/downloads/AlainFinkel/alain_finkel.jpeg"
   },
   {
     "name": "Loïc Fosse",
@@ -89,15 +107,18 @@
   },
   {
     "name": "Ana Gainaru",
-    "website": "https://www.ornl.gov/staff-profile/ana-gainaru"
+    "website": "https://www.ornl.gov/staff-profile/ana-gainaru",
+    "image": "https://ana-gainaru.com/assets/images/header.jpg"
   },
   {
     "name": "Claire Gardent",
-    "website": "https://members.loria.fr/CGardent/"
+    "website": "https://members.loria.fr/CGardent/",
+    "image": "https://members.loria.fr/CGardent/img/cg-mars26-small-credits.jpg"
   },
   {
     "name": "Eric Gaussier",
-    "website": "https://lig-aptikal.imag.fr/~gaussier/"
+    "website": "https://lig-aptikal.imag.fr/~gaussier/",
+    "image": "https://www.iufrance.fr/assets/images/e/GAUSSIER%20Eric-188e688e.png"
   },
   {
     "name": "Maxime Gonthier",
@@ -105,7 +126,8 @@
   },
   {
     "name": "Guillaume Gravier",
-    "website": "https://orcid.org/0000-0002-2266-5682"
+    "website": "https://orcid.org/0000-0002-2266-5682",
+    "image": "https://media.letelegramme.fr/api/v1/images/view/6650bdb938845c1d9f61252d/web_golden_xl/6650bdb938845c1d9f61252d.1"
   },
   {
     "name": "Julia Gusak",
@@ -117,7 +139,8 @@
   },
   {
     "name": "Shahin Kamali",
-    "website": "https://www.eecs.yorku.ca/~kamalis/"
+    "website": "https://www.eecs.yorku.ca/~kamalis/",
+    "image": "https://www.eecs.yorku.ca/~kamalis/assets/shahin-kamali.jpg"
   },
   {
     "name": "Jinmo Kim",
@@ -125,19 +148,23 @@
   },
   {
     "name": "Marc Lafon",
-    "website": "https://marclafon.github.io/"
+    "website": "https://marclafon.github.io/",
+    "image": "https://marclafon.github.io/assets/img/prof_pic.jpg"
   },
   {
     "name": "Gwénolé Lecorvé",
-    "website": "https://cv.hal.science/gwenole-lecorve"
+    "website": "https://cv.hal.science/gwenole-lecorve",
+    "image": "https://media.licdn.com/dms/image/v2/D4D03AQEkwp0oDO__XQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1727295869358?e=2147483647&v=beta&t=8S8Wz63_gZDKTCtbQVJlUyiHv27mFU0h26BH_i25GTQ"
   },
   {
     "name": "Mathias Lécuyer",
-    "website": "https://mathias.lecuyer.me/"
+    "website": "https://mathias.lecuyer.me/",
+    "image": "https://www.cs.ubc.ca/sites/default/files/styles/profile_page/public/people/Mathias%20Lecuyer%202023%20Profile.jpg?h=7309cab5&itok=6E2iGXeZ"
   },
   {
     "name": "Damien Lesens",
-    "website": "https://damienlesens.github.io/"
+    "website": "https://damienlesens.github.io/",
+    "image": "https://damienlesens.github.io/images/photo_damien_carre.jpg"
   },
   {
     "name": "Laércio Lima Pilla",
@@ -145,19 +172,23 @@
   },
   {
     "name": "Loris Marchal",
-    "website": "https://perso.ens-lyon.fr/loris.marchal/"
+    "website": "https://perso.ens-lyon.fr/loris.marchal/",
+    "image": "people/loris-marchal.webp"
   },
   {
     "name": "Ségolène Martin",
-    "website": "https://segolenemartin.github.io/"
+    "website": "https://segolenemartin.github.io/",
+    "image": "https://segolenemartin.github.io/images/me.png"
   },
   {
     "name": "Ricard Marxer",
-    "website": "https://www.ricardmarxer.com/"
+    "website": "https://www.ricardmarxer.com/",
+    "image": "people/ricard-marxer.webp"
   },
   {
     "name": "Pierre Marza",
-    "website": "https://pierremarza.github.io/"
+    "website": "https://pierremarza.github.io/",
+    "image": "https://pierremarza.github.io/assets/img/profile_picture.jpg"
   },
   {
     "name": "Anissa Mokraoui",
@@ -169,15 +200,18 @@
   },
   {
     "name": "Julien Nicolas",
-    "website": "https://liris.cnrs.fr/page-membre/julien-nicolas"
+    "website": "https://liris.cnrs.fr/page-membre/julien-nicolas",
+    "image": "students/julien-nicolas.webp"
   },
   {
     "name": "Michele Orrù",
-    "website": "https://tumbolandia.net/"
+    "website": "https://tumbolandia.net/",
+    "image": "https://pbs.twimg.com/profile_images/1747911133728583680/Nhv2SfSH_400x400.jpg"
   },
   {
     "name": "Édouard Oyallon",
-    "website": "https://www.isir.upmc.fr/personnel/oyallon/"
+    "website": "https://www.isir.upmc.fr/personnel/oyallon/",
+    "image": "https://edouardoyallon.github.io/edouardo.jpg"
   },
   {
     "name": "Taylan Özden",
@@ -185,7 +219,8 @@
   },
   {
     "name": "Romain Pereira",
-    "website": "https://github.com/rpereira-dev"
+    "website": "https://github.com/rpereira-dev",
+    "image": "https://avatars.githubusercontent.com/u/4389335?s=64&v=4"
   },
   {
     "name": "Lucas Perotin",
@@ -193,7 +228,8 @@
   },
   {
     "name": "Maxime Peyrard",
-    "website": "https://peyrardm.github.io/"
+    "website": "https://peyrardm.github.io/",
+    "image": "https://peyrardm.github.io/assets/img/prof_pic.jpg?56691bc7426a5c82088004512125f0e4="
   },
   {
     "name": "Rafael Pinot",
@@ -209,7 +245,8 @@
   },
   {
     "name": "Frank Rudzicz",
-    "website": "https://web.cs.dal.ca/~rudzicz/"
+    "website": "https://web.cs.dal.ca/~rudzicz/",
+    "image": "https://web.cs.dal.ca/~rudzicz/images/frank-rudzicz.jpg"
   },
   {
     "name": "Benoît Sagot",
@@ -217,39 +254,48 @@
   },
   {
     "name": "Yves Sallez",
-    "website": "https://www.uphf.fr/en/lamih/membres/sallez_yves"
+    "website": "https://www.uphf.fr/en/lamih/membres/sallez_yves",
+    "image": "https://sir.uphf.fr/images/photoCV/SALLEZ_88_sallez_yves.jpg"
   },
   {
     "name": "Arthur Satouf",
-    "website": "https://mila.quebec/en/directory/arthur-satouf"
+    "website": "https://mila.quebec/en/directory/arthur-satouf",
+    "image": "students/arthur-satouf.webp"
   },
   {
     "name": "Jorge Silva",
-    "website": "https://jorgesil77.github.io/"
+    "website": "https://jorgesil77.github.io/",
+    "image": "https://jorgesil77.github.io/authors/admin/avatar_hu0082dbb25f0d064142fc8cc0d84a4c0c_185354_250x250_fill_q90_lanczos_center.jpg"
   },
   {
     "name": "Oliver Sinnen",
-    "website": "https://profiles.auckland.ac.nz/o-sinnen"
+    "website": "https://profiles.auckland.ac.nz/o-sinnen",
+    "image": "https://profiles.auckland.ac.nz/o-sinnen/thumbnail"
   },
   {
     "name": "Babak Taati",
-    "website": "https://www.cs.toronto.edu/~taati/"
+    "website": "https://www.cs.toronto.edu/~taati/",
+    "image": "https://www.cs.toronto.edu/~taati/BabakTaati.jpg"
   },
   {
     "name": "Enzo Tartaglione",
-    "website": "https://enzotarta.github.io/"
+    "website": "https://enzotarta.github.io/",
+    "image": "https://enzotarta.github.io/assets/img/foto_recentequadrata.png"
   },
   {
     "name": "Nicolas Thome",
-    "website": "https://thome.isir.upmc.fr/"
+    "website": "https://thome.isir.upmc.fr/",
+    "image": "people/nicolas-thome.webp"
   },
   {
     "name": "Giuseppe Valenzise",
-    "website": "https://l2s.centralesupelec.fr/en/u/valenzise-giuseppe/"
+    "website": "https://l2s.centralesupelec.fr/en/u/valenzise-giuseppe/",
+    "image": "https://l2s.centralesupelec.fr/wp-content/uploads/valenzise-giuseppe/photo_small-1-100x100.jpeg"
   },
   {
     "name": "Serena Villata",
-    "website": "https://webusers.i3s.unice.fr/~villata/Home.html"
+    "website": "https://webusers.i3s.unice.fr/~villata/Home.html",
+    "image": "https://www.ccnen.fr/sites/default/files/styles/large/public/2021-09/VILLATA%20Serena.jpg.png?itok=C892_0H5"
   },
   {
     "name": "Frédéric Vivien",
@@ -257,7 +303,8 @@
   },
   {
     "name": "Rajini Wijayawardana",
-    "website": "https://cs.uchicago.edu/people/rajini-wijayawardana/"
+    "website": "https://cs.uchicago.edu/people/rajini-wijayawardana/",
+    "image": "https://cs.uchicago.edu/wp-content/uploads/2021/12/2697%402x-114x114.jpg"
   },
   {
     "name": "Félix Wirth",
@@ -265,10 +312,12 @@
   },
   {
     "name": "Yang Xu",
-    "website": "https://www.cs.toronto.edu/~yangxu/"
+    "website": "https://www.cs.toronto.edu/~yangxu/",
+    "image": "https://www.cs.toronto.edu/~yangxu/pic.JPG"
   },
   {
     "name": "François Yvon",
-    "website": "https://www.isir.upmc.fr/personnel/yvon/?lang=en"
+    "website": "https://www.isir.upmc.fr/personnel/yvon/?lang=en",
+    "image": "https://www.isir.upmc.fr/wp-content/uploads/2023/09/Yvon-2019.jpeg"
   }
 ]
