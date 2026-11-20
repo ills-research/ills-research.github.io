@@ -4,12 +4,14 @@ from pathlib import Path
 from html import escape
 from functools import lru_cache
 from hashlib import sha256
+from datetime import date
 from content import programme, network, laboratory, people, listings
 
 ROMAN_NUMERALS = ("I", "II", "III", "IV")
 from content.research import AXES, FR_AXES
 
 OUT=Path(__file__).resolve().parent/'site'
+COPYRIGHT_YEAR = date.today().year
 NAV=[
  ('index','Overview','Accueil'),
  ('people','People','Équipe'),
@@ -135,7 +137,7 @@ def build_page(slug,fr,member=None,student=None):
 <button class="menu-toggle" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">{icon('menu')}</button></div></div></header>
 {listings.render_event_nav(slug,fr) if is_event_page else ''}
 <main id="main">{body}</main>
-<footer class="footer"><div class="wrap"><div class="foot-row"><a href="{up}index.html" aria-label="{logo_alt}"><img src="{prefix}assets/brand/logo-dark.png" alt="ILLS" width="600" height="240" loading="lazy"></a><nav class="foot-links" aria-label="{t("Footer","Pied de page")}"><a href="{up}index.html#contact">Contact</a><a href="{up}research.html">{t("Research programme","Programme scientifique")}</a><a href="{up}research.html#publications">Publications</a></nav></div><div class="foot-base"><span>International Laboratory on Learning Systems</span><span>Montréal, Québec · France</span></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="foot-row"><a href="{up}index.html" aria-label="{logo_alt}"><img src="{prefix}assets/brand/logo-dark.png" alt="ILLS" width="600" height="240" loading="lazy"></a><nav class="foot-links" aria-label="{t("Footer","Pied de page")}"><a href="{up}index.html#contact">Contact</a><a href="{up}research.html">{t("Research programme","Programme scientifique")}</a><a href="{up}research.html#publications">Publications</a></nav></div><div class="foot-base"><span>International Laboratory on Learning Systems</span><span>Montréal, Québec · France</span><span class="copyright">{t(f"© 2022–{COPYRIGHT_YEAR} International Laboratory on Learning Systems (ILLS). All rights reserved.",f"© 2022–{COPYRIGHT_YEAR} Laboratoire international sur les systèmes d’apprentissage (ILLS). Tous droits réservés.")}</span></div></div></footer>
 </body></html>''',encoding='utf-8')
 
 
