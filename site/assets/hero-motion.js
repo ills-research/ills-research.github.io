@@ -96,34 +96,99 @@
     brainBlend: 0,
     knotMix: 0,
     fission: 0,
+    modeMix: 0,
+    modeFrequency: 7,
+    modePhase: 0,
     splitPhase: 0,
     swellCenters: [.95, 3.28, 5.2],
     swellAmplitudes: [0, 0, 0]
   };
+
+  // Hold each silhouette long enough to read as it rotates, then ease to the
+  // next one. The 90-second camera orbit is independent of this shape cycle.
+  const shapeSequence = [
+    { transition: 0, hold: 12, shape: {
+      radialPhase: 0, secondaryPhase: 0, verticalPhase: 0, complexity: .04,
+      shapeBlend: 0, brainBlend: 0, knotMix: 0, fission: 0, modeMix: 0,
+      modeFrequency: 7, modePhase: 0, splitPhase: 0,
+      swellCenters: [.95, 3.28, 5.2], swellAmplitudes: [0, 0, 0]
+    } },
+    { transition: 10, hold: 14, shape: {
+      radialPhase: .2, secondaryPhase: .45, verticalPhase: .25, complexity: .53,
+      shapeBlend: 1, brainBlend: 0, knotMix: .34, fission: .24, modeMix: .05,
+      modeFrequency: 7, modePhase: .3, splitPhase: .55,
+      swellCenters: [.95, 3.28, 5.2], swellAmplitudes: [.06, .05, .03]
+    } },
+    { transition: 10, hold: 14, shape: {
+      radialPhase: .55, secondaryPhase: 1.05, verticalPhase: .72, complexity: .82,
+      shapeBlend: 1, brainBlend: 0, knotMix: .76, fission: .68, modeMix: .14,
+      modeFrequency: 9, modePhase: .9, splitPhase: 1.25,
+      swellCenters: [1.45, 3.62, 5.25], swellAmplitudes: [.12, .1, .08]
+    } },
+    { transition: 12, hold: 22, shape: {
+      radialPhase: .55, secondaryPhase: 1.05, verticalPhase: .72, complexity: .82,
+      shapeBlend: 1, brainBlend: 1, knotMix: .76, fission: .68, modeMix: .14,
+      modeFrequency: 9, modePhase: .9, splitPhase: 1.25,
+      swellCenters: [1.45, 3.62, 5.25], swellAmplitudes: [.12, .1, .08]
+    } },
+    { transition: 12, hold: 14, shape: {
+      radialPhase: 1.15, secondaryPhase: 2.1, verticalPhase: 1.55, complexity: .82,
+      shapeBlend: 1, brainBlend: 0, knotMix: .48, fission: .78, modeMix: .3,
+      modeFrequency: 7, modePhase: 1.75, splitPhase: 2.35,
+      swellCenters: [.72, 2.9, 5.4], swellAmplitudes: [.11, .14, .09]
+    } },
+    { transition: 12, hold: 14, shape: {
+      radialPhase: 2.05, secondaryPhase: 3.05, verticalPhase: 2.7, complexity: .78,
+      shapeBlend: 1, brainBlend: 0, knotMix: .16, fission: .28, modeMix: .84,
+      modeFrequency: 11, modePhase: 2.8, splitPhase: 3.7,
+      swellCenters: [1.85, 4.1, 5.8], swellAmplitudes: [.15, .08, .12]
+    } },
+    { transition: 12, hold: 14, shape: {
+      radialPhase: 3.1, secondaryPhase: 4.15, verticalPhase: 3.85, complexity: .84,
+      shapeBlend: 1, brainBlend: 0, knotMix: .88, fission: .62, modeMix: .46,
+      modeFrequency: 9, modePhase: 4.05, splitPhase: 4.75,
+      swellCenters: [.55, 3.25, 4.85], swellAmplitudes: [.1, .13, .12]
+    } },
+    { transition: 12, hold: 12, shape: {
+      radialPhase: 3.8, secondaryPhase: 5.1, verticalPhase: 4.65, complexity: .04,
+      shapeBlend: 0, brainBlend: 0, knotMix: 0, fission: 0, modeMix: 0,
+      modeFrequency: 7, modePhase: 0, splitPhase: 5.7,
+      swellCenters: [.95, 3.28, 5.2], swellAmplitudes: [0, 0, 0]
+    } }
+  ];
+  const shapeCycleSeconds = shapeSequence.reduce((total, stage) => total + stage.transition + stage.hold, 0);
+  const shapeFields = [
+    'radialPhase', 'secondaryPhase', 'verticalPhase', 'complexity', 'shapeBlend',
+    'brainBlend', 'knotMix', 'fission', 'modeMix', 'modeFrequency', 'modePhase', 'splitPhase'
+  ];
+  function copyShape(shape) {
+    return { ...shape, swellCenters: [...shape.swellCenters], swellAmplitudes: [...shape.swellAmplitudes] };
+  }
+  function interpolateShape(from, to, amount) {
+    const result = {};
+    for (const field of shapeFields) result[field] = from[field] + (to[field] - from[field]) * amount;
+    result.swellCenters = to.swellCenters.map((value, index) => from.swellCenters[index] + (value - from.swellCenters[index]) * amount);
+    result.swellAmplitudes = to.swellAmplitudes.map((value, index) => from.swellAmplitudes[index] + (value - from.swellAmplitudes[index]) * amount);
+    return result;
+  }
   function updateShapeState(seconds) {
-    const morphTime = seconds * .84;
-    const complexity = .5 - .5 * Math.cos(morphTime * .105);
-    shapeState = {
-      radialPhase: morphTime * .095,
-      secondaryPhase: morphTime * .075,
-      verticalPhase: morphTime * .085,
-      complexity,
-      shapeBlend: smoothStep(0, .42, complexity),
-      brainBlend: smoothStep(.38, .7, complexity),
-      knotMix: .8 * smoothStep(.34, 1, complexity),
-      fission: .9 * smoothStep(.38, 1, complexity),
-      splitPhase: morphTime * .14,
-      swellCenters: [
-        .95 + morphTime * .065,
-        3.28 - morphTime * .048,
-        5.2 + morphTime * .036
-      ],
-      swellAmplitudes: [
-        complexity * (.12 + .09 * (.5 + .5 * Math.sin(morphTime * .15 + .4))),
-        complexity * (.10 + .08 * (.5 + .5 * Math.sin(morphTime * .12 + 1.8))),
-        complexity * (.08 + .08 * (.5 + .5 * Math.sin(morphTime * .17 + 3.1)))
-      ]
-    };
+    let remaining = ((seconds % shapeCycleSeconds) + shapeCycleSeconds) % shapeCycleSeconds;
+    let previous = shapeSequence[shapeSequence.length - 1].shape;
+    for (const stage of shapeSequence) {
+      if (remaining < stage.transition) {
+        const progress = smoothStep(0, 1, remaining / stage.transition);
+        shapeState = interpolateShape(previous, stage.shape, progress);
+        return;
+      }
+      remaining -= stage.transition;
+      if (remaining < stage.hold) {
+        shapeState = copyShape(stage.shape);
+        return;
+      }
+      remaining -= stage.hold;
+      previous = stage.shape;
+    }
+    shapeState = copyShape(shapeSequence[0].shape);
   }
   function circularDistance(a, b) {
     const distance = Math.abs((a - b) % TAU);
@@ -145,13 +210,19 @@
     const third = 3 * u - shapeState.radialPhase;
     const fifth = 5 * u + shapeState.secondaryPhase;
     const seventh = 7 * u - shapeState.splitPhase;
+    const higherMode = shapeState.modeFrequency * u + shapeState.modePhase;
     const knotMix = shapeState.knotMix;
-    const radialKnot = (1 - knotMix) * Math.cos(third)
+    const baseRadialKnot = (1 - knotMix) * Math.cos(third)
       + knotMix * Math.cos(fifth)
       + .29 * shapeState.fission * Math.cos(seventh);
-    const verticalKnot = (1 - knotMix) * Math.sin(third)
+    const baseVerticalKnot = (1 - knotMix) * Math.sin(third)
       + knotMix * Math.sin(fifth)
       + .29 * shapeState.fission * Math.sin(seventh);
+    const higherModeWeight = .58 * shapeState.modeMix;
+    const radialKnot = (1 - higherModeWeight) * baseRadialKnot
+      + higherModeWeight * Math.cos(higherMode);
+    const verticalKnot = (1 - higherModeWeight) * baseVerticalKnot
+      + higherModeWeight * Math.sin(higherMode);
     const baseRadius = 1.05 + .58 * radialKnot;
     const radialDrift = 1 + shapeAmplitude * shapeState.complexity * (
       .055 * Math.sin(2 * u - shapeState.radialPhase)
