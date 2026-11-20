@@ -53,6 +53,7 @@
     const delta = value => ((value + Math.PI) % TAU + TAU) % TAU - Math.PI;
     axons.push({
       id, from, to, kind,
+      wrapsU: to.u < from.u,
       deltaU: delta(to.u - from.u),
       deltaV: delta(to.v - from.v),
       bendU: (random01(id, 10) - .5) * .075,
@@ -92,6 +93,7 @@
     verticalPhase: 0,
     complexity: 0,
     shapeBlend: 0,
+    brainBlend: 0,
     knotMix: 0,
     fission: 0,
     splitPhase: 0,
@@ -107,6 +109,7 @@
       verticalPhase: morphTime * .085,
       complexity,
       shapeBlend: smoothStep(0, .42, complexity),
+      brainBlend: smoothStep(.38, .7, complexity),
       knotMix: .8 * smoothStep(.34, 1, complexity),
       fission: .9 * smoothStep(.38, 1, complexity),
       splitPhase: morphTime * .14,
@@ -209,6 +212,12 @@
     const angle = -.22, ca = Math.cos(angle), sa = Math.sin(angle);
     return [point[0] * ca - y * sa, point[0] * sa + y * ca, z];
   }
+  function surfaceNormalAt(u, v, frame) {
+    return normalize(add(
+      scale(frame.normal, Math.cos(v)),
+      scale(frame.binormal, Math.sin(v))
+    ));
+  }
   function frameAt(u) {
     const c = centerline(u);
     const tangent = normalize([
@@ -248,6 +257,299 @@
       z: view[2]
     };
   }
+  function brainPoint3D(latitude, longitude, seconds) {
+    const cosLatitude = Math.cos(latitude);
+    let x = 1.48 * cosLatitude * Math.cos(longitude);
+    let y = .96 * Math.sin(latitude);
+    let z = .84 * cosLatitude * Math.sin(longitude);
+    const fissure = Math.exp(-((z / .105) ** 2)) * cosLatitude ** 1.4;
+    const broadGyri = .088 * Math.sin(7 * longitude + 1.5 * Math.sin(3 * latitude))
+      + .046 * Math.cos(5 * latitude + 2.2 * Math.sin(4 * longitude));
+    const fineGyri = .052 * Math.sin(15 * longitude + 2.4 * Math.sin(6 * latitude))
+      + .03 * Math.cos(18 * latitude + 2.7 * Math.sin(7 * longitude));
+    const breath = .012 * Math.sin(seconds * .11 + 1.5 * Math.sin(longitude * 2 + latitude));
+    const texture = 1 + broadGyri + fineGyri + breath;
+    const cerebellum = Math.exp(-(((x + .71) / .38) ** 2) - (((y + .52) / .31) ** 2));
+    const stem = Math.exp(-(((x + .43) / .27) ** 2) - (((y + .67) / .25) ** 2) - ((z / .3) ** 2));
+    const separation = .105 * Math.tanh(z / .035) * fissure;
+    x *= texture * (1 + .13 * cerebellum) * (1 - .12 * stem);
+    y = (y * (1 - .23 * fissure) - .12 * cerebellum - .3 * stem) * texture;
+    z = (z + separation) * texture * (1 + .13 * cerebellum) * (1 - .2 * stem);
+    return [x, y, z];
+  }
+  function brainNormalAt(latitude, longitude) {
+    const point = brainPoint3D(latitude, longitude, elapsed / 1000);
+    return normalize([point[0] / (1.48 * 1.48), point[1] / (.96 * .96), point[2] / (.84 * .84)]);
+  }
+  function drawBrain3D(seconds, yaw, pitch, roll, size, opacity) {
+    if (opacity < .005) return;
+    const longitudeSteps = 112;
+    const latitudeSteps = 56;
+    const latitudeLimit = 1.49;
+    const vertices = [];
+    for (let latIndex = 0; latIndex <= latitudeSteps; latIndex++) {
+      const latitude = -latitudeLimit + 2 * latitudeLimit * latIndex / latitudeSteps;
+      const row = [];
+      for (let lonIndex = 0; lonIndex < longitudeSteps; lonIndex++) {
+        const longitude = TAU * lonIndex / longitudeSteps;
+        const point = brainPoint3D(latitude, longitude, seconds);
+        const screen = project(point, yaw, pitch, roll, size);
+        const normal = cameraPoint(brainNormalAt(latitude, longitude), yaw, pitch, roll);
+        const facing = normal[2];
+        row.push({ ...screen, facing, latitude, longitude });
+      }
+      vertices.push(row);
+    }
+
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // A small corrugated cerebellum and tapered brainstem complete the 3D profile.
+    ctx.save();
+    ctx.globalAlpha = opacity * .68;
+    const cerebellumCenter = [-1.02, -.62, 0];
+    const cerebellumRadii = [.4, .29, .43];
+    const cerebellumPoint = (latitude, longitude) => {
+      const c = Math.cos(latitude);
+      const folia = 1 + .052 * Math.sin(13 * latitude + 2 * Math.sin(5 * longitude))
+        + .022 * Math.sin(21 * latitude + 1.4 * Math.cos(7 * longitude));
+      return [
+        cerebellumCenter[0] + cerebellumRadii[0] * c * Math.cos(longitude) * folia,
+        cerebellumCenter[1] + cerebellumRadii[1] * Math.sin(latitude) * folia,
+        cerebellumCenter[2] + cerebellumRadii[2] * c * Math.sin(longitude) * folia
+      ];
+    };
+    ctx.lineWidth = .62;
+    for (let ring = 1; ring < 9; ring++) {
+      const latitude = -1.25 + 2.5 * ring / 9;
+      ctx.beginPath();
+      let open = false;
+      for (let step = 0; step <= 48; step++) {
+        const longitude = TAU * step / 48;
+        const point = cerebellumPoint(latitude, longitude);
+        const projected = project(point, yaw, pitch, roll, size);
+        const normal = cameraPoint(normalize([
+          Math.cos(latitude) * Math.cos(longitude) / cerebellumRadii[0],
+          Math.sin(latitude) / cerebellumRadii[1],
+          Math.cos(latitude) * Math.sin(longitude) / cerebellumRadii[2]
+        ]), yaw, pitch, roll);
+        if (normal[2] > -.04) {
+          if (!open) ctx.moveTo(projected.x, projected.y); else ctx.lineTo(projected.x, projected.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = 'rgba(119,189,243,.48)';
+      ctx.stroke();
+    }
+    for (let meridian = 0; meridian < 40; meridian += 4) {
+      const longitude = TAU * meridian / 40;
+      ctx.beginPath();
+      let open = false;
+      for (let step = 0; step <= 20; step++) {
+        const latitude = -1.42 + 2.84 * step / 20;
+        const point = cerebellumPoint(latitude, longitude);
+        const projected = project(point, yaw, pitch, roll, size);
+        const normal = cameraPoint(normalize([
+          Math.cos(latitude) * Math.cos(longitude) / cerebellumRadii[0],
+          Math.sin(latitude) / cerebellumRadii[1],
+          Math.cos(latitude) * Math.sin(longitude) / cerebellumRadii[2]
+        ]), yaw, pitch, roll);
+        if (normal[2] > -.04) {
+          if (!open) ctx.moveTo(projected.x, projected.y); else ctx.lineTo(projected.x, projected.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = 'rgba(119,189,243,.42)';
+      ctx.stroke();
+    }
+
+    const stemRings = 13;
+    const stemAngles = 32;
+    const stemCenter = t => [-.4 + .07 * t, -.8 - .58 * t, 0];
+    const stemRadius = t => [.17 * (1 - .38 * t), .14 * (1 - .42 * t)];
+    ctx.lineWidth = .68;
+    for (let ring = 0; ring <= stemRings; ring++) {
+      const t = ring / stemRings;
+      const [radiusX, radiusZ] = stemRadius(t);
+      const center = stemCenter(t);
+      ctx.beginPath();
+      let open = false;
+      for (let step = 0; step <= stemAngles; step++) {
+        const angle = TAU * step / stemAngles;
+        const point = [center[0] + radiusX * Math.cos(angle), center[1], center[2] + radiusZ * Math.sin(angle)];
+        const projected = project(point, yaw, pitch, roll, size);
+        const normal = cameraPoint(normalize([Math.cos(angle), .12, Math.sin(angle)]), yaw, pitch, roll);
+        if (normal[2] > -.04) {
+          if (!open) ctx.moveTo(projected.x, projected.y); else ctx.lineTo(projected.x, projected.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = 'rgba(128,197,248,.48)';
+      ctx.stroke();
+    }
+    for (let meridian = 0; meridian < stemAngles; meridian += 4) {
+      const angle = TAU * meridian / stemAngles;
+      ctx.beginPath();
+      let open = false;
+      for (let ring = 0; ring <= stemRings; ring++) {
+        const t = ring / stemRings;
+        const [radiusX, radiusZ] = stemRadius(t);
+        const center = stemCenter(t);
+        const point = [center[0] + radiusX * Math.cos(angle), center[1], center[2] + radiusZ * Math.sin(angle)];
+        const projected = project(point, yaw, pitch, roll, size);
+        const normal = cameraPoint(normalize([Math.cos(angle), .12, Math.sin(angle)]), yaw, pitch, roll);
+        if (normal[2] > -.04) {
+          if (!open) ctx.moveTo(projected.x, projected.y); else ctx.lineTo(projected.x, projected.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = 'rgba(128,197,248,.42)';
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Draw meridians and latitude arcs only where the surface faces the camera.
+    ctx.lineWidth = .68;
+    for (let latIndex = 2; latIndex < latitudeSteps - 1; latIndex += 2) {
+      ctx.beginPath();
+      let open = false;
+      for (let lonIndex = 0; lonIndex <= longitudeSteps; lonIndex++) {
+        const point = vertices[latIndex][lonIndex % longitudeSteps];
+        if (point.facing > -.08) {
+          if (!open) ctx.moveTo(point.x, point.y); else ctx.lineTo(point.x, point.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = latIndex % 8 === 0 ? 'rgba(158,218,255,.54)' : 'rgba(135,199,250,.34)';
+      ctx.stroke();
+    }
+    ctx.lineWidth = .52;
+    for (let lonIndex = 0; lonIndex < longitudeSteps; lonIndex += 4) {
+      ctx.beginPath();
+      let open = false;
+      for (let latIndex = 1; latIndex < latitudeSteps; latIndex++) {
+        const point = vertices[latIndex][lonIndex];
+        if (point.facing > -.08) {
+          if (!open) ctx.moveTo(point.x, point.y); else ctx.lineTo(point.x, point.y);
+          open = true;
+        } else open = false;
+      }
+      ctx.strokeStyle = lonIndex % 16 === 0 ? 'rgba(116,183,241,.48)' : 'rgba(128,191,242,.32)';
+      ctx.stroke();
+    }
+
+    ctx.beginPath();
+    for (let latIndex = 1; latIndex < latitudeSteps; latIndex += 2) {
+      for (let lonIndex = 0; lonIndex < longitudeSteps; lonIndex += 2) {
+        const a = vertices[latIndex][lonIndex];
+        const b = vertices[latIndex + 1][(lonIndex + 1) % longitudeSteps];
+        if ((a.facing + b.facing) * .5 > .06) {
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+        }
+      }
+    }
+    ctx.lineWidth = .36;
+    ctx.strokeStyle = 'rgba(108,174,232,.2)';
+    ctx.stroke();
+
+    const nodes = [];
+    for (let latIndex = 1; latIndex < latitudeSteps; latIndex += 2) {
+      for (let lonIndex = 0; lonIndex < longitudeSteps; lonIndex += 2) {
+        const point = vertices[latIndex][lonIndex];
+        if (point.facing > -.02) nodes.push(point);
+      }
+    }
+    nodes.sort((a, b) => a.z - b.z);
+    for (const point of nodes) {
+      const lighting = .48 + .48 * Math.max(0, point.facing);
+      ctx.globalAlpha = opacity * (.34 + .44 * lighting);
+      ctx.fillStyle = `rgba(${Math.round(90 + 44 * lighting)},${Math.round(181 + 49 * lighting)},255,.9)`;
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, .42 + .22 * lighting, 0, TAU);
+      ctx.fill();
+    }
+
+    for (let light = 0; light < 19; light++) {
+      const travel = (seconds / 18 + light / 19) % 1;
+      const longitude = travel * TAU;
+      const lane = -0.58 + 1.16 * ((light * 7) % 19) / 18;
+      const latitude = lane + .035 * Math.sin(seconds * .12 + light * .7);
+      const current = project(brainPoint3D(latitude, longitude, seconds), yaw, pitch, roll, size);
+        const normal = cameraPoint(brainNormalAt(latitude, longitude), yaw, pitch, roll);
+      if (normal[2] < -.12) continue;
+      const previous = project(brainPoint3D(latitude, longitude - .1, seconds), yaw, pitch, roll, size);
+      const flicker = random01(light, Math.floor(seconds * (1.15 + light % 4 * .13)) + 19) > .23;
+      const intensity = flicker ? .34 + .66 * (.5 + .5 * Math.sin(seconds * (2 + light % 5 * .47) + light)) : .13;
+      ctx.globalAlpha = opacity * intensity;
+      ctx.strokeStyle = 'rgba(95,255,235,.56)';
+      ctx.lineWidth = 1.25;
+      ctx.beginPath();
+      ctx.moveTo(previous.x, previous.y);
+      ctx.lineTo(current.x, current.y);
+      ctx.stroke();
+      const radius = 5.5 + 2.5 * intensity;
+      const glow = ctx.createRadialGradient(current.x, current.y, 0, current.x, current.y, radius);
+      glow.addColorStop(0, `rgba(239,255,252,${.9 * intensity})`);
+      glow.addColorStop(.24, `rgba(103,255,237,${.66 * intensity})`);
+      glow.addColorStop(1, 'rgba(65,221,221,0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(current.x, current.y, radius, 0, TAU);
+      ctx.fill();
+      ctx.globalAlpha = opacity * (.62 + .38 * intensity);
+      ctx.fillStyle = '#effffb';
+      ctx.beginPath();
+      ctx.arc(current.x, current.y, 1.2 + intensity, 0, TAU);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+  function drawFusionMesh(vertices, uCount, vSteps, uSteps, opacity) {
+    if (opacity < .01) return;
+    const index = (u, v) => ((v + vSteps) % vSteps) * uCount + clamp(u, 0, uSteps);
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = .62;
+    ctx.strokeStyle = 'rgba(125,211,248,.58)';
+    for (let vi = 0; vi < vSteps; vi += 2) {
+      ctx.beginPath();
+      for (let ui = 0; ui <= uSteps; ui++) {
+        const point = vertices[index(ui, vi)];
+        if (ui === 0) ctx.moveTo(point.x, point.y); else ctx.lineTo(point.x, point.y);
+      }
+      ctx.stroke();
+    }
+    ctx.lineWidth = .42;
+    ctx.strokeStyle = 'rgba(111,194,239,.36)';
+    const ringSkip = mobile.matches ? 10 : 14;
+    for (let ui = 0; ui <= uSteps; ui += ringSkip) {
+      ctx.beginPath();
+      for (let vi = 0; vi <= vSteps; vi++) {
+        const point = vertices[index(ui, vi)];
+        if (vi === 0) ctx.moveTo(point.x, point.y); else ctx.lineTo(point.x, point.y);
+      }
+      ctx.stroke();
+    }
+
+    // A fine point lattice keeps the changing surface legible while it pinches
+    // into the two hemispheres, rather than dissolving one drawing into another.
+    ctx.fillStyle = 'rgba(151,222,255,.72)';
+    for (let vi = 0; vi < vSteps; vi += 2) {
+      for (let ui = 0; ui <= uSteps; ui += 2) {
+        const point = vertices[index(ui, vi)];
+        ctx.globalAlpha = opacity * (.38 + .34 * clamp((point.z + 1.2) / 2.4));
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, .43, 0, TAU);
+        ctx.fill();
+      }
+    }
+    ctx.restore();
+  }
   function frontSurfaceV(frame, yaw, pitch, roll) {
     const normal = cameraPoint(frame.normal, yaw, pitch, roll);
     const binormal = cameraPoint(frame.binormal, yaw, pitch, roll);
@@ -257,10 +559,7 @@
     const frame = frameAt(u);
     const point = surfacePoint(u, v, frame);
     const position = project(point, yaw, pitch, roll, size);
-    const n = normalize(cameraPoint(add(
-      scale(frame.normal, Math.cos(v)),
-      scale(frame.binormal, Math.sin(v))
-    ), yaw, pitch, roll));
+    const n = normalize(cameraPoint(surfaceNormalAt(u, v, frame), yaw, pitch, roll));
     const depth = clamp((point[2] + 1.35) / 2.7);
     const sweep = clamp((Math.cos(u - .8) + .45 * Math.sin(v + u) + .9) / 2);
     const diffuse = .73 + .27 * Math.max(0, dot(n, lightDirection));
@@ -269,14 +568,16 @@
     const nearestGroupProgress = Math.round(relativeProgress * groupCount) / groupCount;
     const flowDistance = Math.abs(relativeProgress - nearestGroupProgress);
     const flow = Math.exp(-.5 * (flowDistance / .024) ** 2);
-    const brightness = (.51 + .47 * depth) * (.81 + .19 * Math.cos(v - 1.1)) * diffuse * (.96 + .08 * flow);
+    const poleDistance = Math.min(u, TAU - u);
+    const capVisibility = 1 - .72 * shapeState.brainBlend * (1 - smoothStep(.035, .25, poleDistance));
+    const brightness = capVisibility * (.51 + .47 * depth) * (.81 + .19 * Math.cos(v - 1.1)) * diffuse * (.96 + .08 * flow);
     const red = Math.round((69 + 66 * sweep + 28 * depth - 4 * flow) * brightness);
     const green = Math.min(255, Math.round((102 + 146 * sweep + 16 * flow) * brightness));
     const blue = Math.round((252 - 34 * sweep) * brightness);
     return {
       x: position.x, y: position.y, z: position.z,
       color: `rgba(${red},${green},${blue},${.48 + .31 * depth + .12 * flow})`,
-      radius: .35 + .2 * depth + .12 * flow
+      radius: (.35 + .2 * depth + .12 * flow) * (.72 + .28 * capVisibility)
     };
   }
 
@@ -296,10 +597,7 @@
   function neuronSurface(u, v, yaw, pitch, roll, size, offsetX, offsetY) {
     const frame = frameAt(u);
     const position = project(surfacePoint(u, v, frame), yaw, pitch, roll, size);
-    const normal = normalize(add(
-      scale(frame.normal, Math.cos(v)),
-      scale(frame.binormal, Math.sin(v))
-    ));
+    const normal = surfaceNormalAt(u, v, frame);
     const facing = cameraPoint(normal, yaw, pitch, roll)[2];
     return { x: position.x + offsetX, y: position.y + offsetY, z: position.z, facing };
   }
@@ -339,7 +637,8 @@
           pathOpen = false;
         }
       }
-      const visible = clamp((brightestFacing + .16) / .9);
+      const wrapVisibility = axon.wrapsU ? 1 - shapeState.brainBlend : 1;
+      const visible = clamp((brightestFacing + .16) / .9) * wrapVisibility * (1 - shapeState.brainBlend);
       ctx.globalAlpha = visible * (axon.kind === 'axon' ? .22 : .15);
       ctx.strokeStyle = axon.kind === 'axon' ? 'rgba(99,177,231,.76)' : 'rgba(110,232,220,.72)';
       ctx.lineWidth = axon.kind === 'axon' ? .48 : .34;
@@ -376,7 +675,7 @@
     for (const neuron of neurons) {
       const soma = neuronSurface(neuron.u, neuron.v, yaw, pitch, roll, size, offsetX, offsetY);
       if (soma.facing < -.16) continue;
-      const visibility = clamp((soma.facing + .16) / .86);
+      const visibility = clamp((soma.facing + .16) / .86) * (1 - shapeState.brainBlend);
 
       ctx.globalAlpha = .19 * visibility;
       ctx.strokeStyle = 'rgba(119,206,233,.8)';
@@ -452,12 +751,13 @@
     const progress = (seconds / 18) % 1;
     const uSteps = mobile.matches ? 220 : 380;
     const vSteps = mobile.matches ? 40 : 58;
-    const vertices = new Array(uSteps * vSteps);
-    const index = (u, v) => ((v + vSteps) % vSteps) * uSteps + ((u + uSteps) % uSteps);
+    const uCount = uSteps + 1;
+    const vertices = new Array(uCount * vSteps);
+    const index = (u, v) => ((v + vSteps) % vSteps) * uCount + clamp(u, 0, uSteps);
 
     for (let vi = 0; vi < vSteps; vi++) {
       const v = TAU * vi / vSteps;
-      for (let ui = 0; ui < uSteps; ui++) {
+      for (let ui = 0; ui <= uSteps; ui++) {
         const u = TAU * ui / uSteps;
         vertices[index(ui, vi)] = makeVertex(u, v, yaw, pitch, roll, size, progress, groupCount);
       }
@@ -475,23 +775,56 @@
       p.y += offsetY;
     }
 
+    // Keep the same sampled surface as it changes from the loop into the brain.
+    // The tube's circular coordinate pinches at two poles and opens into the
+    // brain's folded hemispheres, so the new form grows out of the old mesh.
+    const transitionBlend = smoothStep(.02, .98, shapeState.brainBlend);
+    const transitionVertices = new Array(vertices.length);
+    if (shapeState.brainBlend > .005 && shapeState.brainBlend < .995) {
+      for (let vi = 0; vi < vSteps; vi++) {
+        const v = TAU * vi / vSteps;
+        const latitude = 1.49 * Math.sin(v);
+        for (let ui = 0; ui <= uSteps; ui++) {
+          const u = TAU * ui / uSteps;
+          const source = vertices[index(ui, vi)];
+          const target = project(brainPoint3D(latitude, u, seconds), yaw, pitch, roll, size);
+          const amount = transitionBlend;
+          transitionVertices[index(ui, vi)] = {
+            x: source.x * (1 - amount) + (target.x + offsetX) * amount,
+            y: source.y * (1 - amount) + (target.y + offsetY) * amount,
+            z: source.z * (1 - amount) + target.z * amount
+          };
+        }
+      }
+    }
+
+    // Three overlapping weights create a short, readable fusion phase:
+    // loop -> one continuously deforming surface -> fully formed brain.
+    const sourceOpacity = 1 - smoothStep(.02, .55, shapeState.brainBlend);
+    const fusionOpacity = smoothStep(.02, .48, shapeState.brainBlend)
+      * (1 - smoothStep(.52, .98, shapeState.brainBlend));
+    const brainOpacity = smoothStep(.45, .98, shapeState.brainBlend);
+
     ctx.clearRect(0, 0, width, height);
+    ctx.save();
+    ctx.globalAlpha = sourceOpacity;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    ctx.lineWidth = .52;
-    ctx.strokeStyle = 'rgba(100,165,225,.17)';
+    ctx.lineWidth = .52 + .18 * shapeState.brainBlend;
+    ctx.strokeStyle = `rgba(133,203,248,${.17 + .28 * shapeState.brainBlend})`;
+    const capSteps = Math.round(uSteps * .01 * shapeState.brainBlend);
     for (let vi = 0; vi < vSteps; vi += 2) {
       ctx.beginPath();
-      for (let ui = 0; ui <= uSteps; ui++) {
+      for (let ui = capSteps; ui <= uSteps - capSteps; ui++) {
         const p = vertices[index(ui, vi)];
-        if (ui === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
+        if (ui === capSteps) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y);
       }
       ctx.stroke();
     }
-    ctx.lineWidth = .38;
-    ctx.strokeStyle = 'rgba(100,165,225,.085)';
+    ctx.lineWidth = .38 + .1 * shapeState.brainBlend;
+    ctx.strokeStyle = `rgba(133,203,248,${.085 + .16 * shapeState.brainBlend})`;
     const ringSkip = mobile.matches ? 8 : 10;
-    for (let ui = 0; ui < uSteps; ui += ringSkip) {
+    for (let ui = capSteps; ui <= uSteps - capSteps; ui += ringSkip) {
       ctx.beginPath();
       for (let vi = 0; vi <= vSteps; vi++) {
         const p = vertices[index(ui, vi)];
@@ -508,6 +841,9 @@
       ctx.fill();
     }
     drawNeuralNetwork(seconds, yaw, pitch, roll, size, offsetX, offsetY);
+    ctx.restore();
+    drawFusionMesh(transitionVertices, uCount, vSteps, uSteps, fusionOpacity);
+    drawBrain3D(seconds, yaw, pitch, roll, size, brainOpacity);
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
   }
