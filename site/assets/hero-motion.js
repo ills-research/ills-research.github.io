@@ -21,6 +21,10 @@
   let running = false;
 
   const clamp = (value, low = 0, high = 1) => Math.max(low, Math.min(high, value));
+  const smoothStep = (start, end, value) => {
+    const t = clamp((value - start) / (end - start));
+    return t * t * (3 - 2 * t);
+  };
   const random01 = (light, step) => {
     let value = Math.imul(light + 1, 0x9e3779b1) ^ Math.imul(step + 1, 0x85ebca6b);
     value ^= value >>> 16;
@@ -86,21 +90,25 @@
     radialPhase: 0,
     secondaryPhase: 0,
     verticalPhase: 0,
-    knotMix: .12,
-    fission: .65,
+    complexity: 0,
+    shapeBlend: 0,
+    knotMix: 0,
+    fission: 0,
     splitPhase: 0,
     swellCenters: [.95, 3.28, 5.2],
-    swellAmplitudes: [.15, .13, .11]
+    swellAmplitudes: [0, 0, 0]
   };
   function updateShapeState(seconds) {
     const morphTime = seconds * .84;
-    const knotCycle = .5 - .5 * Math.cos(morphTime * .105);
+    const complexity = .5 - .5 * Math.cos(morphTime * .105);
     shapeState = {
       radialPhase: morphTime * .095,
       secondaryPhase: morphTime * .075,
       verticalPhase: morphTime * .085,
-      knotMix: .16 + .68 * knotCycle,
-      fission: .9 * (.5 + .5 * Math.sin(morphTime * .19 + .4)),
+      complexity,
+      shapeBlend: smoothStep(0, .42, complexity),
+      knotMix: .8 * smoothStep(.34, 1, complexity),
+      fission: .9 * smoothStep(.38, 1, complexity),
       splitPhase: morphTime * .14,
       swellCenters: [
         .95 + morphTime * .065,
@@ -108,9 +116,9 @@
         5.2 + morphTime * .036
       ],
       swellAmplitudes: [
-        .12 + .09 * (.5 + .5 * Math.sin(morphTime * .15 + .4)),
-        .10 + .08 * (.5 + .5 * Math.sin(morphTime * .12 + 1.8)),
-        .08 + .08 * (.5 + .5 * Math.sin(morphTime * .17 + 3.1))
+        complexity * (.12 + .09 * (.5 + .5 * Math.sin(morphTime * .15 + .4))),
+        complexity * (.10 + .08 * (.5 + .5 * Math.sin(morphTime * .12 + 1.8))),
+        complexity * (.08 + .08 * (.5 + .5 * Math.sin(morphTime * .17 + 3.1)))
       ]
     };
   }
@@ -142,16 +150,23 @@
       + knotMix * Math.sin(fifth)
       + .29 * shapeState.fission * Math.sin(seventh);
     const baseRadius = 1.05 + .58 * radialKnot;
-    const radialDrift = 1 + shapeAmplitude * (
+    const radialDrift = 1 + shapeAmplitude * shapeState.complexity * (
       .055 * Math.sin(2 * u - shapeState.radialPhase)
       + .03 * Math.cos(5 * u + shapeState.secondaryPhase)
     );
     const radius = baseRadius * radialDrift;
-    const verticalDrift = shapeAmplitude * (
+    const verticalDrift = shapeAmplitude * shapeState.complexity * (
       .07 * Math.sin(2 * u + shapeState.verticalPhase)
       + .04 * Math.cos(4 * u - shapeState.secondaryPhase)
     );
-    return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .73 * verticalKnot + verticalDrift];
+    const knotPoint = [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .73 * verticalKnot + verticalDrift];
+    const simplePoint = [1.18 * Math.cos(u), 1.18 * Math.sin(u), 0];
+    const blend = shapeState.shapeBlend;
+    return [
+      simplePoint[0] * (1 - blend) + knotPoint[0] * blend,
+      simplePoint[1] * (1 - blend) + knotPoint[1] * blend,
+      simplePoint[2] * (1 - blend) + knotPoint[2] * blend
+    ];
   }
   const arcSamples = 4096;
   const arcLengths = new Float64Array(arcSamples + 1);
@@ -207,7 +222,7 @@
       center: orientBase(c),
       normal: orientBase(normal),
       binormal: orientBase(binormal),
-      tubeRadius: (.26 + .035 * Math.cos(3 * u)) * sectionScale(u),
+      tubeRadius: (.26 + .035 * shapeState.complexity * Math.cos(3 * u)) * sectionScale(u),
       binormalRadius: .26 * sectionScale(u)
     };
   }
