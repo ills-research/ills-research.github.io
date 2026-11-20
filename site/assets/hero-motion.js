@@ -79,10 +79,54 @@
     return [a[0] / length, a[1] / length, a[2] / length];
   }
 
-  // This is the same trefoil tube used to create the original homepage artwork.
+  // The trefoil keeps its recognizable outline while its centerline and cross-section
+  // shift gently over time. The broad, traveling swells read as a living learning surface.
+  let shapeState = {
+    radialPhase: 0,
+    secondaryPhase: 0,
+    verticalPhase: 0,
+    swellCenters: [.95, 3.28, 5.2],
+    swellAmplitudes: [.15, .13, .11]
+  };
+  function updateShapeState(seconds) {
+    shapeState = {
+      radialPhase: seconds * .095,
+      secondaryPhase: seconds * .075,
+      verticalPhase: seconds * .085,
+      swellCenters: [
+        .95 + seconds * .065,
+        3.28 - seconds * .048,
+        5.2 + seconds * .036
+      ],
+      swellAmplitudes: [
+        .12 + .09 * (.5 + .5 * Math.sin(seconds * .15 + .4)),
+        .10 + .08 * (.5 + .5 * Math.sin(seconds * .12 + 1.8)),
+        .08 + .08 * (.5 + .5 * Math.sin(seconds * .17 + 3.1))
+      ]
+    };
+  }
+  function circularDistance(a, b) {
+    const distance = Math.abs((a - b) % TAU);
+    return Math.min(distance, TAU - distance);
+  }
+  function sectionScale(u) {
+    const widths = [.58, .66, .54];
+    let swell = 0;
+    for (let i = 0; i < shapeState.swellCenters.length; i++) {
+      const distance = circularDistance(u, shapeState.swellCenters[i]);
+      swell += shapeState.swellAmplitudes[i] * Math.exp(-.5 * (distance / widths[i]) ** 2);
+    }
+    return 1 + swell;
+  }
   function centerline(u) {
-    const radius = 1.05 + .55 * Math.cos(3 * u);
-    return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .67 * Math.sin(3 * u)];
+    const baseRadius = 1.05 + .55 * Math.cos(3 * u);
+    const radialDrift = 1
+      + .055 * Math.sin(2 * u - shapeState.radialPhase)
+      + .03 * Math.cos(5 * u + shapeState.secondaryPhase);
+    const radius = baseRadius * radialDrift;
+    const verticalDrift = .07 * Math.sin(2 * u + shapeState.verticalPhase)
+      + .04 * Math.cos(4 * u - shapeState.secondaryPhase);
+    return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .67 * Math.sin(3 * u) + verticalDrift];
   }
   const arcSamples = 4096;
   const arcLengths = new Float64Array(arcSamples + 1);
@@ -138,13 +182,14 @@
       center: orientBase(c),
       normal: orientBase(normal),
       binormal: orientBase(binormal),
-      tubeRadius: .26 + .035 * Math.cos(3 * u)
+      tubeRadius: (.26 + .035 * Math.cos(3 * u)) * sectionScale(u),
+      binormalRadius: .26 * sectionScale(u)
     };
   }
   function surfacePoint(u, v, frame = frameAt(u)) {
     return add(frame.center, add(
       scale(frame.normal, frame.tubeRadius * Math.cos(v)),
-      scale(frame.binormal, .26 * Math.sin(v))
+      scale(frame.binormal, frame.binormalRadius * Math.sin(v))
     ));
   }
   function cameraPoint(point, yaw, pitch, roll = 0) {
@@ -356,6 +401,7 @@
     if (lastFrame) elapsed += Math.min(now - lastFrame, 100);
     lastFrame = now;
     const seconds = elapsed / 1000;
+    updateShapeState(seconds);
     const yaw = -.22 + seconds * (TAU / 90) + .075 * Math.sin(seconds * .105);
     const pitch = .11 + .045 * Math.sin(seconds * .087 + .7);
     const roll = .018 * Math.sin(seconds * .075);
@@ -421,7 +467,6 @@
       ctx.arc(p.x, p.y, p.radius, 0, TAU);
       ctx.fill();
     }
-
     drawNeuralNetwork(seconds, yaw, pitch, roll, size, offsetX, offsetY);
     if (!figure.classList.contains('is-animated')) figure.classList.add('is-animated');
     frameId = requestAnimationFrame(render);
