@@ -177,8 +177,8 @@
     "name": "Cléa Chataigner",
     "type": "cotutelle",
     "topic": [
-      "Human-in-the-loop auditing of generative AI",
-      "Audit de l’IA générative avec intervention humaine"
+      "Reliable auditing of large language models",
+      "Audit fiable des grands modèles de langue"
     ],
     "institutions": [
       [
@@ -202,8 +202,8 @@
     "biography": {
       "slug": "clea-chataigner",
       "text": [
-        "Cléa Chataigner’s research develops reliable ways to audit large language models. Her work studies how evaluation can provide contextual, budget-aware evidence about model capabilities, limitations and real-world impact.",
-        "Les travaux de Cléa Chataigner visent à concevoir des méthodes fiables d’audit des grands modèles de langue. Elle étudie comment l’évaluation peut fournir des éléments contextualisés et adaptés aux ressources disponibles sur les capacités, les limites et les effets réels des modèles."
+        "Cléa Chataigner is a PhD student in computer science at McGill University and Université Paris-Saclay, affiliated with Mila and ILLS. She develops reliable methods to audit large language models and provide contextual, budget-aware evidence about their capabilities, limitations and real-world effects.",
+        "Cléa Chataigner prépare un doctorat en informatique à l’Université McGill et à l’Université Paris-Saclay, avec des affiliations à Mila et à l’ILLS. Elle conçoit des méthodes fiables pour auditer les grands modèles de langue et produire des analyses contextualisées, adaptées aux ressources disponibles, de leurs capacités, de leurs limites et de leurs effets réels."
       ],
       "topics": [
         [
@@ -219,8 +219,8 @@
           "Évaluation et fiabilité"
         ],
         [
-          "Robustness and fairness",
-          "Robustesse et équité"
+          "Real-world impact",
+          "Effets en contexte réel"
         ]
       ],
       "sources": [
@@ -228,7 +228,8 @@
         "https://www.centralesupelec.fr/chercheurs/clea-chataigner"
       ]
     },
-    "linkedin": "https://ca.linkedin.com/in/cl%C3%A9a-chataigner/fr"
+    "linkedin": "https://ca.linkedin.com/in/cl%C3%A9a-chataigner/fr",
+    "scholar": "https://scholar.google.com/citations?user=NdToDmMAAAAJ&hl=en"
   },
   {
     "name": "Lorenzo Sia",
@@ -802,14 +803,15 @@
     "website_label": [
       "CREST profile",
       "Profil CREST"
-    ]
+    ],
+    "scholar": "https://scholar.google.com/citations?user=mb6GNwQAAAAJ&hl=fr"
   },
   {
     "name": "Chiara Roverato",
     "type": "co-advised",
     "topic": [
-      "Generative models for tabular data",
-      "Modèles génératifs pour les données tabulaires"
+      "Generative models for structured and scientific data",
+      "Modèles génératifs pour les données structurées et scientifiques"
     ],
     "institutions": [
       [
@@ -833,8 +835,8 @@
     "biography": {
       "slug": "chiara-roverato",
       "text": [
-        "Chiara Roverato’s research explores generative models for structured data, including tabular data. Her work draws on Bayesian inference to develop and assess models that can represent complex data distributions.",
-        "Les recherches de Chiara Roverato portent sur les modèles génératifs pour les données structurées, notamment les données tabulaires. Ses travaux s’appuient sur l’inférence bayésienne pour concevoir et évaluer des modèles capables de représenter des distributions de données complexes."
+        "Chiara Roverato studies generative models for discrete, structured and scientific data. Her research explores applications such as forecasting chaotic time series and sampling phylogenetic trees from DNA sequence alignments.",
+        "Chiara Roverato étudie les modèles génératifs pour les données discrètes, structurées et scientifiques. Ses recherches explorent notamment la prévision de séries temporelles chaotiques et l’échantillonnage d’arbres phylogénétiques à partir d’alignements de séquences d’ADN."
       ],
       "topics": [
         [
@@ -842,26 +844,28 @@
           "Modèles génératifs"
         ],
         [
-          "Tabular data",
-          "Données tabulaires"
+          "Structured and scientific data",
+          "Données structurées et scientifiques"
         ],
         [
-          "Bayesian inference",
-          "Inférence bayésienne"
+          "Time-series forecasting",
+          "Prévision de séries temporelles"
         ],
         [
-          "Machine learning",
-          "Apprentissage automatique"
+          "Phylogenetics",
+          "Phylogénétique"
         ]
       ],
       "sources": [
         "https://mila.quebec/en/directory/chiara-roverato",
         "https://mila.quebec/fr/annuaire/chiara-roverato",
-        "https://www.alphaxiv.org/@chiara-roverato"
+        "https://www.alphaxiv.org/@chiara-roverato",
+        "https://github.com/chiararov"
       ]
     },
     "linkedin": "https://fr.linkedin.com/in/chiara-roverato-16a1191bb",
-    "scholar": "https://scholar.google.com/citations?user=d6VDzNQAAAAJ"
+    "scholar": "https://scholar.google.com/citations?user=d6VDzNQAAAAJ",
+    "github": "https://github.com/chiararov"
   },
   {
     "name": "Eric Aubinais",
@@ -1188,5 +1192,156 @@
     },
     "scholar": "https://scholar.google.com/citations?user=VqHpMu4AAAAJ",
     "linkedin": "https://www.linkedin.com/in/zahra-dehghani-t/"
+  },
+  {
+    "name": "Eliott Baltz",
+    "type": "co-advised",
+    "topic": [
+      "Trustworthy AI for high-stakes applications",
+      "IA digne de confiance pour des applications à forts enjeux"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ]
+    ],
+    "advisors": [
+      "Ulrich Aïvodji (ÉTS, Mila)",
+      "Satoshi Hara (University of Electro-Communications, Tokyo)"
+    ],
+    "linkedin": "https://www.linkedin.com/in/eliott-baltz/",
+    "scholar": "https://scholar.google.ca/citations?hl=en&user=lMMptMAAAAAJ",
+    "portrait_source": "https://www.linkedin.com/in/eliott-baltz/",
+    "biography": {
+      "slug": "eliott-baltz",
+      "text": [
+        "Eliott Baltz studies attacks on AI models and develops defenses that account for fairness and explainability. The work targets high-stakes applications, including healthcare, justice and finance, and explores tabular foundation models.",
+        "Eliott Baltz étudie les attaques visant les modèles d’IA et développe des défenses qui tiennent compte de l’équité et de l’explicabilité. Ses travaux portent sur des applications à forts enjeux — notamment en santé, en justice et en finance — ainsi que sur les modèles de fondation tabulaires."
+      ],
+      "topics": [
+        [
+          "Trustworthy AI",
+          "IA digne de confiance"
+        ],
+        [
+          "Adversarial robustness",
+          "Robustesse face aux attaques"
+        ],
+        [
+          "Fairness and explainability",
+          "Équité et explicabilité"
+        ],
+        [
+          "Tabular foundation models",
+          "Modèles de fondation tabulaires"
+        ]
+      ],
+      "sources": [
+        "https://www.linkedin.com/in/eliott-baltz/"
+      ]
+    }
+  },
+  {
+    "name": "Thomas Hennequin",
+    "type": "co-advised",
+    "topic": [
+      "AI for pilot decision support",
+      "IA pour l’aide à la décision des pilotes"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ]
+    ],
+    "advisors": [
+      "Philippe Feyel (Safran Group)",
+      "Pablo Piantanida"
+    ],
+    "linkedin": "https://www.linkedin.com/in/thomas-hennequin-689453115",
+    "portrait_source": "https://www.linkedin.com/in/thomas-hennequin-689453115",
+    "biography": {
+      "slug": "thomas-hennequin",
+      "text": [
+        "Thomas Hennequin studies how AI can support pilot decision-making by anticipating intentions and future flight behavior. The work combines time-series forecasting with predictive control and examines how predictions can adapt to changing conditions, including the environment, aircraft type and pilot experience.",
+        "Thomas Hennequin étudie comment l’IA peut soutenir la prise de décision des pilotes en anticipant leurs intentions et l’évolution du vol. Ses travaux combinent la prévision de séries temporelles et la commande prédictive, et examinent l’adaptation des prédictions aux changements d’environnement, de type d’aéronef et d’expérience du pilote."
+      ],
+      "topics": [
+        [
+          "Pilot decision support",
+          "Aide à la décision des pilotes"
+        ],
+        [
+          "Time-series forecasting",
+          "Prévision de séries temporelles"
+        ],
+        [
+          "Predictive control",
+          "Commande prédictive"
+        ],
+        [
+          "Flight behavior and trajectories",
+          "Comportement et trajectoires de vol"
+        ]
+      ],
+      "sources": [
+        "https://www.linkedin.com/in/thomas-hennequin-689453115"
+      ]
+    }
+  },
+  {
+    "name": "Yara Bahram",
+    "type": "co-advised",
+    "topic": [
+      "Efficient adaptation of generative models for images, video and interactive worlds",
+      "Adaptation efficace de modèles génératifs pour l’image, la vidéo et les mondes interactifs"
+    ],
+    "institutions": [
+      [
+        "ca",
+        "École de technologie supérieure"
+      ]
+    ],
+    "advisors": [
+      "Éric Granger",
+      "Mohammadhadi Shateri"
+    ],
+    "website": "https://yaramohamadi.github.io/",
+    "image": null,
+    "portrait_source": "https://yaramohamadi.github.io/",
+    "portrait_url": "https://yaramohamadi.github.io/assets/img/profile.jpg",
+    "biography": {
+      "slug": "yara-bahram",
+      "text": [
+        "Yara Bahram works on generative models, especially diffusion and flow-based methods. The research explores efficient ways to adapt and accelerate these models when data or computing resources are limited, with applications to image and video generation and interactive world models for games.",
+        "Yara Bahram travaille sur les modèles génératifs, en particulier les méthodes de diffusion et à base de flots. Ses recherches explorent des moyens efficaces d’adapter et d’accélérer ces modèles lorsque les données ou les ressources de calcul sont limitées, avec des applications à la génération d’images et de vidéos ainsi qu’aux modèles du monde interactifs pour les jeux."
+      ],
+      "topics": [
+        [
+          "Generative models",
+          "Modèles génératifs"
+        ],
+        [
+          "Diffusion and flow-based methods",
+          "Méthodes de diffusion et à base de flots"
+        ],
+        [
+          "Efficient adaptation",
+          "Adaptation efficace"
+        ],
+        [
+          "Image and video generation",
+          "Génération d’images et de vidéos"
+        ],
+        [
+          "Interactive world models",
+          "Modèles du monde interactifs"
+        ]
+      ],
+      "sources": [
+        "https://yaramohamadi.github.io/"
+      ]
+    }
   }
 ]

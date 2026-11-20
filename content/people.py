@@ -185,8 +185,11 @@ def student_card(student, fr, assets):
     profile = f'people/students/{escape(student["biography"]["slug"])}.html'
     heading = (f'<a href="{profile}">{first} <span class="name-tail">{last}'
                '<span class="profile-arrow" aria-hidden="true">→</span></span></a>')
-    if student.get('image'):
-        portrait = (f'<img class="member-photo" src="{assets}students/{escape(student["image"])}" '
+    image = student.get('image')
+    portrait_url = student.get('portrait_url')
+    if image or portrait_url:
+        source = f'{assets}students/{escape(image)}' if image else escape(portrait_url)
+        portrait = (f'<img class="member-photo" src="{source}" '
                     'width="184" height="184" loading="lazy" decoding="async" alt="">')
     else:
         words = student['name'].split()
@@ -260,6 +263,7 @@ def render_student_profile(student, fr, prefix):
         (website_label[fr], website),
         ('Google Scholar', student.get('scholar')),
         ('LinkedIn', student.get('linkedin')),
+        ('GitHub', student.get('github')),
         (t('Mila profile', 'Profil Mila'), student.get('mila_profile')),
     ]
     links = ''.join(
@@ -267,8 +271,10 @@ def render_student_profile(student, fr, prefix):
         for label, url in links_data if url
     )
     image = student.get('image')
-    if image:
-        portrait = (f'<img src="{prefix}assets/students/{escape(image)}" alt="" '
+    portrait_url = student.get('portrait_url')
+    if image or portrait_url:
+        source = f'{prefix}assets/students/{escape(image)}' if image else escape(portrait_url)
+        portrait = (f'<img src="{source}" alt="" '
                     'width="192" height="192" loading="lazy" decoding="async">')
     else:
         initials = escape(student['name'].split()[0][0] + student['name'].split()[-1][0])
