@@ -8,6 +8,7 @@
   if (!ctx) return;
 
   const TAU = Math.PI * 2;
+  const shapeAmplitude = 1.1;
   const mobile = window.matchMedia('(max-width: 740px)');
   const lightDirection = normalize([-.34, .48, .81]);
   let width = 0;
@@ -79,29 +80,37 @@
     return [a[0] / length, a[1] / length, a[2] / length];
   }
 
-  // The trefoil keeps its recognizable outline while its centerline and cross-section
-  // shift gently over time. The broad, traveling swells read as a living learning surface.
+  // A torus-knot family moves between three-, five-, and seven-lobed contours.
+  // Travelling pinches make the tube appear to bud, split, and knit back together.
   let shapeState = {
     radialPhase: 0,
     secondaryPhase: 0,
     verticalPhase: 0,
+    knotMix: .12,
+    fission: .65,
+    splitPhase: 0,
     swellCenters: [.95, 3.28, 5.2],
     swellAmplitudes: [.15, .13, .11]
   };
   function updateShapeState(seconds) {
+    const morphTime = seconds * .84;
+    const knotCycle = .5 - .5 * Math.cos(morphTime * .105);
     shapeState = {
-      radialPhase: seconds * .095,
-      secondaryPhase: seconds * .075,
-      verticalPhase: seconds * .085,
+      radialPhase: morphTime * .095,
+      secondaryPhase: morphTime * .075,
+      verticalPhase: morphTime * .085,
+      knotMix: .16 + .68 * knotCycle,
+      fission: .9 * (.5 + .5 * Math.sin(morphTime * .19 + .4)),
+      splitPhase: morphTime * .14,
       swellCenters: [
-        .95 + seconds * .065,
-        3.28 - seconds * .048,
-        5.2 + seconds * .036
+        .95 + morphTime * .065,
+        3.28 - morphTime * .048,
+        5.2 + morphTime * .036
       ],
       swellAmplitudes: [
-        .12 + .09 * (.5 + .5 * Math.sin(seconds * .15 + .4)),
-        .10 + .08 * (.5 + .5 * Math.sin(seconds * .12 + 1.8)),
-        .08 + .08 * (.5 + .5 * Math.sin(seconds * .17 + 3.1))
+        .12 + .09 * (.5 + .5 * Math.sin(morphTime * .15 + .4)),
+        .10 + .08 * (.5 + .5 * Math.sin(morphTime * .12 + 1.8)),
+        .08 + .08 * (.5 + .5 * Math.sin(morphTime * .17 + 3.1))
       ]
     };
   }
@@ -116,17 +125,33 @@
       const distance = circularDistance(u, shapeState.swellCenters[i]);
       swell += shapeState.swellAmplitudes[i] * Math.exp(-.5 * (distance / widths[i]) ** 2);
     }
-    return 1 + swell;
+    const lobePhase = 5 * u - shapeState.splitPhase;
+    const pinch = .6 * shapeState.fission * (.5 + .5 * Math.cos(lobePhase));
+    const bud = .4 * shapeState.fission * (.5 - .5 * Math.cos(lobePhase));
+    return Math.max(.34, 1 + shapeAmplitude * swell - pinch + bud);
   }
   function centerline(u) {
-    const baseRadius = 1.05 + .55 * Math.cos(3 * u);
-    const radialDrift = 1
-      + .055 * Math.sin(2 * u - shapeState.radialPhase)
-      + .03 * Math.cos(5 * u + shapeState.secondaryPhase);
+    const third = 3 * u - shapeState.radialPhase;
+    const fifth = 5 * u + shapeState.secondaryPhase;
+    const seventh = 7 * u - shapeState.splitPhase;
+    const knotMix = shapeState.knotMix;
+    const radialKnot = (1 - knotMix) * Math.cos(third)
+      + knotMix * Math.cos(fifth)
+      + .29 * shapeState.fission * Math.cos(seventh);
+    const verticalKnot = (1 - knotMix) * Math.sin(third)
+      + knotMix * Math.sin(fifth)
+      + .29 * shapeState.fission * Math.sin(seventh);
+    const baseRadius = 1.05 + .58 * radialKnot;
+    const radialDrift = 1 + shapeAmplitude * (
+      .055 * Math.sin(2 * u - shapeState.radialPhase)
+      + .03 * Math.cos(5 * u + shapeState.secondaryPhase)
+    );
     const radius = baseRadius * radialDrift;
-    const verticalDrift = .07 * Math.sin(2 * u + shapeState.verticalPhase)
-      + .04 * Math.cos(4 * u - shapeState.secondaryPhase);
-    return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .67 * Math.sin(3 * u) + verticalDrift];
+    const verticalDrift = shapeAmplitude * (
+      .07 * Math.sin(2 * u + shapeState.verticalPhase)
+      + .04 * Math.cos(4 * u - shapeState.secondaryPhase)
+    );
+    return [radius * Math.cos(2 * u), radius * Math.sin(2 * u), .73 * verticalKnot + verticalDrift];
   }
   const arcSamples = 4096;
   const arcLengths = new Float64Array(arcSamples + 1);
